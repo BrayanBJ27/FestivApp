@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Image, TouchableOpacity, Platform } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, Text, TextInput, Image, TouchableOpacity } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { useNavigation } from "@react-navigation/native"; // Importa el hook de navegación
 import MainStyles from "../styles/MainStyles";
 
 export default function SingInScreen() {
-    const [isSelected, setSelection] = useState(false);
+  const [isSelected, setSelection] = useState(false);
+  const navigation = useNavigation(); // Hook para la navegación
 
   return (
     <View style={MainStyles.mainContainer}>
       {/* Logo */}
       <View style={MainStyles.logoContainer}>
         <Image
-          source={require("../assets/images/facebook-icon.png")}
+          source={require("../assets/images/oficial_festiapp.png")}
           style={MainStyles.logoIcon}
         />
       </View>
@@ -21,7 +23,12 @@ export default function SingInScreen() {
 
       {/* Email Input */}
       <View style={MainStyles.inputContainer}>
-        <Icon name="envelope" size={20} color="#adadad" style={MainStyles.inputIcon} />
+        <Icon
+          name="envelope"
+          size={20}
+          color="#adadad"
+          style={MainStyles.inputIcon}
+        />
         <TextInput
           style={MainStyles.textInput}
           placeholder="Enter e-mail address"
@@ -31,25 +38,35 @@ export default function SingInScreen() {
 
       {/* Password Input */}
       <View style={MainStyles.inputContainer}>
-          <Icon name="key" size={20} color="#adadad" style={MainStyles.inputIcon} />
-          <TextInput
-            style={MainStyles.textInput}
-            placeholder="Enter password"
-            placeholderTextColor="#adadad"
-            secureTextEntry={true} // Oculta el texto para contraseñas
-          />
-        </View>
+        <Icon
+          name="key"
+          size={20}
+          color="#adadad"
+          style={MainStyles.inputIcon}
+        />
+        <TextInput
+          style={MainStyles.textInput}
+          placeholder="Enter password"
+          placeholderTextColor="#adadad"
+          secureTextEntry={true}
+        />
+      </View>
 
       {/* Repeat Password Input */}
       <View style={MainStyles.inputContainer}>
-          <Icon name="key" size={20} color="#adadad" style={MainStyles.inputIcon} />
-          <TextInput
-            style={MainStyles.textInput}
-            placeholder="Repeat password"
-            placeholderTextColor="#adadad"
-            secureTextEntry={true} // Oculta el texto para contraseñas
-          />
-        </View>
+        <Icon
+          name="key"
+          size={20}
+          color="#adadad"
+          style={MainStyles.inputIcon}
+        />
+        <TextInput
+          style={MainStyles.textInput}
+          placeholder="Repeat password"
+          placeholderTextColor="#adadad"
+          secureTextEntry={true}
+        />
+      </View>
 
       {/* Terms of Service */}
       <View style={MainStyles.termsContainer}>
@@ -69,7 +86,10 @@ export default function SingInScreen() {
       </View>
 
       {/* Continue Button */}
-      <TouchableOpacity style={MainStyles.continueSIButton}>
+      <TouchableOpacity
+        style={MainStyles.continueSIButton}
+        onPress={() => navigation.navigate("Login")} // Navega a la pantalla de inicio de sesión
+      >
         <Text style={MainStyles.continueText}>Continue</Text>
       </TouchableOpacity>
     </View>
