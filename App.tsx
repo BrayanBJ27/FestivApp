@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 // import { Text, View, ActivityIndicator } from "react-native";
 import LoginScreen from "./src/screens/LoginScreen";
 import SingInScreen from "./src/screens/SingInScreen";
+import HomeScreen from "./src/screens/HomeScreen";
+
 // import * as Font from "expo-font";
 
 export default function App() {
@@ -27,5 +29,6 @@ export default function App() {
     //   );
     // }
     // return <LoginScreen />;
-    return <SingInScreen />;
+    // return <SingInScreen />;
+    return <HomeScreen />;
   }
