@@ -417,6 +417,125 @@ const MainStyles = StyleSheet.create({
     marginLeft: 315,
     top: 5,
   },
+
+  //EVENT SCREEN
+  safeAreaES: {
+    flex: 1,
+  },
+  eventContainerES: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
+  },
+  backgroundImageES: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  backButtonES: {
+    position: "absolute",
+    top: 50,
+    left: 20,
+    zIndex: 10,
+  },
+  mainImageES: {
+    position: "absolute", // Asegura que la imagen esté detrás de todo el contenido
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: "100%",
+    height: "100%",
+    zIndex: -1,
+  },
+  eventTitleES: {
+    fontSize: 32,
+    fontFamily: "Andika",
+    fontWeight: "400",
+    color: "#fff",
+    marginTop: 630,
+    marginLeft: 20,
+  },
+  eventDescriptionES: {
+    fontSize: 13,
+    fontFamily: "Poppins",
+    fontWeight: "400",
+    color: "#fff",
+    lineHeight: 21,
+    marginTop: 10,
+    marginLeft: 20,
+    marginRight: 20,
+  },
+  reviewContainerES: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 10,
+    marginLeft: 20,
+  },
+  ratingContainerES: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  starIconES: {
+    marginRight: 5,
+  },
+  ratingTextES: {
+    fontSize: 14,
+    fontFamily: "Poppins",
+    color: "#fff",
+    marginLeft: 10,
+  },
+  reviewTextES: {
+    fontSize: 14,
+    fontFamily: "Poppins",
+    color: "rgba(255, 255, 255, 0.8)",
+    marginLeft: 10,
+  },
+  seeReviewsTextES: {
+    fontSize: 14,
+    fontFamily: "Poppins",
+    color: "#fff",
+    marginLeft: 20,
+    textDecorationLine: "underline",
+  },
+  buttonContainerES: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 30,
+    paddingHorizontal: 20,
+  },
+  primaryButtonES: {
+    width: "48%",
+    height: 50,
+    backgroundColor: "#0373f3",
+    borderRadius: 25,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  primaryButtonTextES: {
+    fontSize: 16,
+    fontFamily: "Poppins",
+    fontWeight: "500",
+    color: "#fff",
+  },
+  secondaryButtonES: {
+    width: "48%",
+    height: 50,
+    backgroundColor: "#fff",
+    borderRadius: 25,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "#ddd",
+  },
+  secondaryButtonTextES: {
+    fontSize: 16,
+    fontFamily: "Poppins",
+    fontWeight: "500",
+    color: "#000",
+  },
 });
 
 export default MainStyles;
