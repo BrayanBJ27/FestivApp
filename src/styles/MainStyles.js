@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 const MainStyles = StyleSheet.create({
 
-  //NAVBAR
   bottomNavContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -12,8 +11,8 @@ const MainStyles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#e9e9e9',
     position: 'absolute',
-    bottom: 20,
-    width: '100%',
+    bottom: 0, // Asegura que esté al fondo de la pantalla
+    width: '100%', // Se ajusta al ancho de la pantalla
     paddingBottom: 10,
     paddingTop: 5,
   },
@@ -26,7 +25,7 @@ const MainStyles = StyleSheet.create({
   navText: {
     fontSize: 12,
     marginTop: 4,
-    fontFamily: 'System',  // System font for iOS-like appearance
+    fontFamily: 'System', // Fuente para apariencia consistente
   },
   activeNavText: {
     color: '#007AFF',
@@ -42,7 +41,8 @@ const MainStyles = StyleSheet.create({
   inactiveIcon: {
     color: '#bcbcbc',
   },
-
+  
+  //
   mainContainer: {
     width: 402,
     height: 870,
@@ -535,6 +535,163 @@ const MainStyles = StyleSheet.create({
     fontFamily: "Poppins",
     fontWeight: "500",
     color: "#000",
+  },
+
+  //MAP SCREEN
+  safeAreaMS: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  mapContainerMS: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    position: "relative",
+    overflow: "hidden",
+  },
+  headerContainerMS: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    paddingTop: 16,
+  },
+  backButtonMS: {
+    top: 50,
+    zIndex: 10,
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  searchBarMS: {
+    width: 260,
+    height: 48,
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: '#e9e9e9',
+    position: 'relative',
+    top: 50,
+    zIndex: 1,
+  },
+  searchIconMS: {
+    position: "absolute",
+    top: 14,
+    left: 18,
+    width: 22,
+    height: 22,
+  },
+  searchTextMS: {
+    fontSize: 16,
+    color: "#aeaeae",
+    flex: 1,
+    height: 40,
+    fontSize: 16,
+    color: "#000",
+    left: 40,
+    top: 17,
+  },
+  filterButtonMS: {
+    top: 50,
+    width: 40,
+    height: 40,
+    backgroundColor: "#0373f3",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20,
+  },
+  locationTitleMS: {
+    fontSize: 24,
+    fontWeight: "600",
+    color: "#000",
+    paddingHorizontal: 16,
+    marginTop: 520,
+  },
+  locationsContainerMS: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    marginTop: 16,
+  },
+  locationCardMS: {
+    width: "48%",
+    backgroundColor: "#fff",
+    borderRadius: 15,
+    padding: 10,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  locationImageMS: {
+    width: "100%",
+    height: 100,
+    borderRadius: 10,
+    marginBottom: 8,
+  },
+  locationTitleTextMS: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#000",
+    marginBottom: 4,
+  },
+  ratingContainerMS: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 4,
+  },
+  priceTextMS: {
+    fontSize: 14,
+    color: "#aeaeae",
+  },
+  footerContainerMS: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: 60,
+    borderTopWidth: 1,
+    borderTopColor: "#e6e6e6",
+    backgroundColor: "#fff",
+  },
+  footerItemMS: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  footerTextMS: {
+    fontSize: 12,
+    color: "#bcbcbc",
+    marginTop: 4,
+  },
+  activeFooterItemMS: {
+    backgroundColor: "#e6f0ff",
+    borderRadius: 20,
+  },
+  activeFooterTextMS: {
+    color: "#0373f3",
+  },
+  mapViewMS: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    position: 'absolute', // Asegura que el mapa ocupe toda la pantalla como fondo
+    zIndex: -1, // Coloca el mapa detrás de los otros elementos
+  },
+  
+  scrollContainerMS: {
+    flex: 1,
+    backgroundColor: 'transparent', // Asegura que el fondo sea visible
+    padding: 16,
+  },
+  
+  overlayContainerMS: {
+    flex: 1,
+    justifyContent: 'flex-end', // Asegura que el contenido se posicione en la parte inferior
+    paddingHorizontal: 16,
+    paddingBottom: 50, // Espacio para el footer // Fondo translúcido sobre el mapa
+    borderTopLeftRadius: 20, // Bordes redondeados para el diseño
+    borderTopRightRadius: 20,
   },
 });
 
