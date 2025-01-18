@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import LoginScreen from "./src/screens/LoginScreen";
 import SingInScreen from "./src/screens/SingInScreen";
 import HomeScreen from "./src/screens/HomeScreen";
+import EventScreen from "./src/screens/EventScreen";
 
 // import * as Font from "expo-font";
 
@@ -30,5 +31,6 @@ export default function App() {
     // }
     // return <LoginScreen />;
     // return <SingInScreen />;
-    return <HomeScreen />;
+    // return <HomeScreen />;
+    return <EventScreen />;
   }
