@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/FontAwesome6";
 import MainStyles from "../styles/MainStyles";
 
 interface NavbarProps {
@@ -16,7 +16,7 @@ const BottomNavbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
         onPress={() => setActiveTab("Home")}
       >
         <Icon
-          name="home"
+          name="house-user"
           size={24}
           style={
             activeTab === "Home"
@@ -66,7 +66,7 @@ const BottomNavbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
         onPress={() => setActiveTab("Map")}
       >
         <Icon
-          name="map-marker"
+          name="map-location-dot"
           size={24}
           style={
             activeTab === "Map"
