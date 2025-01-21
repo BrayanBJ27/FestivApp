@@ -557,22 +557,25 @@ const MainStyles = StyleSheet.create({
     paddingTop: 16,
   },
   backButtonMS: {
-    top: 50,
+    top: 10,
     zIndex: 10,
     width: 40,
     height: 40,
+    right: 40,
     justifyContent: "center",
     alignItems: "center",
   },
   searchBarMS: {
-    width: 260,
+    width: 280,
     height: 48,
     borderRadius: 25,
     borderWidth: 1,
-    borderColor: '#e9e9e9',
+    borderColor: '#adadad',
+    backgroundColor: '#fff',
     position: 'relative',
-    top: 50,
+    top: 10,
     zIndex: 1,
+    left: -40,
   },
   searchIconMS: {
     position: "absolute",
@@ -592,13 +595,14 @@ const MainStyles = StyleSheet.create({
     top: 17,
   },
   filterButtonMS: {
-    top: 50,
+    top: 10,
     width: 40,
     height: 40,
     backgroundColor: "#0373f3",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 20,
+    right: 30,
   },
   locationTitleMS: {
     fontSize: 24,
@@ -678,13 +682,11 @@ const MainStyles = StyleSheet.create({
     position: 'absolute', // Asegura que el mapa ocupe toda la pantalla como fondo
     zIndex: -1, // Coloca el mapa detrás de los otros elementos
   },
-  
   scrollContainerMS: {
     flex: 1,
     backgroundColor: 'transparent', // Asegura que el fondo sea visible
     padding: 16,
   },
-  
   overlayContainerMS: {
     flex: 1,
     justifyContent: 'flex-end', // Asegura que el contenido se posicione en la parte inferior
@@ -693,6 +695,162 @@ const MainStyles = StyleSheet.create({
     borderTopLeftRadius: 20, // Bordes redondeados para el diseño
     borderTopRightRadius: 20,
   },
+  
+  //SCHEDULE SCREEN
+  safeAreaSS: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  scrollViewSS: {
+    paddingHorizontal: 16,
+  },
+  containerSS: {
+    flex: 1,
+    paddingBottom: 20,
+  },
+  greetingTextSS: {
+    fontSize: 18,
+    fontWeight: "400",
+    color: "#6c6c6c",
+    marginTop: 60,
+    marginLeft: 10,
+  },
+  mainTitleSS: {
+    fontSize: 26,
+    fontWeight: "600",
+    color: "#000",
+    marginVertical: 5,
+    marginLeft: 10,
+  },
+  profileIconSS: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    position: "absolute",
+    right: 16,
+    top: 80,
+  },
+  sectionTitleSS: {
+    fontSize: 18,
+    fontWeight: "500",
+    color: "#000",
+    marginTop: 40,
+    marginLeft: 10,
+  },
+  mainImageSS: {
+    width: "100%",
+    height: 200,
+    borderRadius: 12,
+    marginVertical: 10,
+    overflow: "hidden",
+  },
+  overlayContainerSS: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 10,
+    backgroundColor: "rgba(0,0,0,0.4)",
+  },
+  locationIconSS: {
+    width: 20,
+    height: 20,
+  },
+  locationTextSS: {
+    fontSize: 14,
+    color: "#fff",
+    marginLeft: 30,
+  },
+  buttonContainerSS: {
+    backgroundColor: "#0373f3",
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    top: 150,
+  },
+  buttonTextSS: {
+    color: "#fff",
+    fontSize: 14,
+    fontWeight: "500",
+  },
+  scheduleContainerSS: {
+    backgroundColor: "#f8f8f8",
+    borderRadius: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 16,
+  },
+  scheduleHeaderSS: {
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  dragIndicatorSS: {
+    width: 50,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: "#ccc",
+    marginBottom: 10,
+    alignSelf: "center"
+  },
+  scheduleTitleSS: {
+    fontSize: 20,
+    fontWeight: "600",
+    color: "#000",
+  },
+  scheduleItemSS: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 10,
+  },
+  timeTextSS: {
+    fontSize: 16,
+    fontWeight: "400",
+    color: "#000",
+    marginRight: 10,
+  },
+  timelineSS: {
+    width: 2,
+    height: "100%",
+    backgroundColor: "#ccc",
+    marginHorizontal: 10,
+  },
+  timelineActiveSS: {
+    height: 20,
+    width: 20,
+    borderRadius: 10,
+    backgroundColor: "#0373f3",
+    borderWidth: 3,
+    borderColor: "#fff",
+    position: "absolute",
+    top: -10,
+    left: -10,
+  },
+  timelineInactiveSS: {
+    height: 15,
+    width: 15,
+    borderRadius: 7.5,
+    backgroundColor: "#ccc",
+    position: "absolute",
+    top: -7.5,
+    left: -7.5,
+  },
+  locationNameSS: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#000",
+    flex: 1,
+  },
+  dateTextSS: {
+    fontSize: 14,
+    color: "#6c6c6c",
+  },
+  scheduleIconSS: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginLeft: 10,
+  }
+
+  //CALENDAR SCREEN
+  
 });
 
 export default MainStyles;
