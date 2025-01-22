@@ -1,13 +1,13 @@
-import React from 'react';
 import {
   View,
   Text,
   ImageBackground,
   SafeAreaView,
   ScrollView,
-  StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import MainStyles from "../styles/MainStyles";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function CalendarScreen() {
   return (
@@ -15,18 +15,16 @@ export default function CalendarScreen() {
       <ScrollView scrollEnabled={true} contentInsetAdjustmentBehavior="automatic">
         <View style={MainStyles.containerCS}>
           <View style={MainStyles.headerCS}>
-            <ImageBackground
-              style={MainStyles.backButtonCS}
-              source={require('./assets/images/d8f6c9f1-e3bc-4a2c-93ad-2afecf949158.png')}
-              resizeMode="cover"
-            />
+            <TouchableOpacity style={MainStyles.backButtonCS}>
+              <Icon name="arrow-left" size={20} color="#000" />
+            </TouchableOpacity>
             <Text style={MainStyles.headerTextCS} numberOfLines={1}>
               My Plan
             </Text>
           </View>
           <ImageBackground
             style={MainStyles.imageBannerCS}
-            source={require('./assets/images/8b9a943435507c3a17453a2afe21258126333383.png')}
+            source={require('../assets/images/diablada.jpg')}
             resizeMode="cover"
           >
             <Text style={MainStyles.eventTitleCS} numberOfLines={1}>
