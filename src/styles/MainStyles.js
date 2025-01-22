@@ -874,13 +874,14 @@ const MainStyles = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 33,
     color: '#000',
+    right: 150,
   },
   imageBannerCS: {
-    width: 356,
+    width: 345,
     height: 92,
     borderRadius: 4,
     marginTop: 39,
-    marginHorizontal: 22,
+    marginHorizontal: 20,
   },
   eventTitleCS: {
     fontFamily: 'Andika',
@@ -935,6 +936,7 @@ const MainStyles = StyleSheet.create({
     marginTop: 9,
     marginHorizontal: 24,
     padding: 10,
+    width: 350,
   },
   selectContactCS: {
     fontFamily: 'Poppins',
@@ -953,8 +955,9 @@ const MainStyles = StyleSheet.create({
     backgroundColor: '#0373f3',
     borderRadius: 36,
     marginTop: 34,
-    marginHorizontal: 24,
+    marginHorizontal: 20,
     height: 54,
+    width: 350,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -963,6 +966,7 @@ const MainStyles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     color: '#fff',
+    justifyContent: 'center',
   },
 });
 
