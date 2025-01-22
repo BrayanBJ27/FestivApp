@@ -25,8 +25,8 @@ export default function App() {
       </NavigationContainer>
     </UserProvider>
   );
-}
-    // const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  // const [fontsLoaded, setFontsLoaded] = useState(false);
 
     // useEffect(() => {
     //   async function loadFonts() {
@@ -54,4 +54,4 @@ export default function App() {
     // return <MapScreen />;
     // return <ScheduleScreen />;
     return <CalendarScreen />;
-  }
+}
