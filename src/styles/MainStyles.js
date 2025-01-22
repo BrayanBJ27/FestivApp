@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 const MainStyles = StyleSheet.create({
 
-  //NAVBAR
   bottomNavContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -12,8 +11,8 @@ const MainStyles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#e9e9e9',
     position: 'absolute',
-    bottom: 20,
-    width: '100%',
+    bottom: 0, // Asegura que esté al fondo de la pantalla
+    width: '100%', // Se ajusta al ancho de la pantalla
     paddingBottom: 10,
     paddingTop: 5,
   },
@@ -26,7 +25,7 @@ const MainStyles = StyleSheet.create({
   navText: {
     fontSize: 12,
     marginTop: 4,
-    fontFamily: 'System',  // System font for iOS-like appearance
+    fontFamily: 'System', // Fuente para apariencia consistente
   },
   activeNavText: {
     color: '#007AFF',
@@ -42,6 +41,7 @@ const MainStyles = StyleSheet.create({
   inactiveIcon: {
     color: '#bcbcbc',
   },
+  
 //log
 mainContainer: {
   flex: 1, // Asegura que ocupe todo el espacio disponible
@@ -65,8 +65,6 @@ logoIcon: {
   height: "100%", // La imagen ocupa todo el alto del contenedor
   resizeMode: "contain", // Asegura que no se deforme
 },
-
-
 continueSIButton: {
   width: 340,
   height: 54,
@@ -76,7 +74,6 @@ continueSIButton: {
   alignItems: "center",
   justifyContent: "center",
 },
-
   title: {
     fontSize: 30,
     fontWeight: "600",
@@ -452,6 +449,557 @@ continueSIButton: {
     justifyContent: 'center',
     marginLeft: 315,
     top: 5,
+  },
+
+  //EVENT SCREEN
+  safeAreaES: {
+    flex: 1,
+  },
+  eventContainerES: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
+  },
+  backgroundImageES: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  backButtonES: {
+    position: "absolute",
+    top: 50,
+    left: 20,
+    zIndex: 10,
+  },
+  mainImageES: {
+    position: "absolute", // Asegura que la imagen esté detrás de todo el contenido
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: "100%",
+    height: "100%",
+    zIndex: -1,
+  },
+  eventTitleES: {
+    fontSize: 32,
+    fontFamily: "Andika",
+    fontWeight: "400",
+    color: "#fff",
+    marginTop: 630,
+    marginLeft: 20,
+  },
+  eventDescriptionES: {
+    fontSize: 13,
+    fontFamily: "Poppins",
+    fontWeight: "400",
+    color: "#fff",
+    lineHeight: 21,
+    marginTop: 10,
+    marginLeft: 20,
+    marginRight: 20,
+  },
+  reviewContainerES: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 10,
+    marginLeft: 20,
+  },
+  ratingContainerES: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  starIconES: {
+    marginRight: 5,
+  },
+  ratingTextES: {
+    fontSize: 14,
+    fontFamily: "Poppins",
+    color: "#fff",
+    marginLeft: 10,
+  },
+  reviewTextES: {
+    fontSize: 14,
+    fontFamily: "Poppins",
+    color: "rgba(255, 255, 255, 0.8)",
+    marginLeft: 10,
+  },
+  seeReviewsTextES: {
+    fontSize: 14,
+    fontFamily: "Poppins",
+    color: "#fff",
+    marginLeft: 20,
+    textDecorationLine: "underline",
+  },
+  buttonContainerES: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 30,
+    paddingHorizontal: 20,
+  },
+  primaryButtonES: {
+    width: "48%",
+    height: 50,
+    backgroundColor: "#0373f3",
+    borderRadius: 25,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  primaryButtonTextES: {
+    fontSize: 16,
+    fontFamily: "Poppins",
+    fontWeight: "500",
+    color: "#fff",
+  },
+  secondaryButtonES: {
+    width: "48%",
+    height: 50,
+    backgroundColor: "#fff",
+    borderRadius: 25,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "#ddd",
+  },
+  secondaryButtonTextES: {
+    fontSize: 16,
+    fontFamily: "Poppins",
+    fontWeight: "500",
+    color: "#000",
+  },
+
+  //MAP SCREEN
+  safeAreaMS: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  mapContainerMS: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    position: "relative",
+    overflow: "hidden",
+  },
+  headerContainerMS: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    paddingTop: 16,
+  },
+  backButtonMS: {
+    top: 10,
+    zIndex: 10,
+    width: 40,
+    height: 40,
+    right: 40,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  searchBarMS: {
+    width: 280,
+    height: 48,
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: '#adadad',
+    backgroundColor: '#fff',
+    position: 'relative',
+    top: 10,
+    zIndex: 1,
+    left: -40,
+  },
+  searchIconMS: {
+    position: "absolute",
+    top: 14,
+    left: 18,
+    width: 22,
+    height: 22,
+  },
+  searchTextMS: {
+    fontSize: 16,
+    color: "#aeaeae",
+    flex: 1,
+    height: 40,
+    fontSize: 16,
+    color: "#000",
+    left: 40,
+    top: 17,
+  },
+  filterButtonMS: {
+    top: 10,
+    width: 40,
+    height: 40,
+    backgroundColor: "#0373f3",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20,
+    right: 30,
+  },
+  locationTitleMS: {
+    fontSize: 24,
+    fontWeight: "600",
+    color: "#000",
+    paddingHorizontal: 16,
+    marginTop: 520,
+  },
+  locationsContainerMS: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    marginTop: 16,
+  },
+  locationCardMS: {
+    width: "48%",
+    backgroundColor: "#fff",
+    borderRadius: 15,
+    padding: 10,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  locationImageMS: {
+    width: "100%",
+    height: 100,
+    borderRadius: 10,
+    marginBottom: 8,
+  },
+  locationTitleTextMS: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#000",
+    marginBottom: 4,
+  },
+  ratingContainerMS: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 4,
+  },
+  priceTextMS: {
+    fontSize: 14,
+    color: "#aeaeae",
+  },
+  footerContainerMS: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: 60,
+    borderTopWidth: 1,
+    borderTopColor: "#e6e6e6",
+    backgroundColor: "#fff",
+  },
+  footerItemMS: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  footerTextMS: {
+    fontSize: 12,
+    color: "#bcbcbc",
+    marginTop: 4,
+  },
+  activeFooterItemMS: {
+    backgroundColor: "#e6f0ff",
+    borderRadius: 20,
+  },
+  activeFooterTextMS: {
+    color: "#0373f3",
+  },
+  mapViewMS: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    position: 'absolute', // Asegura que el mapa ocupe toda la pantalla como fondo
+    zIndex: -1, // Coloca el mapa detrás de los otros elementos
+  },
+  scrollContainerMS: {
+    flex: 1,
+    backgroundColor: 'transparent', // Asegura que el fondo sea visible
+    padding: 16,
+  },
+  overlayContainerMS: {
+    flex: 1,
+    justifyContent: 'flex-end', // Asegura que el contenido se posicione en la parte inferior
+    paddingHorizontal: 16,
+    paddingBottom: 50, // Espacio para el footer // Fondo translúcido sobre el mapa
+    borderTopLeftRadius: 20, // Bordes redondeados para el diseño
+    borderTopRightRadius: 20,
+  },
+  
+  //SCHEDULE SCREEN
+  safeAreaSS: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  scrollViewSS: {
+    paddingHorizontal: 16,
+  },
+  containerSS: {
+    flex: 1,
+    paddingBottom: 20,
+  },
+  greetingTextSS: {
+    fontSize: 18,
+    fontWeight: "400",
+    color: "#6c6c6c",
+    marginTop: 60,
+    marginLeft: 10,
+  },
+  mainTitleSS: {
+    fontSize: 26,
+    fontWeight: "600",
+    color: "#000",
+    marginVertical: 5,
+    marginLeft: 10,
+  },
+  profileIconSS: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    position: "absolute",
+    right: 16,
+    top: 80,
+  },
+  sectionTitleSS: {
+    fontSize: 18,
+    fontWeight: "500",
+    color: "#000",
+    marginTop: 40,
+    marginLeft: 10,
+  },
+  mainImageSS: {
+    width: "100%",
+    height: 200,
+    borderRadius: 12,
+    marginVertical: 10,
+    overflow: "hidden",
+  },
+  overlayContainerSS: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 10,
+    backgroundColor: "rgba(0,0,0,0.4)",
+  },
+  locationIconSS: {
+    width: 20,
+    height: 20,
+  },
+  locationTextSS: {
+    fontSize: 14,
+    color: "#fff",
+    marginLeft: 30,
+  },
+  buttonContainerSS: {
+    backgroundColor: "#0373f3",
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    top: 150,
+  },
+  buttonTextSS: {
+    color: "#fff",
+    fontSize: 14,
+    fontWeight: "500",
+  },
+  scheduleContainerSS: {
+    backgroundColor: "#f8f8f8",
+    borderRadius: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 16,
+  },
+  scheduleHeaderSS: {
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  dragIndicatorSS: {
+    width: 50,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: "#ccc",
+    marginBottom: 10,
+    alignSelf: "center"
+  },
+  scheduleTitleSS: {
+    fontSize: 20,
+    fontWeight: "600",
+    color: "#000",
+  },
+  scheduleItemSS: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 10,
+  },
+  timeTextSS: {
+    fontSize: 16,
+    fontWeight: "400",
+    color: "#000",
+    marginRight: 10,
+  },
+  timelineSS: {
+    width: 2,
+    height: "100%",
+    backgroundColor: "#ccc",
+    marginHorizontal: 10,
+  },
+  timelineActiveSS: {
+    height: 20,
+    width: 20,
+    borderRadius: 10,
+    backgroundColor: "#0373f3",
+    borderWidth: 3,
+    borderColor: "#fff",
+    position: "absolute",
+    top: -10,
+    left: -10,
+  },
+  timelineInactiveSS: {
+    height: 15,
+    width: 15,
+    borderRadius: 7.5,
+    backgroundColor: "#ccc",
+    position: "absolute",
+    top: -7.5,
+    left: -7.5,
+  },
+  locationNameSS: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#000",
+    flex: 1,
+  },
+  dateTextSS: {
+    fontSize: 14,
+    color: "#6c6c6c",
+  },
+  scheduleIconSS: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginLeft: 10,
+  },
+
+  //CALENDAR SCREEN
+  containerCS: {
+    width: 404,
+    height: 874,
+    backgroundColor: '#ffffff',
+    marginTop: 0,
+    marginHorizontal: 'auto',
+  },
+  headerCS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 71,
+    marginHorizontal: 18,
+  },
+  backButtonCS: {
+    width: 28,
+    height: 28,
+  },
+  headerTextCS: {
+    fontFamily: 'Poppins',
+    fontSize: 20,
+    fontWeight: '600',
+    lineHeight: 33,
+    color: '#000',
+    right: 150,
+  },
+  imageBannerCS: {
+    width: 345,
+    height: 92,
+    borderRadius: 4,
+    marginTop: 39,
+    marginHorizontal: 20,
+  },
+  eventTitleCS: {
+    fontFamily: 'Andika',
+    fontSize: 24,
+    lineHeight: 38,
+    color: '#fff',
+    position: 'absolute',
+    top: 42,
+    left: 11,
+  },
+  calendarHeaderCS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 27,
+    marginHorizontal: 24,
+  },
+  calendarTitleCS: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#000',
+  },
+  monthTextCS: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: '400',
+    color: '#000',
+  },
+  calendarCS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 22,
+    marginHorizontal: 24,
+  },
+  dateCS: {
+    fontFamily: 'Poppins',
+    fontSize: 14,
+    color: '#a5a5a5',
+  },
+  shareTitleCS: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: '600',
+    marginTop: 38,
+    marginHorizontal: 25,
+    color: '#000',
+  },
+  contactInputCS: {
+    borderWidth: 1,
+    borderColor: '#e9e9e9',
+    borderRadius: 25,
+    marginTop: 9,
+    marginHorizontal: 24,
+    padding: 10,
+    width: 350,
+  },
+  selectContactCS: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    color: '#a9a9a9',
+  },
+  sendEmailCS: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: '400',
+    marginTop: 31,
+    marginHorizontal: 24,
+    color: '#1e1e1e',
+  },
+  buttonCS: {
+    backgroundColor: '#0373f3',
+    borderRadius: 36,
+    marginTop: 34,
+    marginHorizontal: 20,
+    height: 54,
+    width: 350,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonTextCS: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#fff',
+    justifyContent: 'center',
   },
 });
 
