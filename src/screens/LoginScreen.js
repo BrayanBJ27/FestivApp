@@ -1,12 +1,30 @@
-import React from "react";
-
-import { ScrollView, View, Text, TextInput, TouchableOpacity, Image } from "react-native";
-
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import MainStyles from "../styles/MainStyles"; 
+import React, { useState } from "react";
+import { ScrollView, View, Text, TextInput, TouchableOpacity, Image, Alert } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import MainStyles from "../styles/MainStyles";
+import { useNavigation } from "@react-navigation/native";
+import { useUser } from "../hooks/UserContext"; // Importa el contexto del usuario
 
 export default function LoginScreen() {
+  const { setUser, registeredUsers } = useUser(); // Obtén los usuarios registrados y la función para establecer el usuario actual
+  const navigation = useNavigation();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignIn = () => {
+    const foundUser = registeredUsers.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (foundUser) {
+      setUser(foundUser); // Guarda el usuario en el contexto
+      navigation.navigate("Home"); // Navega a la pantalla Home
+    } else {
+      Alert.alert("Error", "Invalid email or password");
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={MainStyles.scrollContainer}>
       <View style={MainStyles.mainContainer}>
@@ -27,6 +45,8 @@ export default function LoginScreen() {
             style={MainStyles.textInput}
             placeholder="Enter e-mail address"
             placeholderTextColor="#adadad"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
         </View>
 
@@ -37,43 +57,23 @@ export default function LoginScreen() {
             style={MainStyles.textInput}
             placeholder="Enter password"
             placeholderTextColor="#adadad"
-            secureTextEntry={true} // Oculta el texto para contraseñas
+            secureTextEntry={true}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
           />
         </View>
 
-        {/* Divider */}
-        <View style={MainStyles.dividerContainer}>
-          <View style={MainStyles.divider} />
-          <Text style={MainStyles.orText}>Or continue with</Text>
-          <View style={MainStyles.divider} />
-        </View>
-
-        {/* Buttons */}
-        <TouchableOpacity style={MainStyles.appleButton}>
-          <Icon name="envelope" size={20} color="#fff" style={MainStyles.buttonIcon} />
-          <Text style={MainStyles.buttonText}>Continue with E-mail</Text>
+        {/* Sign In Button */}
+        <TouchableOpacity style={MainStyles.continueButton} onPress={handleSignIn}>
+          <Text style={MainStyles.continueText}>Sign In</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={MainStyles.appleButton}>
-          <Icon name="apple" size={20} color="#fff" style={MainStyles.buttonIcon} />
-          <Text style={MainStyles.buttonText}>Continue with Apple</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={MainStyles.facebookButton}>
-          <Icon name="facebook" size={20} color="#fff" style={MainStyles.buttonIcon} />
-          <Text style={MainStyles.buttonText}>Continue with Facebook</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={MainStyles.googleButton}>
-          <Image
-            source={require("../assets/images/google-icon.png")}
-            style={MainStyles.buttonIcon}
-          />
-          <Text style={MainStyles.googleButtonText}>Continue with Google</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={MainStyles.continueButton}>
-          <Text style={MainStyles.continueText}>Continue</Text>
+        {/* Create Account */}
+        <TouchableOpacity
+          style={MainStyles.continueButton}
+          onPress={() => navigation.navigate("SignUp")}
+        >
+          <Text style={MainStyles.continueText}>Create Account</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

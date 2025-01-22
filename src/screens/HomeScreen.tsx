@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -13,23 +13,20 @@ import BottomNavbar from "../components/BottomNavbar";
 import MainStyles from '../styles/MainStyles';
 
 const HomeScreen: React.FC = (): JSX.Element => {
-  const [activeTab, setActiveTab] = useState('Home');
+  const [activeTab, setActiveTab] = useState("Home");
+
   return (
     <SafeAreaView>
-      <ScrollView scrollEnabled={true} contentInsetAdjustmentBehavior="automatic">
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
         <View style={MainStyles.containerHS}>
-            <View style={MainStyles.headerContainerHS}>
-              <ImageBackground
-                style={MainStyles.headerIconHS}
-                source={require('../assets/images/google-icon.png')}
-                resizeMode="cover"
-              />
-              <Text style={MainStyles.headerTextHS}>
-                Find your next trip and discover more about Ecuador
-              </Text>
-            </View>
-            <Text style={MainStyles.titleTextHS}>The following holidays.</Text>
-            {/* Search Box */}
+          {/* Header */}
+          <View style={MainStyles.headerContainerHS}>
+            <Text style={MainStyles.headerTextHS}>oficial_festiapp</Text>
+          </View>
+
+          <Text style={MainStyles.titleTextHS}>The following holidays.</Text>
+
+          {/* Search Box */}
           <View style={MainStyles.searchContainerHS}>
             <View style={MainStyles.searchBoxHS}>
               <Icon
@@ -48,23 +45,32 @@ const HomeScreen: React.FC = (): JSX.Element => {
               <Icon name="sliders" size={20} color="#fff" />
             </TouchableOpacity>
           </View>
-            <Text style={MainStyles.sectionTitleHS}>Popular festivities</Text>
+
+          <Text style={MainStyles.sectionTitleHS}>Popular festivities</Text>
+          <ImageBackground
+            style={MainStyles.popularFestivityHS}
+            source={require("../assets/images/google-icon.png")}
+            resizeMode="cover"
+          >
+            <Text style={MainStyles.popularFestivityTextHS}>Carnaval Guaranda</Text>
+            <View style={MainStyles.popularFestivityDetailsHS}>
+              <Text style={MainStyles.dateTextHS}>March 3rd & 4th</Text>
+              <View style={MainStyles.ratingContainerHS}>
+                <Text style={MainStyles.ratingTextHS}>4.9</Text>
+                <Icon name="star" size={20} color="#FFD700" />
+              </View>
+            </View>
+          </ImageBackground>
+
+          <Text style={MainStyles.sectionTitleHS}>Other festivities</Text>
+          <View style={MainStyles.otherFestivitiesContainerHS}>
             <ImageBackground
-              style={MainStyles.popularFestivityHS}
-              source={require('../assets/images/google-icon.png')}
+              style={MainStyles.otherFestivityHS}
+              source={require("../assets/images/google-icon.png")}
               resizeMode="cover"
             >
-              <Text style={MainStyles.popularFestivityTextHS}>Carnaval Guaranda</Text>
-              <View style={MainStyles.popularFestivityDetailsHS}>
-                <Text style={MainStyles.dateTextHS}>March 3rd & 4th.</Text>
-                <View style={MainStyles.ratingContainerHS}>
-                  <Text style={MainStyles.ratingTextHS}>4.9</Text>
-                  <ImageBackground
-                    style={MainStyles.ratingIconHS}
-                    source={require('../assets/images/star.png')}
-                  />
-                </View>
-              </View>
+              <Text style={MainStyles.otherFestivityTitleHS}>Diablada Pillareña</Text>
+              <Text style={MainStyles.otherFestivityDateHS}>January, 6th</Text>
             </ImageBackground>
             <Text style={MainStyles.sectionTitleHS}>Other festivities</Text>
             <View style={MainStyles.otherFestivitiesContainerHS}>
@@ -88,9 +94,10 @@ const HomeScreen: React.FC = (): JSX.Element => {
             {/* Footer Navigation*/}
             <BottomNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
           </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
-}
+};
 
 export default HomeScreen;

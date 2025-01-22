@@ -42,21 +42,38 @@ const MainStyles = StyleSheet.create({
     color: '#bcbcbc',
   },
   
-  //
-  mainContainer: {
-    width: 402,
-    height: 870,
-    backgroundColor: "#fff",
-    marginHorizontal: "auto",
-    overflow: "hidden",
-  },
-  logoContainer: {
-    width: 28,
-    height: 28,
-    backgroundColor: "#ccc",
-    marginTop: 74,
-    marginLeft: 23,
-  },
+//log
+mainContainer: {
+  flex: 1, // Asegura que ocupe todo el espacio disponible
+  backgroundColor: "#ffffff", // Fondo blanco puro
+  justifyContent: "center", // Centra el contenido verticalmente
+  alignItems: "center", // Centra el contenido horizontalmente
+  paddingTop: 5, // Espacio adicional en la parte superior
+  paddingBottom: 10, // Espacio adicional en la parte inferior
+},
+
+logoContainer: {
+  width: "50%", // Ajusta el tamaño al 50% del ancho de la pantalla
+  aspectRatio: 1, // Mantiene proporción 1:1 para evitar deformaciones
+  backgroundColor: "#ffffff", // Fondo blanco puro opcional
+  alignSelf: "center", // Centra horizontalmente
+  marginTop: 20, // Espacio superior ajustado para mantener el logo dentro de la pantalla
+},
+
+logoIcon: {
+  width: "100%", // La imagen ocupa todo el ancho del contenedor
+  height: "100%", // La imagen ocupa todo el alto del contenedor
+  resizeMode: "contain", // Asegura que no se deforme
+},
+continueSIButton: {
+  width: 340,
+  height: 54,
+  backgroundColor: "#0373f3",
+  borderRadius: 36,
+  marginTop: 30, // Reducido para que sea visible
+  alignItems: "center",
+  justifyContent: "center",
+},
   title: {
     fontSize: 30,
     fontWeight: "600",
@@ -162,7 +179,7 @@ const MainStyles = StyleSheet.create({
     height: 54,
     backgroundColor: "#0373f3",
     borderRadius: 36,
-    marginTop: 150,
+    marginTop: 45,
     marginLeft: 24,
     alignItems: "center",
     justifyContent: "center",
@@ -172,7 +189,7 @@ const MainStyles = StyleSheet.create({
     height: 54,
     backgroundColor: "#0373f3",
     borderRadius: 36,
-    marginTop: 380,
+    marginTop: 20, // Reducido para posicionarlo mejor
     marginLeft: 24,
     alignItems: "center",
     justifyContent: "center",
@@ -222,7 +239,23 @@ const MainStyles = StyleSheet.create({
   checkboxSelected: {
     backgroundColor: "#0373f3",
   }, 
+  // boton sing in 
+    
+    container: {
+      width: "100%", // Ancho completo del contenedor
+      backgroundColor: "#4CAF50", // Color de fondo (verde en este caso)
+      paddingVertical: 12, // Espaciado vertical interno
+      borderRadius: 8, // Bordes redondeados
+      alignItems: "center", // Centrar contenido horizontalmente
+      marginTop: 10, // Espaciado superior
+    },
+    text: {
+      color: "#fff", // Texto en blanco
+      fontSize: 16, // Tamaño de fuente
+      fontWeight: "bold", // Negrita
+    },
   
+
   //HoME SCREEN
   containerHS: {
     width: 404,
