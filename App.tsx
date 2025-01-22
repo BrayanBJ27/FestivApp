@@ -6,6 +6,7 @@ import HomeScreen from "./src/screens/HomeScreen";
 import EventScreen from "./src/screens/EventScreen";
 import MapScreen from "./src/screens/MapScreen";
 import ScheduleScreen from "./src/screens/ScheduleScreen";
+import CalendarScreen from "./src/screens/CalendarScreen";
 
 // import * as Font from "expo-font";
 
@@ -36,5 +37,6 @@ export default function App() {
     // return <HomeScreen />;
     // return <EventScreen />;
     // return <MapScreen />;
-    return <ScheduleScreen />;
+    // return <ScheduleScreen />;
+    return <CalendarScreen />;
   }
