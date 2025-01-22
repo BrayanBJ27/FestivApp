@@ -847,10 +847,123 @@ const MainStyles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     marginLeft: 10,
-  }
+  },
 
   //CALENDAR SCREEN
-  
+  containerCS: {
+    width: 404,
+    height: 874,
+    backgroundColor: '#ffffff',
+    marginTop: 0,
+    marginHorizontal: 'auto',
+  },
+  headerCS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 71,
+    marginHorizontal: 18,
+  },
+  backButtonCS: {
+    width: 28,
+    height: 28,
+  },
+  headerTextCS: {
+    fontFamily: 'Poppins',
+    fontSize: 20,
+    fontWeight: '600',
+    lineHeight: 33,
+    color: '#000',
+  },
+  imageBannerCS: {
+    width: 356,
+    height: 92,
+    borderRadius: 4,
+    marginTop: 39,
+    marginHorizontal: 22,
+  },
+  eventTitleCS: {
+    fontFamily: 'Andika',
+    fontSize: 24,
+    lineHeight: 38,
+    color: '#fff',
+    position: 'absolute',
+    top: 42,
+    left: 11,
+  },
+  calendarHeaderCS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 27,
+    marginHorizontal: 24,
+  },
+  calendarTitleCS: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#000',
+  },
+  monthTextCS: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: '400',
+    color: '#000',
+  },
+  calendarCS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 22,
+    marginHorizontal: 24,
+  },
+  dateCS: {
+    fontFamily: 'Poppins',
+    fontSize: 14,
+    color: '#a5a5a5',
+  },
+  shareTitleCS: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: '600',
+    marginTop: 38,
+    marginHorizontal: 25,
+    color: '#000',
+  },
+  contactInputCS: {
+    borderWidth: 1,
+    borderColor: '#e9e9e9',
+    borderRadius: 25,
+    marginTop: 9,
+    marginHorizontal: 24,
+    padding: 10,
+  },
+  selectContactCS: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    color: '#a9a9a9',
+  },
+  sendEmailCS: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: '400',
+    marginTop: 31,
+    marginHorizontal: 24,
+    color: '#1e1e1e',
+  },
+  buttonCS: {
+    backgroundColor: '#0373f3',
+    borderRadius: 36,
+    marginTop: 34,
+    marginHorizontal: 24,
+    height: 54,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonTextCS: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#fff',
+  },
 });
 
 export default MainStyles;
