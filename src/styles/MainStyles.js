@@ -41,7 +41,7 @@ const MainStyles = StyleSheet.create({
   inactiveIcon: {
     color: '#bcbcbc',
   },
-<<<<<<< HEAD
+
   
   //
   mainContainer: {
@@ -58,7 +58,7 @@ const MainStyles = StyleSheet.create({
     marginTop: 74,
     marginLeft: 23,
   },
-=======
+
 //log
 mainContainer: {
   flex: 1, // Asegura que ocupe todo el espacio disponible
@@ -82,8 +82,6 @@ logoIcon: {
   height: "100%", // La imagen ocupa todo el alto del contenedor
   resizeMode: "contain", // Asegura que no se deforme
 },
-
-
 continueSIButton: {
   width: 340,
   height: 54,
@@ -94,7 +92,6 @@ continueSIButton: {
   justifyContent: "center",
 },
 
->>>>>>> test-login
   title: {
     fontSize: 30,
     fontWeight: "600",

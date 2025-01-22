@@ -8,15 +8,21 @@ import {
   ScrollView,
   TouchableOpacity,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 577444df416fa0eef1c3268efc775ec706964c7b
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BottomNavbar from "../components/BottomNavbar";
 import MainStyles from '../styles/MainStyles';
+<<<<<<< HEAD
 =======
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import MainStyles from "../styles/MainStyles";
 >>>>>>> test-login
+=======
+>>>>>>> 577444df416fa0eef1c3268efc775ec706964c7b
 
 const HomeScreen: React.FC = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState("Home");
@@ -78,6 +84,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
               <Text style={MainStyles.otherFestivityTitleHS}>Diablada Pillareña</Text>
               <Text style={MainStyles.otherFestivityDateHS}>January, 6th</Text>
             </ImageBackground>
+<<<<<<< HEAD
             <ImageBackground
               style={MainStyles.otherFestivityHS}
               source={require("../assets/images/google-icon.png")}
@@ -87,6 +94,8 @@ const HomeScreen: React.FC = (): JSX.Element => {
               <Text style={MainStyles.otherFestivityDateHS}>November 30th</Text>
             </ImageBackground>
 <<<<<<< HEAD
+=======
+>>>>>>> 577444df416fa0eef1c3268efc775ec706964c7b
             <Text style={MainStyles.sectionTitleHS}>Other festivities</Text>
             <View style={MainStyles.otherFestivitiesContainerHS}>
               <ImageBackground
@@ -108,6 +117,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
             </View>
             {/* Footer Navigation*/}
             <BottomNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
+<<<<<<< HEAD
 =======
 >>>>>>> test-login
           </View>
@@ -135,6 +145,8 @@ const HomeScreen: React.FC = (): JSX.Element => {
                 </Text>
               </TouchableOpacity>
             ))}
+=======
+>>>>>>> 577444df416fa0eef1c3268efc775ec706964c7b
           </View>
         </View>
       </ScrollView>
