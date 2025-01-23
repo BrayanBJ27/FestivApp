@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
+  ImageBackground,
   TextInput,
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import MapView, { Marker, Region } from "react-native-maps";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -14,7 +16,6 @@ import BottomNavbar from "../components/BottomNavbar";
 import MainStyles from "../styles/MainStyles";
 import { GOOGLE_PLACES_API_KEY } from "@env";
 
-// Define interfaces for type safety
 interface Place {
   geometry: {
     location: {
@@ -24,70 +25,128 @@ interface Place {
   };
   name: string;
   vicinity: string;
+  photos?: Array<{
+    photo_reference: string;
+    height: number;
+    width: number;
+  }>;
 }
 
 const MapScreen: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("Map");
   const [places, setPlaces] = useState<Place[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [region, setRegion] = useState<Region>({
-    latitude: -1.24908,
-    longitude: -78.61675,
-    latitudeDelta: 0.1,
-    longitudeDelta: 0.1,
-  });
+  const [region, setRegion] = useState<Region | null>(null);
   const [searchedMarker, setSearchedMarker] = useState<{
     latitude: number;
     longitude: number;
     name: string;
   } | null>(null);
 
-  // Fetch nearby places or search query results
-  const fetchPlaces = async (query?: string) => {
+  const getUserLocation = async () => {
     try {
+      const response = await axios.post(
+        `https://www.googleapis.com/geolocation/v1/geolocate?key=${GOOGLE_PLACES_API_KEY}`
+      );
+  
+      const { location } = response.data;
+      const { lat, lng } = location;
+  
+      setRegion({
+        latitude: lat,
+        longitude: lng,
+        latitudeDelta: 0.1,
+        longitudeDelta: 0.1,
+      });
+  
+      fetchPlaces(lat, lng);
+    } catch (error) {
+      console.error("Error getting user location:", error);
+      Alert.alert("Error", "Unable to fetch your current location.");
+    }
+  };
+
+  const fetchPlaces = async (latitude?: number, longitude?: number, query?: string) => {
+    try {
+      const location = latitude && longitude 
+        ? `${latitude},${longitude}` 
+        : `${region?.latitude},${region?.longitude}`;
+      
+      const baseQuery = query 
+        ? `${query} restaurants hotels`  
+        : '';
+      
       const url = query
-        ? `https://maps.googleapis.com/maps/api/place/textsearch/json?key=${GOOGLE_PLACES_API_KEY}&query=${query}`
-        : `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${GOOGLE_PLACES_API_KEY}&location=${region.latitude},${region.longitude}&radius=500`;
+        ? `https://maps.googleapis.com/maps/api/place/textsearch/json?key=${GOOGLE_PLACES_API_KEY}&query=${baseQuery}&location=${location}&radius=5000&type=restaurant|lodging`
+        : `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${GOOGLE_PLACES_API_KEY}&location=${location}&radius=5000&type=restaurant|lodging`;
 
       const response = await axios.get<{ results: Place[] }>(url);
-      setPlaces(response.data.results);
+      
+      if (response.data.results.length > 0) {
+        setPlaces(response.data.results);
 
-      // Si hay resultados, centra el mapa en el primer lugar encontrado y coloca un marcador
-      if (response.data.results.length > 0 && query) {
-        const firstPlace = response.data.results[0];
-        setRegion({
-          latitude: firstPlace.geometry.location.lat,
-          longitude: firstPlace.geometry.location.lng,
-          latitudeDelta: 0.1,
-          longitudeDelta: 0.1,
-        });
-        setSearchedMarker({
-          latitude: firstPlace.geometry.location.lat,
-          longitude: firstPlace.geometry.location.lng,
-          name: firstPlace.name,
-        });
+        if (query) {
+          const firstPlace = response.data.results[0];
+          setRegion({
+            latitude: firstPlace.geometry.location.lat,
+            longitude: firstPlace.geometry.location.lng,
+            latitudeDelta: 0.1,
+            longitudeDelta: 0.1,
+          });
+          setSearchedMarker({
+            latitude: firstPlace.geometry.location.lat,
+            longitude: firstPlace.geometry.location.lng,
+            name: firstPlace.name,
+          });
+        }
+      } else {
+        setPlaces([]);
+        Alert.alert("No Results", "No restaurants or hotels found in this area.");
       }
     } catch (error) {
       console.error("Error fetching places:", error);
+      Alert.alert("Error", "Unable to fetch places.");
     }
   };
 
   useEffect(() => {
-    fetchPlaces();
+    getUserLocation();
   }, []);
 
   const handleSearch = () => {
     if (searchQuery) {
-      fetchPlaces(searchQuery);
+      fetchPlaces(undefined, undefined, searchQuery);
     }
   };
 
-  const renderLocationCard = (place: Place, index: number) => (
-    <View style={MainStyles.locationCardMS} key={index}>
-      <Text style={MainStyles.locationTitleTextMS}>{place.name}</Text>
-      <Text style={MainStyles.priceTextMS}>{place.vicinity}</Text>
-    </View>
-  );
+  const renderLocationCard = (place: Place, index: number) => {
+    const photoUrl = place.photos && place.photos.length > 0
+      ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${GOOGLE_PLACES_API_KEY}`
+      : null;
+  
+    return (
+      <View style={MainStyles.locationCardMS} key={index}>
+        {photoUrl && (
+          <ImageBackground 
+            source={{ uri: photoUrl }}
+            style={MainStyles.locationImageMS}
+            resizeMode="cover"
+          />
+        )}
+        <View style={MainStyles.locationDetailsMS}>
+          <Text style={MainStyles.locationTitleTextMS}>{place.name}</Text>
+          <Text style={MainStyles.priceTextMS}>{place.vicinity}</Text>
+          <View style={MainStyles.ratingContainerMS}>
+            <Icon name="star" size={10} color="#ffd700" />
+            <Icon name="star" size={10} color="#ffd700" />
+            <Icon name="star" size={10} color="#ffd700" />
+            <Icon name="star" size={10} color="#ffd700" />
+            <Icon name="star" size={10} color="#ffd700" />
+          </View>
+        </View>
+      </View>
+    );
+  };
 
   const renderMarker = (place: Place, index: number) => (
     <Marker
@@ -114,7 +173,7 @@ const MapScreen: React.FC = () => {
           placeholderTextColor="#adadad"
           value={searchQuery}
           onChangeText={(text) => setSearchQuery(text)}
-          onSubmitEditing={handleSearch} // Ejecuta la búsqueda al presionar "Enter"
+          onSubmitEditing={handleSearch}
         />
       </View>
       <TouchableOpacity style={MainStyles.filterButtonMS}>
@@ -126,28 +185,27 @@ const MapScreen: React.FC = () => {
   return (
     <SafeAreaView style={MainStyles.safeAreaMS}>
       <View style={MainStyles.mapContainerMS}>
-        {/* Mapa de Google */}
-        <MapView
-          style={MainStyles.mapViewMS}
-          region={region} // Centro dinámico del mapa
-          onRegionChangeComplete={(newRegion) => setRegion(newRegion)}
-          zoomEnabled={true}
-          scrollEnabled={true}
-          showsUserLocation={true}
-          showsMyLocationButton={true}
-        >
-          {places.map(renderMarker)}
-          {/* Marker del lugar buscado */}
-          {searchedMarker && (
-            <Marker
-              coordinate={{
-                latitude: searchedMarker.latitude,
-                longitude: searchedMarker.longitude,
-              }}
-              title={searchedMarker.name}
-            />
-          )}
-        </MapView>
+        {region && (
+          <MapView
+            style={MainStyles.mapViewMS}
+            region={region}
+            zoomEnabled={true}
+            scrollEnabled={true}
+            showsUserLocation={true}
+            showsMyLocationButton={true}
+          >
+            {places.map(renderMarker)}
+            {searchedMarker && (
+              <Marker
+                coordinate={{
+                  latitude: searchedMarker.latitude,
+                  longitude: searchedMarker.longitude,
+                }}
+                title={searchedMarker.name}
+              />
+            )}
+          </MapView>
+        )}
 
         <ScrollView
           style={MainStyles.scrollContainerMS}
@@ -163,7 +221,6 @@ const MapScreen: React.FC = () => {
           </View>
         </ScrollView>
 
-        {/* Bottom Navbar */}
         <BottomNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
       </View>
     </SafeAreaView>
