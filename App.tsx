@@ -14,24 +14,19 @@ import CalendarScreen from "./src/screens/CalendarScreen";
 const Stack = createStackNavigator();
 
 export default function App() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    // const [fontsLoaded, setFontsLoaded] = useState(false);
-=======
-  // return (
-  //   <UserProvider>
-  //     <NavigationContainer>
-  //       <Stack.Navigator initialRouteName="Login">
-  //         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-  //         <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
-  //         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-  //       </Stack.Navigator>
-  //     </NavigationContainer>
-  //   </UserProvider>
-  // );
 
-  // const [fontsLoaded, setFontsLoaded] = useState(false);
->>>>>>> 577444df416fa0eef1c3268efc775ec706964c7b
+    // const [fontsLoaded, setFontsLoaded] = useState(false);
+    // return (
+    //   <UserProvider>
+    //     <NavigationContainer>
+    //       <Stack.Navigator initialRouteName="Login">
+    //         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+    //         <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
+    //         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+    //       </Stack.Navigator>
+    //     </NavigationContainer>
+    //   </UserProvider>
+    // );
 
     // useEffect(() => {
     //   async function loadFonts() {
@@ -54,33 +49,9 @@ export default function App() {
     // }
     // return <LoginScreen />;
     // return <SingInScreen />;
-    // return <HomeScreen />;
+    return <HomeScreen />;
     // return <EventScreen />;
-    return <MapScreen />;
-    // return <ScheduleScreen />;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    return <CalendarScreen />;
-  }
-=======
-  return (
-    <UserProvider>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </UserProvider>
-  );
-}
->>>>>>> test-login
-=======
-    return <Calendar />;
-}
->>>>>>> 577444df416fa0eef1c3268efc775ec706964c7b
-=======
+    // return <MapScreen />;
+    // return <ScheduleScreen />;EAD
     // return <CalendarScreen />;
 }
->>>>>>> 2dc108fe0d5eb106b7cc42ae658647dc2ceb8099
