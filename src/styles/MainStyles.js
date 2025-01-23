@@ -809,21 +809,17 @@ continueSIButton: {
     padding: 10,
     backgroundColor: "rgba(0,0,0,0.4)",
   },
-  locationIconSS: {
-    width: 20,
-    height: 20,
-  },
   locationTextSS: {
     fontSize: 14,
     color: "#fff",
-    marginLeft: 30,
+    marginRight: 'auto',
   },
   buttonContainerSS: {
     backgroundColor: "#0373f3",
     borderRadius: 8,
     paddingHorizontal: 15,
     paddingVertical: 10,
-    top: 150,
+    top: 140,
   },
   buttonTextSS: {
     color: "#fff",
@@ -855,8 +851,8 @@ continueSIButton: {
   },
   scheduleItemSS: {
     flexDirection: "row",
-    alignItems: "center",
-    marginVertical: 10,
+    marginVertical: 5,
+    top: 15,
   },
   timeTextSS: {
     fontSize: 16,
@@ -866,7 +862,7 @@ continueSIButton: {
   },
   timelineSS: {
     width: 2,
-    height: "100%",
+    height: 50,
     backgroundColor: "#ccc",
     marginHorizontal: 10,
   },
@@ -876,10 +872,9 @@ continueSIButton: {
     borderRadius: 10,
     backgroundColor: "#0373f3",
     borderWidth: 3,
-    borderColor: "#fff",
     position: "absolute",
     top: -10,
-    left: -10,
+    left: -9,
   },
   timelineInactiveSS: {
     height: 15,
@@ -888,7 +883,7 @@ continueSIButton: {
     backgroundColor: "#ccc",
     position: "absolute",
     top: -7.5,
-    left: -7.5,
+    left: -6,
   },
   locationNameSS: {
     fontSize: 16,
@@ -899,13 +894,24 @@ continueSIButton: {
   dateTextSS: {
     fontSize: 14,
     color: "#6c6c6c",
+    left: 20,
   },
   scheduleIconSS: {
     width: 40,
     height: 40,
     borderRadius: 20,
     marginLeft: 10,
+    left: 20,
+    top: 10,
   },
+  weatherIconSS: {
+    width: 40, 
+    height: 40,
+    borderRadius: 20,
+    left: 30,
+    top: 10,
+  },
+  
 
   //CALENDAR SCREEN
   containerCS: {
@@ -1028,79 +1034,126 @@ continueSIButton: {
   },
 
   // ACCOUNT SCREEN
-  container: {
-    flex: 1,
-    backgroundColor: "#f5f5f5",
+  containerAS: {
+    width: 404,
+    height: 874,
+    backgroundColor: '#ffffff',
+    marginTop: 0,
+    marginHorizontal: 'auto',
   },
-  scrollView: {
-    flex: 1,
-    padding: 20,
+  headerAS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 71,
+    marginHorizontal: 18,
   },
-  image: {
-    width: 50,
-    height: 50,
-    marginVertical: 10,
+  backButtonAS: {
+    width: 28,
+    height: 28,
   },
-  titleText: {
+  titleTextAS: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 10,
     textAlign: "center",
   },
-  subTitleText: {
+  subTitleTextAS: {
     fontSize: 18,
     color: "#666",
     marginBottom: 20,
     textAlign: "center",
   },
-  itemContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingVertical: 15,
-    paddingHorizontal: 10,
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    marginBottom: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  itemText: {
-    fontSize: 16,
-    color: "#333",
+  opTextAS: {
+    fontFamily: 'Poppins',
+    fontSize: 20,
+    fontWeight: '400',
+    marginTop: 45,
+    marginHorizontal: 24,
+    color: '#1e1e1e',
   },
   separator: {
     height: 1,
     backgroundColor: "#e0e0e0",
-    marginVertical: 10,
+    marginVertical: 5,
   },
-  bottomContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    paddingVertical: 20,
-    backgroundColor: "#fff",
-    borderTopWidth: 1,
-    borderTopColor: "#e0e0e0",
-  },
-  bottomItem: {
-    alignItems: "center",
-  },
-  bottomItemText: {
-    fontSize: 14,
-    color: "#888",
-    marginTop: 5,
-  },
-  bottomActiveText: {
-    fontSize: 14,
-    color: "#007bff",
-    marginTop: 5,
-    fontWeight: "bold",
+  opButtonAS: {
+    width: 28,
+    height: 28,
+    top: 40,
+    left: '150',
   },
 
+  //HISTORY SCREEN
+  containerHS: {
+    width: 404,
+    height: 874,
+    backgroundColor: '#ffffff',
+    marginTop: 0,
+    marginHorizontal: 'auto',
+  },
+  headerHS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 71,
+    marginHorizontal: 18,
+  },
+  backButtonHS: {
+    width: 28,
+    height: 28,
+  },
+  headerTextHS: {
+    fontFamily: 'Poppins',
+    fontSize: 20,
+    fontWeight: '600',
+    lineHeight: 33,
+    color: '#000',
+    right: 100,
+  },
+  buttonHS: {
+    backgroundColor: '#0373f3',
+    borderRadius: 36,
+    marginTop: 34,
+    marginHorizontal: 20,
+    height: 54,
+    width: 350,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonTextHS: {
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#fff',
+    justifyContent: 'center',
+  },
+
+  //NOTIFICATIONS SCREEN
+  containerNS: {
+    width: 404,
+    height: 874,
+    backgroundColor: '#ffffff',
+    marginTop: 0,
+    marginHorizontal: 'auto',
+  },
+  headerNS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 71,
+    marginHorizontal: 18,
+  },
+  backButtonNS: {
+    width: 28,
+    height: 28,
+  },
+  titleTextNS: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
+    marginLeft: 20,
+  },
 });
 
 export default MainStyles;
