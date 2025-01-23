@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -5,11 +6,15 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  Switch,
 } from 'react-native';
 import MainStyles from "../styles/MainStyles";
 import Icon from "react-native-vector-icons/FontAwesome";
+import {Calendar} from 'react-native-calendars';
 
 export default function CalendarScreen() {
+  const [selected, setSelected] = useState('');
+  const [emailEnabled, setEmailEnabled] = useState(false);
   return (
     <SafeAreaView>
       <ScrollView scrollEnabled={true} contentInsetAdjustmentBehavior="automatic">
@@ -33,26 +38,33 @@ export default function CalendarScreen() {
           </ImageBackground>
           <View style={MainStyles.calendarHeaderCS}>
             <Text style={MainStyles.calendarTitleCS}>Calendar Event</Text>
-            <Text style={MainStyles.monthTextCS}>January</Text>
           </View>
           {/* Aquí agregaré un calendario dinámico */}
-          <View style={MainStyles.calendarCS}>
-            <Text style={MainStyles.dateCS}>Mon</Text>
-            <Text style={MainStyles.dateCS}>Tue</Text>
-            <Text style={MainStyles.dateCS}>Wed</Text>
-            <Text style={MainStyles.dateCS}>Thu</Text>
-            <Text style={MainStyles.dateCS}>Fri</Text>
-            <Text style={MainStyles.dateCS}>Sat</Text>
-            <Text style={MainStyles.dateCS}>Sun</Text>
-          </View>
+          <Calendar
+                onDayPress={(day: { dateString: React.SetStateAction<string>; }) => {
+                  setSelected(day.dateString);
+                }}
+                markedDates={{
+                  [selected]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}
+                }}
+              />
           <Text style={MainStyles.shareTitleCS}>Share</Text>
-          <View style={MainStyles.contactInputCS}>
+          <TouchableOpacity style={[MainStyles.contactInputCS, { flexDirection: 'row', alignItems: 'center' }]}>
             <Text style={MainStyles.selectContactCS}>Select contact</Text>
+            <Icon name="chevron-right" size={15} color="#a9a9a9" style={{ marginLeft: 'auto' }} />
+          </TouchableOpacity>
+          <View style={{ flexDirection: 'row', marginHorizontal: 4}}>
+            <Text style={MainStyles.sendEmailCS}>Send to your email</Text>
+            <Switch
+              value={emailEnabled}
+              onValueChange={setEmailEnabled}
+              style={{ marginLeft: 'auto', marginRight: 20, top: 15 }}
+              trackColor={{ false: '#e9e9e9', true: '#0373f3' }}
+            />
           </View>
-          <Text style={MainStyles.sendEmailCS}>Send to your email</Text>
-          <View style={MainStyles.buttonCS}>
+          <TouchableOpacity style={MainStyles.buttonCS}>
             <Text style={MainStyles.buttonTextCS}>Go</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
