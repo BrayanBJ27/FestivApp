@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, View, Text, TextInput, TouchableOpacity, Image, Alert } from "react-native";
+import { SafeAreaView, ScrollView, View, Text, TextInput, TouchableOpacity, Image, Alert, ImageBackground } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import MainStyles from "../styles/MainStyles";
 import { useNavigation } from "@react-navigation/native";
@@ -11,6 +11,7 @@ export default function LoginScreen() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isPasswordVisible, setPasswordVisible] = useState(false); 
 
   const handleSignIn = () => {
     const foundUser = registeredUsers.find(
@@ -26,7 +27,8 @@ export default function LoginScreen() {
   };
 
   return (
-    <ScrollView contentContainerStyle={MainStyles.scrollContainer}>
+    <SafeAreaView>
+    <ScrollView scrollEnabled={true} contentInsetAdjustmentBehavior="automatic">
       <View style={MainStyles.mainContainer}>
         {/* Logo */}
         <View style={MainStyles.logoContainer}>
@@ -52,30 +54,69 @@ export default function LoginScreen() {
 
         {/* Password Input */}
         <View style={MainStyles.inputContainer}>
-          <Icon name="key" size={20} color="#adadad" style={MainStyles.inputIcon} />
-          <TextInput
-            style={MainStyles.textInput}
-            placeholder="Enter password"
-            placeholderTextColor="#adadad"
-            secureTextEntry={true}
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-          />
+            <Icon
+              name="key"
+              size={20}
+              color="#adadad"
+              style={MainStyles.inputIcon}
+            />
+            <TextInput
+              style={MainStyles.textInput}
+              placeholder="Enter password"
+              placeholderTextColor="#adadad"
+              secureTextEntry={!isPasswordVisible}
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+            />
+            <TouchableOpacity
+              style={MainStyles.eyeIconContainer}
+              onPress={() => setPasswordVisible(!isPasswordVisible)}
+            >
+              <Icon
+                name={isPasswordVisible ? "eye" : "eye-slash"}
+                size={20}
+                color="#adadad"
+              />
+            </TouchableOpacity>
+          </View>
+
+        <View style={MainStyles.buttonRow}>
+          <TouchableOpacity style={MainStyles.continueSIButton} onPress={handleSignIn}>
+            <Text style={MainStyles.continueText}>Sign In</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[MainStyles.continueSIButton, { backgroundColor: "#00BFFF" }]}
+            onPress={() => navigation.navigate("SignUp")}
+          >
+            <Text style={MainStyles.continueText}>Create</Text>
+          </TouchableOpacity>
         </View>
 
-        {/* Sign In Button */}
-        <TouchableOpacity style={MainStyles.continueButton} onPress={handleSignIn}>
-          <Text style={MainStyles.continueText}>Sign In</Text>
+        <View style={MainStyles.socialLoginContainer}>
+        {/* Botón para Apple */}
+        <TouchableOpacity style={MainStyles.appleButton}>
+          <Icon name="apple" size={20} color="#fff" style={MainStyles.buttonIcon} />
+          <Text style={MainStyles.buttonText}>Continue with Apple</Text>
         </TouchableOpacity>
 
-        {/* Create Account */}
-        <TouchableOpacity
-          style={MainStyles.continueButton}
-          onPress={() => navigation.navigate("SignUp")}
-        >
-          <Text style={MainStyles.continueText}>Create Account</Text>
+        {/* Botón para Facebook */}
+        <TouchableOpacity style={MainStyles.facebookButton}>
+          <Icon name="facebook" size={20} color="#fff" style={MainStyles.buttonIcon} />
+          <Text style={MainStyles.buttonText}>Continue with Facebook</Text>
+        </TouchableOpacity>
+
+        {/* Botón para Google */}
+        <TouchableOpacity style={MainStyles.googleButton}>
+          <ImageBackground
+              style={MainStyles.buttonIcon}
+              source={require('../assets/images/google-icon.png')}
+            />
+          <Text style={MainStyles.googleButtonText}>Continue with Google</Text>
         </TouchableOpacity>
       </View>
+      </View>
     </ScrollView>
+    </SafeAreaView>
   );
 }
