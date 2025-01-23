@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 const MainStyles = StyleSheet.create({
 
+  // NAVBAR STYLES
   bottomNavContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -59,38 +60,42 @@ const MainStyles = StyleSheet.create({
     marginLeft: 23,
   },
 
-//log
-mainContainer: {
-  flex: 1, // Asegura que ocupe todo el espacio disponible
-  backgroundColor: "#ffffff", // Fondo blanco puro
-  justifyContent: "center", // Centra el contenido verticalmente
-  alignItems: "center", // Centra el contenido horizontalmente
-  paddingTop: 5, // Espacio adicional en la parte superior
-  paddingBottom: 10, // Espacio adicional en la parte inferior
-},
-
-logoContainer: {
-  width: "50%", // Ajusta el tamaño al 50% del ancho de la pantalla
-  aspectRatio: 1, // Mantiene proporción 1:1 para evitar deformaciones
-  backgroundColor: "#ffffff", // Fondo blanco puro opcional
-  alignSelf: "center", // Centra horizontalmente
-  marginTop: 20, // Espacio superior ajustado para mantener el logo dentro de la pantalla
-},
-
-logoIcon: {
-  width: "100%", // La imagen ocupa todo el ancho del contenedor
-  height: "100%", // La imagen ocupa todo el alto del contenedor
-  resizeMode: "contain", // Asegura que no se deforme
-},
-continueSIButton: {
-  width: 340,
-  height: 54,
-  backgroundColor: "#0373f3",
-  borderRadius: 36,
-  marginTop: 30, // Reducido para que sea visible
-  alignItems: "center",
-  justifyContent: "center",
-},
+  // LOGIN SCREEN
+  logoContainer: {
+    width: "50%", // Ajusta el tamaño al 50% del ancho de la pantalla
+    aspectRatio: 1, // Mantiene proporción 1:1 para evitar deformaciones
+    backgroundColor: "#ffffff", // Fondo blanco puro opcional
+    alignSelf: "center", // Centra horizontalmente
+    marginTop: 50, // Espacio superior ajustado para mantener el logo dentro de la pantalla
+  },
+  eyeIconContainer: {
+    position: "absolute",
+    right: 10,
+    top: 15,
+  },
+  logoIcon: {
+    width: "100%", // La imagen ocupa todo el ancho del contenedor
+    height: "100%", // La imagen ocupa todo el alto del contenedor
+    resizeMode: "contain", // Asegura que no se deforme
+  },
+  buttonRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 20,
+    width: "100%", // Asegura el ancho total del contenedor
+    paddingHorizontal: 20, // Añade algo de espacio a los lados
+  },
+  
+  continueSIButton: {
+    flex: 1, // Esto hará que cada botón tome el mismo ancho dentro del contenedor
+    height: 54,
+    backgroundColor: "#0373f3",
+    borderRadius: 36,
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 5, // Espacio entre botones
+  },
 
   title: {
     fontSize: 30,
@@ -98,6 +103,7 @@ continueSIButton: {
     marginTop: 27,
     marginLeft: 24,
     color: "#1f1f1f",
+    alignSelf: "center",
   },
   inputContainer: {
     width: 340,
@@ -202,16 +208,6 @@ continueSIButton: {
     alignItems: "center",
     justifyContent: "center",
   },
-  continueSIButton: {
-    width: 340,
-    height: 54,
-    backgroundColor: "#0373f3",
-    borderRadius: 36,
-    marginTop: 20, // Reducido para posicionarlo mejor
-    marginLeft: 24,
-    alignItems: "center",
-    justifyContent: "center",
-  },
   continueText: {
     alignItems: "center",
     justifyContent: "center",
@@ -219,6 +215,7 @@ continueSIButton: {
     fontSize: 16,
     fontWeight: "500",
   },
+
   // Estilos nuevos para SingInScreen
   termsContainer: {
     flexDirection: "row",
