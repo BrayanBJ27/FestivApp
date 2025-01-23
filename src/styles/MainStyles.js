@@ -1026,6 +1026,81 @@ continueSIButton: {
     color: '#fff',
     justifyContent: 'center',
   },
+
+  // ACCOUNT SCREEN
+  container: {
+    flex: 1,
+    backgroundColor: "#f5f5f5",
+  },
+  scrollView: {
+    flex: 1,
+    padding: 20,
+  },
+  image: {
+    width: 50,
+    height: 50,
+    marginVertical: 10,
+  },
+  titleText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
+    textAlign: "center",
+  },
+  subTitleText: {
+    fontSize: 18,
+    color: "#666",
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  itemContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    marginBottom: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  itemText: {
+    fontSize: 16,
+    color: "#333",
+  },
+  separator: {
+    height: 1,
+    backgroundColor: "#e0e0e0",
+    marginVertical: 10,
+  },
+  bottomContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    paddingVertical: 20,
+    backgroundColor: "#fff",
+    borderTopWidth: 1,
+    borderTopColor: "#e0e0e0",
+  },
+  bottomItem: {
+    alignItems: "center",
+  },
+  bottomItemText: {
+    fontSize: 14,
+    color: "#888",
+    marginTop: 5,
+  },
+  bottomActiveText: {
+    fontSize: 14,
+    color: "#007bff",
+    marginTop: 5,
+    fontWeight: "bold",
+  },
+
 });
 
 export default MainStyles;
