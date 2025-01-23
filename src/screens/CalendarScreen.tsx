@@ -15,8 +15,6 @@ import {Calendar} from 'react-native-calendars';
 export default function CalendarScreen() {
   const [selected, setSelected] = useState('');
   const [emailEnabled, setEmailEnabled] = useState(false);
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState =>!previousState);
   return (
     <SafeAreaView>
       <ScrollView scrollEnabled={true} contentInsetAdjustmentBehavior="automatic">
@@ -58,10 +56,10 @@ export default function CalendarScreen() {
           <View style={{ flexDirection: 'row', marginHorizontal: 4}}>
             <Text style={MainStyles.sendEmailCS}>Send to your email</Text>
             <Switch
-              trackColor={{false: '#767577', true: '#81b0ff'}}
-              thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+              value={emailEnabled}
+              onValueChange={setEmailEnabled}
+              style={{ marginLeft: 'auto', marginRight: 20, top: 15 }}
+              trackColor={{ false: '#e9e9e9', true: '#0373f3' }}
             />
           </View>
           <TouchableOpacity style={MainStyles.buttonCS}>
