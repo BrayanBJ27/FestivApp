@@ -297,8 +297,8 @@ continueSIButton: {
     textAlign: 'left',
   },
   headerImageHS: {
-    width: 50,
-    height: 50,
+    width: 70,
+    height: 66,
     position: 'relative',
     marginTop: 0,
     marginLeft: 'auto',
