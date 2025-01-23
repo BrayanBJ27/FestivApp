@@ -2,18 +2,27 @@ import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome6";
 import MainStyles from "../styles/MainStyles";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../hooks/AppNavigator";
 
 interface NavbarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
 }
+type NavigationProp = StackNavigationProp<RootStackParamList>;
 
 const BottomNavbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
+  const navigation = useNavigation<NavigationProp>(); // Hook de navegación
+
   return (
     <View style={MainStyles.bottomNavContainer}>
       <TouchableOpacity
         style={MainStyles.navButton}
-        onPress={() => setActiveTab("Home")}
+        onPress={() => {
+          setActiveTab("Home");
+          navigation.navigate("Home"); // Navega a la pantalla Home
+        }}
       >
         <Icon
           name="house-user"
@@ -38,7 +47,10 @@ const BottomNavbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 
       <TouchableOpacity
         style={MainStyles.navButton}
-        onPress={() => setActiveTab("Notification")}
+        onPress={() => {
+          setActiveTab("Notification");
+          navigation.navigate("Notification");
+        }}
       >
         <Icon
           name="bell"
@@ -63,7 +75,10 @@ const BottomNavbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 
       <TouchableOpacity
         style={MainStyles.navButton}
-        onPress={() => setActiveTab("Map")}
+        onPress={() => {
+          setActiveTab("Map");
+          navigation.navigate("Map");
+        }}
       >
         <Icon
           name="map-location-dot"
@@ -88,7 +103,10 @@ const BottomNavbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 
       <TouchableOpacity
         style={MainStyles.navButton}
-        onPress={() => setActiveTab("Account")}
+        onPress={() => {
+          setActiveTab("Account");
+          navigation.navigate("Account");
+        }}
       >
         <Icon
           name="user"
