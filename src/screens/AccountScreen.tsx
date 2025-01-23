@@ -1,81 +1,66 @@
-import React from "react";
-import { SafeAreaView, View, ScrollView, Image, Text } from "react-native";
-import styles from '../styles/MainStyles'; // Asegúrate de importar los estilos
+import React, {useState} from 'react';
+import { SafeAreaView, View, ScrollView, Image, Text, TouchableOpacity } from "react-native";
+import MainStyles from "../styles/MainStyles";
+import BottomNavbar from "../components/BottomNavbar";
+import Icon from "react-native-vector-icons/FontAwesome6";
 
 // Definimos el tipo de las propiedades que puede recibir el componente si es necesario
 interface Props {}
 
-const AccountScreen: React.FC<Props> = () => {
+const AccountScreen: React.FC= (): JSX.Element => {
+  const [activeTab, setActiveTab] = useState("Account");
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-        <Image
-          source={{ uri: "https://i.imgur.com/1tMFzp8.png" }}
-          resizeMode={"stretch"}
-          style={styles.image}
-        />
-        <Text style={styles.titleText}>{"Settings"}</Text>
-        <Text style={styles.subTitleText}>{"Edit profile"}</Text>
-        
-        {/* Example of an item */}
-        <View style={styles.itemContainer}>
-          <Text style={styles.itemText}>{"Notification"}</Text>
-          <Image
-            source={{ uri: "https://i.imgur.com/1tMFzp8.png" }}
-            resizeMode={"stretch"}
-            style={styles.image}
-          />
-        </View>
-
-        <View style={styles.separator}></View>
-        
-        <View style={styles.itemContainer}>
-          <Text style={styles.itemText}>{"Country"}</Text>
-          <Image
-            source={{ uri: "https://i.imgur.com/1tMFzp8.png" }}
-            resizeMode={"stretch"}
-            style={styles.image}
-          />
-        </View>
-
-        <View style={styles.separator}></View>
-
-        <View style={styles.itemContainer}>
-          <Text style={styles.itemText}>{"History"}</Text>
-          <Image
-            source={{ uri: "https://i.imgur.com/1tMFzp8.png" }}
-            resizeMode={"stretch"}
-            style={styles.image}
-          />
-        </View>
-
-        <View style={styles.separator}></View>
-
-        <View style={styles.itemContainer}>
-          <Text style={styles.itemText}>{"Terms of Service"}</Text>
-          <Image
-            source={{ uri: "https://i.imgur.com/1tMFzp8.png" }}
-            resizeMode={"stretch"}
-            style={styles.image}
-          />
-        </View>
-
-        <View style={styles.separator}></View>
-
-        <View style={styles.bottomContainer}>
-          <View style={styles.bottomItem}>
-            <Image
-              source={{ uri: "https://i.imgur.com/1tMFzp8.png" }}
-              resizeMode={"stretch"}
-              style={styles.image}
-            />
-            <Text style={styles.bottomItemText}>{"Home"}</Text>
-            <Text style={styles.bottomItemText}>{"Notification"}</Text>
-            <Text style={styles.bottomItemText}>{"Map"}</Text>
-            <Text style={styles.bottomActiveText}>{"Account"}</Text>
+    <SafeAreaView style={MainStyles.container}>
+      <ScrollView scrollEnabled={true} contentInsetAdjustmentBehavior="automatic">
+      <View style={MainStyles.containerAS}>
+          <View style={MainStyles.headerAS}>
+            <TouchableOpacity style={MainStyles.backButtonAS}>
+              <Icon name="arrow-left" size={20} color="#000" />
+            </TouchableOpacity>
           </View>
+          <Text style={MainStyles.titleTextAS}>{"Settings"}</Text>
+          <Text style={MainStyles.subTitleTextAS}>{"Edit profile"}</Text>
+        
+          {/* Items*/}
+          <View style={{ flexDirection: 'row', marginHorizontal: 4}}>
+              <Text style={MainStyles.opTextAS}>Notification</Text>
+              <Icon name="arrow-right" size={20} color="#000" style={MainStyles.opButtonAS}/>
+          </View>
+          <View style={MainStyles.separator}></View>
+          <View style={{ flexDirection: 'row', marginHorizontal: 4}}>
+              <Text style={MainStyles.opTextAS}>Country</Text>
+              <Icon name="arrow-right" size={20} color="#000" style={MainStyles.opButtonAS}/>
+          </View>
+          <View style={MainStyles.separator}></View>
+          <View style={{ flexDirection: 'row', marginHorizontal: 4}}>
+              <Text style={MainStyles.opTextAS}>History</Text>
+              <Icon name="arrow-right" size={20} color="#000" style={MainStyles.opButtonAS}/>
+          </View>
+          <View style={MainStyles.separator}></View>
+          <View style={{ flexDirection: 'row', marginHorizontal: 4}}>
+              <Text style={MainStyles.opTextAS}>Term of Services</Text>
+              <Icon name="arrow-right" size={20} color="#000" style={MainStyles.opButtonAS}/>
+          </View>
+          <View style={MainStyles.separator}></View>
+          <View style={{ flexDirection: 'row', marginHorizontal: 4}}>
+              <Text style={MainStyles.opTextAS}>Help Center</Text>
+              <Icon name="arrow-right" size={20} color="#000" style={MainStyles.opButtonAS}/>
+          </View>
+          <View style={MainStyles.separator}></View>
+          <View style={{ flexDirection: 'row', marginHorizontal: 4}}>
+              <Text style={MainStyles.opTextAS}>Profile</Text>
+              <Icon name="arrow-right" size={20} color="#000" style={MainStyles.opButtonAS}/>
+          </View>
+          <View style={MainStyles.separator}></View>
+          <View style={{ flexDirection: 'row', marginHorizontal: 4}}>
+              <Text style={MainStyles.opTextAS}>Log Out</Text>
+              <Icon name="arrow-right" size={20} color="#000" style={MainStyles.opButtonAS}/>
+          </View>
+          <View style={MainStyles.separator}></View>
         </View>
       </ScrollView>
+      {/* Footer Navigation*/}
+      <BottomNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
     </SafeAreaView>
   );
 };
