@@ -8,22 +8,10 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 577444df416fa0eef1c3268efc775ec706964c7b
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BottomNavbar from "../components/BottomNavbar";
 import MainStyles from '../styles/MainStyles';
-<<<<<<< HEAD
-=======
-} from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
-import MainStyles from "../styles/MainStyles";
->>>>>>> test-login
-=======
->>>>>>> 577444df416fa0eef1c3268efc775ec706964c7b
 
 const HomeScreen: React.FC = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState("Home");
@@ -41,8 +29,6 @@ const HomeScreen: React.FC = (): JSX.Element => {
               source={require('../assets/images/oficial_festiapp.png')}
             />
           </View>
-          
-
           <Text style={MainStyles.titleTextHS}>The following holidays.</Text>
 
           {/* Search Box */}
@@ -91,72 +77,14 @@ const HomeScreen: React.FC = (): JSX.Element => {
               <Text style={MainStyles.otherFestivityTitleHS}>Diablada Pillareña</Text>
               <Text style={MainStyles.otherFestivityDateHS}>January, 6th</Text>
             </ImageBackground>
-<<<<<<< HEAD
-<<<<<<< HEAD
             <ImageBackground
               style={MainStyles.otherFestivityHS}
-              source={require("../assets/images/google-icon.png")}
+              source={require("../assets/images/diablada.jpg")}
               resizeMode="cover"
             >
               <Text style={MainStyles.otherFestivityTitleHS}>Mama Negra</Text>
               <Text style={MainStyles.otherFestivityDateHS}>November 30th</Text>
             </ImageBackground>
-<<<<<<< HEAD
-=======
->>>>>>> 577444df416fa0eef1c3268efc775ec706964c7b
-            <Text style={MainStyles.sectionTitleHS}>Other festivities</Text>
-            <View style={MainStyles.otherFestivitiesContainerHS}>
-              <ImageBackground
-                style={MainStyles.otherFestivityHS}
-                source={require('../assets/images/google-icon.png')}
-                resizeMode="cover"
-              >
-                <Text style={MainStyles.otherFestivityTitleHS}>Diablada Pillareña</Text>
-                <Text style={MainStyles.otherFestivityDateHS}>January, 6th</Text>
-              </ImageBackground>
-              <ImageBackground
-                style={MainStyles.otherFestivityHS}
-                source={require('../assets/images/google-icon.png')}
-                resizeMode="cover"
-              >
-                <Text style={MainStyles.otherFestivityTitleHS}>Mama Negra</Text>
-                <Text style={MainStyles.otherFestivityDateHS}>November 30th</Text>
-              </ImageBackground>
-            </View>
-            {/* Footer Navigation*/}
-            <BottomNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
-<<<<<<< HEAD
-=======
->>>>>>> test-login
-          </View>
-
-          {/* Footer Navigation */}
-          <View style={MainStyles.bottomNavContainer}>
-            {["Home", "Notification", "Map", "Account"].map((tab) => (
-              <TouchableOpacity
-                key={tab}
-                style={MainStyles.navButton}
-                onPress={() => setActiveTab(tab)}
-              >
-                <Icon
-                  name={tab === "Home" ? "home" : tab.toLowerCase()}
-                  size={24}
-                  style={activeTab === tab ? MainStyles.activeIcon : MainStyles.inactiveIcon}
-                />
-                <Text
-                  style={[
-                    MainStyles.navText,
-                    activeTab === tab ? MainStyles.activeNavText : MainStyles.inactiveNavText,
-                  ]}
-                >
-                  {tab}
-                </Text>
-              </TouchableOpacity>
-            ))}
-=======
->>>>>>> 577444df416fa0eef1c3268efc775ec706964c7b
-=======
->>>>>>> 2dc108fe0d5eb106b7cc42ae658647dc2ceb8099
           </View>
         </View>
       </ScrollView>
