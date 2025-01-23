@@ -1,16 +1,13 @@
 import React, {useState} from 'react';
-import { SafeAreaView, View, ScrollView, Image, Text, TouchableOpacity } from "react-native";
+import { SafeAreaView, View, ScrollView, Text, TouchableOpacity } from "react-native";
 import MainStyles from "../styles/MainStyles";
 import BottomNavbar from "../components/BottomNavbar";
 import Icon from "react-native-vector-icons/FontAwesome6";
 
-// Definimos el tipo de las propiedades que puede recibir el componente si es necesario
-interface Props {}
-
 const AccountScreen: React.FC= (): JSX.Element => {
   const [activeTab, setActiveTab] = useState("Account");
   return (
-    <SafeAreaView style={MainStyles.container}>
+    <SafeAreaView>
       <ScrollView scrollEnabled={true} contentInsetAdjustmentBehavior="automatic">
       <View style={MainStyles.containerAS}>
           <View style={MainStyles.headerAS}>
