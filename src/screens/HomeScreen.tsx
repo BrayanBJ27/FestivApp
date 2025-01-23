@@ -24,7 +24,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
           <View style={MainStyles.headerContainerHS}>
             <Text style={MainStyles.headerTextHS}>Find your next trip and discover
               more about Ecuador</Text>
-            <Image
+            <ImageBackground
               style={MainStyles.headerImageHS}
               source={require('../assets/images/oficial_festiapp.png')}
             />
