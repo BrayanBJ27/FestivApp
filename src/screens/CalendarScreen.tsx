@@ -11,10 +11,12 @@ import {
 import MainStyles from "../styles/MainStyles";
 import Icon from "react-native-vector-icons/FontAwesome";
 import {Calendar} from 'react-native-calendars';
+import BottomNavbar from "../components/BottomNavbar";
 
 export default function CalendarScreen() {
   const [selected, setSelected] = useState('');
   const [emailEnabled, setEmailEnabled] = useState(false);
+  const [activeTab, setActiveTab] = useState("Account");
   return (
     <SafeAreaView>
       <ScrollView scrollEnabled={true} contentInsetAdjustmentBehavior="automatic">
@@ -67,6 +69,8 @@ export default function CalendarScreen() {
           </TouchableOpacity>
         </View>
       </ScrollView>
+      {/* Footer Navigation*/}
+      <BottomNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
     </SafeAreaView>
   );
 }
