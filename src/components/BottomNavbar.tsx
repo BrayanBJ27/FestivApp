@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/FontAwesome6";
 import MainStyles from "../styles/MainStyles";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../hooks/AppNavigator";
+import { RootStackParamList } from "../types/types";
 
 interface NavbarProps {
   activeTab: string;
@@ -17,22 +17,17 @@ const BottomNavbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 
   return (
     <View style={MainStyles.bottomNavContainer}>
-      <TouchableOpacity
-        style={MainStyles.navButton}
+      <TouchableOpacity style={MainStyles.navButton}
         onPress={() => {
           setActiveTab("Home");
           navigation.navigate("Home"); // Navega a la pantalla Home
-        }}
-      >
-        <Icon
-          name="house-user"
-          size={24}
+        }}>
+        <Icon name="house-user" size={24}
           style={
             activeTab === "Home"
               ? MainStyles.activeIcon
               : MainStyles.inactiveIcon
-          }
-        />
+          }/>
         <Text
           style={[
             MainStyles.navText,
