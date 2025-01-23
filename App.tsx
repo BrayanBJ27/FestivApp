@@ -49,9 +49,9 @@ export default function App() {
     // }
     // return <LoginScreen />;
     // return <SingInScreen />;
-    return <HomeScreen />;
+    // return <HomeScreen />;
     // return <EventScreen />;
     // return <MapScreen />;
-    // return <ScheduleScreen />;EAD
-    // return <CalendarScreen />;
+    // return <ScheduleScreen />;
+    return <CalendarScreen />;
 }
