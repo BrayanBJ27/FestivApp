@@ -593,7 +593,6 @@ const MainStyles = StyleSheet.create({
   //MAP SCREEN
   safeAreaMS: {
     flex: 1,
-    backgroundColor: "#fff",
   },
   mapContainerMS: {
     flex: 1,
@@ -652,7 +651,7 @@ const MainStyles = StyleSheet.create({
     fontWeight: "600",
     color: "#000",
     right: 20,
-    marginTop: 570,
+    marginTop: 530,
   },
   locationsContainerMS: {
     flexDirection: "row",
@@ -662,38 +661,39 @@ const MainStyles = StyleSheet.create({
     right: 40,
   },
   locationCardMS: {
-    marginHorizontal: 8,
-    width: "50%",
-    height: 100,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 15,
-    padding: 10,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
     elevation: 3,
+    width: '48%',
+    marginVertical: 8,
   },
   locationImageMS: {
-    width: "100%",
-    height: 100,
-    borderRadius: 10,
-    marginBottom: 8,
+    width: '90%',
+    height: 40,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+  },
+  locationDetailsMS: {
+    padding: 12,
   },
   locationTitleTextMS: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "#000",
+    fontWeight: '600',
+    color: '#000',
     marginBottom: 4,
   },
   ratingContainerMS: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 4,
   },
   priceTextMS: {
     fontSize: 14,
-    color: "#aeaeae",
+    color: '#aeaeae',
   },
   footerContainerMS: {
     flexDirection: "row",
