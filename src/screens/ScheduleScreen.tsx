@@ -11,7 +11,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import MainStyles from "../styles/MainStyles";
 
 const ScheduleScreen: React.FC = (): JSX.Element => {
-    const [activeTab, setActiveTab] = useState<string>("Map");
+    const [activeTab, setActiveTab] = useState<string>("Home");
   return (
     <SafeAreaView style={MainStyles.safeAreaSS}>
       <ScrollView
