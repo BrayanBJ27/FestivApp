@@ -36,10 +36,10 @@ const EventScreen: React.FC = (): JSX.Element => {
             <View style={MainStyles.reviewContainerES}>
               <View style={MainStyles.ratingContainerES}>
               <Icon name="star" size={16} color="#FFD700" style={MainStyles.starIconES} />
-            <Icon name="star" size={16} color="#FFD700" style={MainStyles.starIconES} />
-            <Icon name="star" size={16} color="#FFD700" style={MainStyles.starIconES} />
-            <Icon name="star" size={16} color="#FFD700" style={MainStyles.starIconES} />
-            <Icon name="star-half" size={16} color="#FFD700" style={MainStyles.starIconES} />
+              <Icon name="star" size={16} color="#FFD700" style={MainStyles.starIconES} />
+              <Icon name="star" size={16} color="#FFD700" style={MainStyles.starIconES} />
+              <Icon name="star" size={16} color="#FFD700" style={MainStyles.starIconES} />
+              <Icon name="star-half" size={16} color="#FFD700" style={MainStyles.starIconES} />
             <Text style={MainStyles.ratingTextES}>4.79</Text>
               </View>
               <Text style={MainStyles.reviewTextES}>(78 reviews)</Text>
