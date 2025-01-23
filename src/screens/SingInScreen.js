@@ -12,6 +12,8 @@ export default function SignUpScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [isPasswordVisible, setPasswordVisible] = useState(false);
+  const [isRepeatPasswordVisible, setRepeatPasswordVisible] = useState(false);
   const [isSelected, setSelection] = useState(false);
 
   const handleSignUp = () => {
@@ -67,10 +69,20 @@ export default function SignUpScreen() {
             style={MainStyles.textInput}
             placeholder="Enter password"
             placeholderTextColor="#adadad"
-            secureTextEntry={true}
+            secureTextEntry={!isPasswordVisible}
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
+          <TouchableOpacity
+            style={MainStyles.eyeIconContainer}
+            onPress={() => setPasswordVisible(!isPasswordVisible)}
+          >
+            <Icon
+              name={isPasswordVisible ? "eye" : "eye-slash"}
+              size={20}
+              color="#adadad"
+            />
+          </TouchableOpacity>
         </View>
 
         {/* Repeat Password Input */}
@@ -80,14 +92,24 @@ export default function SignUpScreen() {
             style={MainStyles.textInput}
             placeholder="Repeat password"
             placeholderTextColor="#adadad"
-            secureTextEntry={true}
+            secureTextEntry={!isRepeatPasswordVisible}
             value={repeatPassword}
             onChangeText={(text) => setRepeatPassword(text)}
           />
+          <TouchableOpacity
+            style={MainStyles.eyeIconContainer}
+            onPress={() => setRepeatPasswordVisible(!isRepeatPasswordVisible)}
+          >
+            <Icon
+              name={isRepeatPasswordVisible ? "eye" : "eye-slash"}
+              size={20}
+              color="#adadad"
+            />
+          </TouchableOpacity>
         </View>
 
         {/* Continue Button */}
-        <TouchableOpacity style={MainStyles.continueSIButton} onPress={handleSignUp}>
+        <TouchableOpacity style={MainStyles.continueButton} onPress={handleSignUp}>
           <Text style={MainStyles.continueText}>Continue</Text>
         </TouchableOpacity>
       </View>
