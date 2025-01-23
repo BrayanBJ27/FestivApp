@@ -10,7 +10,7 @@ import MainStyles from "../styles/MainStyles";
 import Icon from "react-native-vector-icons/FontAwesome6";
 import BottomNavbar from "../components/BottomNavbar";
 
-export default function CalendarScreen() {
+const NotificationScreen: React.FC= (): JSX.Element => {
   const [activeTab, setActiveTab] = useState("Notification");
   return (
     <SafeAreaView>
@@ -28,4 +28,6 @@ export default function CalendarScreen() {
       <BottomNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
     </SafeAreaView>
   );
-}
+};
+
+export default NotificationScreen;
