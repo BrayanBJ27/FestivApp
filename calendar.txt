@@ -1,0 +1,1245 @@
+/**
+ * Codia React Native App
+ * https://codia.ai
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ */
+import React from 'react';
+import {
+  View,
+  Text,
+  ImageBackground,
+  SafeAreaView,
+  ScrollView,
+} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+
+export default function App(): React.JSX.Element {
+  return (
+    <SafeAreaView>
+      <ScrollView
+        scrollEnabled={true}
+        contentInsetAdjustmentBehavior='automatic'
+      >
+        <View
+          style={{
+            width: 404,
+            height: 874,
+            backgroundColor: '#ffffff',
+            position: 'relative',
+            overflow: 'hidden',
+            marginTop: 0,
+            marginRight: 'auto',
+            marginBottom: 0,
+            marginLeft: 'auto',
+          }}
+        >
+          <View
+            style={{
+              display: 'flex',
+              width: 217,
+              height: 33,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              position: 'relative',
+              zIndex: 3,
+              marginTop: 71,
+              marginRight: 0,
+              marginBottom: 0,
+              marginLeft: 18,
+            }}
+          >
+            <ImageBackground
+              style={{
+                width: 28,
+                height: 28,
+                flexShrink: 0,
+                position: 'relative',
+                zIndex: 2,
+              }}
+              source={require('./assets/images/d8f6c9f1-e3bc-4a2c-93ad-2afecf949158.png')}
+              resizeMode='cover'
+            />
+            <Text
+              style={{
+                height: 33,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 20,
+                fontWeight: '600',
+                lineHeight: 32.9,
+                color: '#000000',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 3,
+              }}
+              numberOfLines={1}
+            >
+              My Plan
+            </Text>
+          </View>
+          <ImageBackground
+            style={{
+              width: 356,
+              height: 92,
+              borderTopLeftRadius: 4,
+              borderTopRightRadius: 4,
+              borderBottomRightRadius: 4,
+              borderBottomLeftRadius: 4,
+              position: 'relative',
+              zIndex: 60,
+              marginTop: 39,
+              marginRight: 0,
+              marginBottom: 0,
+              marginLeft: 22,
+            }}
+            source={require('./assets/images/8b9a943435507c3a17453a2afe21258126333383.png')}
+            resizeMode='cover'
+          >
+            <Text
+              style={{
+                display: 'flex',
+                height: 39,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Andika',
+                fontSize: 24,
+                fontWeight: '400',
+                lineHeight: 38.672,
+                color: '#ffffff',
+                position: 'absolute',
+                top: 42,
+                left: 11,
+                textAlign: 'left',
+                zIndex: 60,
+              }}
+              numberOfLines={1}
+            >
+              Diablada Pillareña
+            </Text>
+          </ImageBackground>
+          <View
+            style={{
+              width: 362,
+              height: 26,
+              position: 'relative',
+              zIndex: 9,
+              marginTop: 27,
+              marginRight: 0,
+              marginBottom: 0,
+              marginLeft: 24,
+            }}
+          >
+            <Text
+              style={{
+                display: 'flex',
+                height: 26,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 16,
+                fontWeight: '600',
+                lineHeight: 26,
+                color: '#000000',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                textAlign: 'left',
+                zIndex: 4,
+              }}
+              numberOfLines={1}
+            >
+              Calendar Event
+            </Text>
+            <Text
+              style={{
+                display: 'flex',
+                height: 26,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 16,
+                fontWeight: '400',
+                lineHeight: 26,
+                color: '#000000',
+                position: 'absolute',
+                top: 0,
+                left: 284,
+                textAlign: 'left',
+                zIndex: 6,
+              }}
+              numberOfLines={1}
+            >
+              January
+            </Text>
+            <ImageBackground
+              style={{
+                width: 22,
+                height: 22,
+                position: 'absolute',
+                top: 2,
+                left: 258,
+                zIndex: 8,
+              }}
+              source={require('./assets/images/0fefb316-4c2b-44da-af9d-a2d2b10a65f5.png')}
+              resizeMode='cover'
+            />
+            <ImageBackground
+              style={{
+                width: 22,
+                height: 22,
+                position: 'absolute',
+                top: 3,
+                left: 340,
+                zIndex: 9,
+              }}
+              source={require('./assets/images/b24cda7e-0d6c-49a2-b31e-989534ba37e8.png')}
+              resizeMode='cover'
+            />
+          </View>
+          <View
+            style={{
+              display: 'flex',
+              width: 353,
+              height: 23,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              position: 'relative',
+              zIndex: 42,
+              marginTop: 22,
+              marginRight: 0,
+              marginBottom: 0,
+              marginLeft: 24,
+            }}
+          >
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '400',
+                lineHeight: 23,
+                color: '#a5a5a5',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 10,
+              }}
+              numberOfLines={1}
+            >
+              Mon
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '400',
+                lineHeight: 23,
+                color: '#a5a5a5',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 11,
+              }}
+              numberOfLines={1}
+            >
+              Tue
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '400',
+                lineHeight: 23,
+                color: '#a5a5a5',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 12,
+              }}
+              numberOfLines={1}
+            >
+              Wed
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '400',
+                lineHeight: 23,
+                color: '#a5a5a5',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 13,
+              }}
+              numberOfLines={1}
+            >
+              Thu
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '400',
+                lineHeight: 23,
+                color: '#a5a5a5',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 40,
+              }}
+              numberOfLines={1}
+            >
+              Fri
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '400',
+                lineHeight: 23,
+                color: '#a5a5a5',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 41,
+              }}
+              numberOfLines={1}
+            >
+              Sat
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '400',
+                lineHeight: 23,
+                color: '#a5a5a5',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 42,
+              }}
+              numberOfLines={1}
+            >
+              Sun
+            </Text>
+          </View>
+          <View
+            style={{
+              width: 240,
+              height: 34,
+              position: 'relative',
+              zIndex: 55,
+              marginTop: 6,
+              marginRight: 0,
+              marginBottom: 0,
+              marginLeft: 140,
+            }}
+          >
+            <ImageBackground
+              style={{
+                width: 34,
+                height: 34,
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                zIndex: 1,
+              }}
+              source={require('./assets/images/e623845f-e2fd-41c5-8099-1668319a3ccf.png')}
+              resizeMode='cover'
+            />
+            <ImageBackground
+              style={{
+                width: 235,
+                height: 33,
+                position: 'absolute',
+                top: 1,
+                left: 5,
+                zIndex: 55,
+              }}
+              source={require('./assets/images/128f2998-5c92-463b-bbc8-52838f978c59.png')}
+              resizeMode='cover'
+            >
+              <Text
+                style={{
+                  display: 'flex',
+                  height: 23,
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
+                  fontFamily: 'Poppins',
+                  fontSize: 14,
+                  fontWeight: '500',
+                  lineHeight: 23,
+                  color: '#ffffff',
+                  position: 'absolute',
+                  top: 5,
+                  left: 10,
+                  textAlign: 'left',
+                  zIndex: 14,
+                }}
+                numberOfLines={1}
+              >
+                1
+              </Text>
+              <Text
+                style={{
+                  display: 'flex',
+                  height: 23,
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
+                  fontFamily: 'Poppins',
+                  fontSize: 14,
+                  fontWeight: '500',
+                  lineHeight: 23,
+                  color: '#000000',
+                  position: 'absolute',
+                  top: 10,
+                  left: 163,
+                  textAlign: 'left',
+                  zIndex: 27,
+                }}
+                numberOfLines={1}
+              >
+                4
+              </Text>
+              <Text
+                style={{
+                  display: 'flex',
+                  height: 23,
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
+                  fontFamily: 'Poppins',
+                  fontSize: 14,
+                  fontWeight: '500',
+                  lineHeight: 23,
+                  color: '#000000',
+                  position: 'absolute',
+                  top: 10,
+                  left: 62,
+                  textAlign: 'left',
+                  zIndex: 19,
+                }}
+                numberOfLines={1}
+              >
+                2
+              </Text>
+              <Text
+                style={{
+                  display: 'flex',
+                  height: 23,
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
+                  fontFamily: 'Poppins',
+                  fontSize: 14,
+                  fontWeight: '500',
+                  lineHeight: 23,
+                  color: '#000000',
+                  position: 'absolute',
+                  top: 10,
+                  left: 111,
+                  textAlign: 'left',
+                  zIndex: 23,
+                }}
+                numberOfLines={1}
+              >
+                3
+              </Text>
+              <Text
+                style={{
+                  display: 'flex',
+                  height: 23,
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
+                  fontFamily: 'Poppins',
+                  fontSize: 14,
+                  fontWeight: '500',
+                  lineHeight: 23,
+                  color: '#000000',
+                  position: 'absolute',
+                  top: 10,
+                  left: 214,
+                  textAlign: 'left',
+                  zIndex: 31,
+                }}
+                numberOfLines={1}
+              >
+                5
+              </Text>
+            </ImageBackground>
+          </View>
+          <View
+            style={{
+              width: 347,
+              height: 34,
+              position: 'relative',
+              zIndex: 37,
+              marginTop: 17,
+              marginRight: 0,
+              marginBottom: 0,
+              marginLeft: 23,
+            }}
+          >
+            <ImageBackground
+              style={{
+                width: 34,
+                height: 34,
+                position: 'absolute',
+                top: 0,
+                left: 0,
+              }}
+              source={require('./assets/images/2cdd2bb2-4d54-4118-a894-be3024da0c1f.png')}
+              resizeMode='cover'
+            />
+            <Text
+              style={{
+                display: 'flex',
+                height: 23,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'absolute',
+                top: 6,
+                left: 12,
+                textAlign: 'left',
+                zIndex: 15,
+              }}
+              numberOfLines={1}
+            >
+              6
+            </Text>
+            <Text
+              style={{
+                display: 'flex',
+                height: 23,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'absolute',
+                top: 6,
+                left: 71,
+                textAlign: 'left',
+                zIndex: 20,
+              }}
+              numberOfLines={1}
+            >
+              7
+            </Text>
+            <Text
+              style={{
+                display: 'flex',
+                height: 23,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'absolute',
+                top: 6,
+                left: 127,
+                textAlign: 'left',
+                zIndex: 24,
+              }}
+              numberOfLines={1}
+            >
+              8
+            </Text>
+            <Text
+              style={{
+                display: 'flex',
+                height: 23,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'absolute',
+                top: 6,
+                left: 184,
+                textAlign: 'left',
+                zIndex: 28,
+              }}
+              numberOfLines={1}
+            >
+              9
+            </Text>
+            <Text
+              style={{
+                display: 'flex',
+                height: 23,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'absolute',
+                top: 6,
+                left: 230,
+                textAlign: 'left',
+                zIndex: 32,
+              }}
+              numberOfLines={1}
+            >
+              10
+            </Text>
+            <Text
+              style={{
+                display: 'flex',
+                height: 23,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'absolute',
+                top: 6,
+                left: 285,
+                textAlign: 'left',
+                zIndex: 34,
+              }}
+              numberOfLines={1}
+            >
+              11
+            </Text>
+            <Text
+              style={{
+                display: 'flex',
+                height: 23,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'absolute',
+                top: 6,
+                left: 334,
+                textAlign: 'left',
+                zIndex: 37,
+              }}
+              numberOfLines={1}
+            >
+              12
+            </Text>
+          </View>
+          <View
+            style={{
+              display: 'flex',
+              width: 338,
+              height: 23,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              position: 'relative',
+              zIndex: 38,
+              marginTop: 19,
+              marginRight: 0,
+              marginBottom: 0,
+              marginLeft: 33,
+            }}
+          >
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 16,
+              }}
+              numberOfLines={1}
+            >
+              13
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 21,
+              }}
+              numberOfLines={1}
+            >
+              14
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 25,
+              }}
+              numberOfLines={1}
+            >
+              15
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 29,
+              }}
+              numberOfLines={1}
+            >
+              16
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 33,
+              }}
+              numberOfLines={1}
+            >
+              17
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 35,
+              }}
+              numberOfLines={1}
+            >
+              18
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 38,
+              }}
+              numberOfLines={1}
+            >
+              19
+            </Text>
+          </View>
+          <View
+            style={{
+              width: 342,
+              height: 24,
+              position: 'relative',
+              zIndex: 59,
+              marginTop: 23,
+              marginRight: 0,
+              marginBottom: 0,
+              marginLeft: 31,
+            }}
+          >
+            <Text
+              style={{
+                display: 'flex',
+                height: 23,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                textAlign: 'left',
+                zIndex: 17,
+              }}
+              numberOfLines={1}
+            >
+              20
+            </Text>
+            <Text
+              style={{
+                display: 'flex',
+                height: 23,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'absolute',
+                top: 0,
+                left: 115,
+                textAlign: 'left',
+                zIndex: 57,
+              }}
+              numberOfLines={1}
+            >
+              22
+            </Text>
+            <Text
+              style={{
+                display: 'flex',
+                height: 23,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'absolute',
+                top: 0,
+                left: 172,
+                textAlign: 'left',
+                zIndex: 58,
+              }}
+              numberOfLines={1}
+            >
+              23
+            </Text>
+            <Text
+              style={{
+                display: 'flex',
+                height: 23,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'absolute',
+                top: 0,
+                left: 221,
+                textAlign: 'left',
+                zIndex: 59,
+              }}
+              numberOfLines={1}
+            >
+              24
+            </Text>
+            <Text
+              style={{
+                display: 'flex',
+                height: 23,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'absolute',
+                top: 0,
+                left: 273,
+                textAlign: 'left',
+                zIndex: 36,
+              }}
+              numberOfLines={1}
+            >
+              25
+            </Text>
+            <Text
+              style={{
+                display: 'flex',
+                height: 23,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'absolute',
+                top: 0,
+                left: 324,
+                textAlign: 'left',
+                zIndex: 39,
+              }}
+              numberOfLines={1}
+            >
+              26
+            </Text>
+            <Text
+              style={{
+                display: 'flex',
+                height: 23,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'absolute',
+                top: 1,
+                left: 58,
+                textAlign: 'left',
+                zIndex: 56,
+              }}
+              numberOfLines={1}
+            >
+              21
+            </Text>
+          </View>
+          <View
+            style={{
+              display: 'flex',
+              width: 188,
+              height: 23,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              position: 'relative',
+              zIndex: 30,
+              marginTop: 22,
+              marginRight: 0,
+              marginBottom: 0,
+              marginLeft: 32,
+            }}
+          >
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 18,
+              }}
+              numberOfLines={1}
+            >
+              27
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 22,
+              }}
+              numberOfLines={1}
+            >
+              28
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 26,
+              }}
+              numberOfLines={1}
+            >
+              29
+            </Text>
+            <Text
+              style={{
+                height: 23,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: '500',
+                lineHeight: 23,
+                color: '#000000',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 30,
+              }}
+              numberOfLines={1}
+            >
+              30
+            </Text>
+          </View>
+          <Text
+            style={{
+              height: 26,
+              fontFamily: 'Poppins',
+              fontSize: 16,
+              fontWeight: '600',
+              lineHeight: 26,
+              color: '#000000',
+              position: 'relative',
+              textAlign: 'left',
+              zIndex: 5,
+              marginTop: 38,
+              marginRight: 0,
+              marginBottom: 0,
+              marginLeft: 25,
+            }}
+            numberOfLines={1}
+          >
+            Share
+          </Text>
+          <View
+            style={{
+              width: 356,
+              height: 52,
+              position: 'relative',
+              zIndex: 50,
+              marginTop: 9,
+              marginRight: 0,
+              marginBottom: 0,
+              marginLeft: 24,
+            }}
+          >
+            <ImageBackground
+              style={{
+                width: 52,
+                height: 52,
+                position: 'absolute',
+                top: 0,
+                left: 304,
+                zIndex: 48,
+              }}
+              source={require('./assets/images/5db6f7c6-1835-44d1-b9c8-707c313bcec9.png')}
+              resizeMode='cover'
+            />
+            <View
+              style={{
+                width: 281,
+                height: 50,
+                borderTopLeftRadius: 25,
+                borderTopRightRadius: 25,
+                borderBottomRightRadius: 25,
+                borderBottomLeftRadius: 25,
+                borderWidth: 1,
+                borderColor: '#e9e9e9',
+                borderStyle: 'solid',
+                position: 'absolute',
+                top: 1,
+                left: 0,
+                zIndex: 43,
+              }}
+            >
+              <Text
+                style={{
+                  display: 'flex',
+                  height: 24,
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
+                  fontFamily: 'Poppins',
+                  fontSize: 16,
+                  fontWeight: '400',
+                  lineHeight: 24,
+                  color: '#a9a9a9',
+                  position: 'absolute',
+                  top: 11,
+                  left: 52,
+                  textAlign: 'left',
+                  zIndex: 46,
+                }}
+                numberOfLines={1}
+              >
+                Select contact
+              </Text>
+              <ImageBackground
+                style={{
+                  width: 24,
+                  height: 24,
+                  position: 'absolute',
+                  top: 12,
+                  left: 17,
+                  zIndex: 45,
+                }}
+                source={require('./assets/images/f670c035-8346-4389-9f7e-3b0fae5b6ec7.png')}
+              />
+            </View>
+            <ImageBackground
+              style={{
+                width: 24,
+                height: 24,
+                position: 'absolute',
+                top: 14,
+                left: 318,
+                zIndex: 50,
+              }}
+              source={require('./assets/images/8812ecd0-700a-4f78-803c-07afc015a5ec.png')}
+            />
+          </View>
+          <View
+            style={{
+              display: 'flex',
+              width: 355,
+              height: 33,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              position: 'relative',
+              zIndex: 51,
+              marginTop: 31,
+              marginRight: 0,
+              marginBottom: 0,
+              marginLeft: 24,
+            }}
+          >
+            <Text
+              style={{
+                height: 24,
+                flexShrink: 0,
+                fontFamily: 'Poppins',
+                fontSize: 16,
+                fontWeight: '400',
+                lineHeight: 24,
+                color: '#1e1e1e',
+                position: 'relative',
+                textAlign: 'left',
+                zIndex: 47,
+              }}
+              numberOfLines={1}
+            >
+              Send to your email
+            </Text>
+            <View
+              style={{
+                width: 53,
+                height: 33,
+                flexShrink: 0,
+                backgroundColor: '#ededed',
+                borderTopLeftRadius: 26,
+                borderTopRightRadius: 26,
+                borderBottomRightRadius: 26,
+                borderBottomLeftRadius: 26,
+                position: 'relative',
+                zIndex: 51,
+              }}
+            >
+              <ImageBackground
+                style={{
+                  width: 26,
+                  height: 26,
+                  position: 'relative',
+                  zIndex: 52,
+                  marginTop: 3,
+                  marginRight: 0,
+                  marginBottom: 0,
+                  marginLeft: 24,
+                }}
+                source={require('./assets/images/3d7515ed-1528-45ec-afe2-9b2d8d98ef02.png')}
+                resizeMode='cover'
+              />
+            </View>
+          </View>
+          <View
+            style={{
+              width: 356,
+              height: 54,
+              backgroundColor: '#0373f3',
+              borderTopLeftRadius: 36,
+              borderTopRightRadius: 36,
+              borderBottomRightRadius: 36,
+              borderBottomLeftRadius: 36,
+              position: 'relative',
+              zIndex: 54,
+              marginTop: 34,
+              marginRight: 0,
+              marginBottom: 0,
+              marginLeft: 24,
+            }}
+          >
+            <Text
+              style={{
+                display: 'flex',
+                height: 24,
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+                fontFamily: 'Poppins',
+                fontSize: 16,
+                fontWeight: '500',
+                lineHeight: 24,
+                color: '#ffffff',
+                position: 'absolute',
+                top: 15,
+                left: 141,
+                textAlign: 'left',
+                zIndex: 54,
+              }}
+              numberOfLines={1}
+            >
+              Go
+            </Text>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}

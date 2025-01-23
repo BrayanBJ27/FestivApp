@@ -7,9 +7,10 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
-} from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
-import MainStyles from "../styles/MainStyles";
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import BottomNavbar from "../components/BottomNavbar";
+import MainStyles from '../styles/MainStyles';
 
 const HomeScreen: React.FC = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState("Home");
@@ -71,39 +72,27 @@ const HomeScreen: React.FC = (): JSX.Element => {
               <Text style={MainStyles.otherFestivityTitleHS}>Diablada Pillareña</Text>
               <Text style={MainStyles.otherFestivityDateHS}>January, 6th</Text>
             </ImageBackground>
-            <ImageBackground
-              style={MainStyles.otherFestivityHS}
-              source={require("../assets/images/google-icon.png")}
-              resizeMode="cover"
-            >
-              <Text style={MainStyles.otherFestivityTitleHS}>Mama Negra</Text>
-              <Text style={MainStyles.otherFestivityDateHS}>November 30th</Text>
-            </ImageBackground>
-          </View>
-
-          {/* Footer Navigation */}
-          <View style={MainStyles.bottomNavContainer}>
-            {["Home", "Notification", "Map", "Account"].map((tab) => (
-              <TouchableOpacity
-                key={tab}
-                style={MainStyles.navButton}
-                onPress={() => setActiveTab(tab)}
+            <Text style={MainStyles.sectionTitleHS}>Other festivities</Text>
+            <View style={MainStyles.otherFestivitiesContainerHS}>
+              <ImageBackground
+                style={MainStyles.otherFestivityHS}
+                source={require('../assets/images/google-icon.png')}
+                resizeMode="cover"
               >
-                <Icon
-                  name={tab === "Home" ? "home" : tab.toLowerCase()}
-                  size={24}
-                  style={activeTab === tab ? MainStyles.activeIcon : MainStyles.inactiveIcon}
-                />
-                <Text
-                  style={[
-                    MainStyles.navText,
-                    activeTab === tab ? MainStyles.activeNavText : MainStyles.inactiveNavText,
-                  ]}
-                >
-                  {tab}
-                </Text>
-              </TouchableOpacity>
-            ))}
+                <Text style={MainStyles.otherFestivityTitleHS}>Diablada Pillareña</Text>
+                <Text style={MainStyles.otherFestivityDateHS}>January, 6th</Text>
+              </ImageBackground>
+              <ImageBackground
+                style={MainStyles.otherFestivityHS}
+                source={require('../assets/images/google-icon.png')}
+                resizeMode="cover"
+              >
+                <Text style={MainStyles.otherFestivityTitleHS}>Mama Negra</Text>
+                <Text style={MainStyles.otherFestivityDateHS}>November 30th</Text>
+              </ImageBackground>
+            </View>
+            {/* Footer Navigation*/}
+            <BottomNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
           </View>
         </View>
       </ScrollView>
