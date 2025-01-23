@@ -9,7 +9,7 @@ import HomeScreen from "./src/screens/HomeScreen";
 import EventScreen from "./src/screens/EventScreen";
 import MapScreen from "./src/screens/MapScreen";
 import ScheduleScreen from "./src/screens/ScheduleScreen";
-import Calendar from "./src/screens/Calendar";
+import CalendarScreen from "./src/screens/CalendarScreen";
 
 const Stack = createStackNavigator();
 
@@ -53,5 +53,5 @@ export default function App() {
     // return <EventScreen />;
     // return <MapScreen />;
     // return <ScheduleScreen />;
-    return <Calendar />;
+    return <CalendarScreen />;
 }
