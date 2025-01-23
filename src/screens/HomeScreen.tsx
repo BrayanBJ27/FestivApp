@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   View,
   Text,
+  Image,
   TextInput,
   ImageBackground,
   SafeAreaView,
@@ -33,8 +34,14 @@ const HomeScreen: React.FC = (): JSX.Element => {
         <View style={MainStyles.containerHS}>
           {/* Header */}
           <View style={MainStyles.headerContainerHS}>
-            <Text style={MainStyles.headerTextHS}>oficial_festiapp</Text>
+            <Text style={MainStyles.headerTextHS}>Find your next trip and discover
+              more about Ecuador</Text>
+            <Image
+              style={MainStyles.headerImageHS}
+              source={require('../assets/images/oficial_festiapp.png')}
+            />
           </View>
+          
 
           <Text style={MainStyles.titleTextHS}>The following holidays.</Text>
 
@@ -61,7 +68,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
           <Text style={MainStyles.sectionTitleHS}>Popular festivities</Text>
           <ImageBackground
             style={MainStyles.popularFestivityHS}
-            source={require("../assets/images/google-icon.png")}
+            source={require("../assets/images/diablada.jpg")}
             resizeMode="cover"
           >
             <Text style={MainStyles.popularFestivityTextHS}>Carnaval Guaranda</Text>
@@ -69,7 +76,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
               <Text style={MainStyles.dateTextHS}>March 3rd & 4th</Text>
               <View style={MainStyles.ratingContainerHS}>
                 <Text style={MainStyles.ratingTextHS}>4.9</Text>
-                <Icon name="star" size={20} color="#FFD700" />
+                <Icon name="star" size={20} color="#FFD700" style={MainStyles.ratingIconHS}/>
               </View>
             </View>
           </ImageBackground>
@@ -78,12 +85,13 @@ const HomeScreen: React.FC = (): JSX.Element => {
           <View style={MainStyles.otherFestivitiesContainerHS}>
             <ImageBackground
               style={MainStyles.otherFestivityHS}
-              source={require("../assets/images/google-icon.png")}
+              source={require("../assets/images/diablada.jpg")}
               resizeMode="cover"
             >
               <Text style={MainStyles.otherFestivityTitleHS}>Diablada Pillareña</Text>
               <Text style={MainStyles.otherFestivityDateHS}>January, 6th</Text>
             </ImageBackground>
+<<<<<<< HEAD
 <<<<<<< HEAD
             <ImageBackground
               style={MainStyles.otherFestivityHS}
@@ -147,9 +155,13 @@ const HomeScreen: React.FC = (): JSX.Element => {
             ))}
 =======
 >>>>>>> 577444df416fa0eef1c3268efc775ec706964c7b
+=======
+>>>>>>> 2dc108fe0d5eb106b7cc42ae658647dc2ceb8099
           </View>
         </View>
       </ScrollView>
+      {/* Footer Navigation*/}
+      <BottomNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
     </SafeAreaView>
   );
 };

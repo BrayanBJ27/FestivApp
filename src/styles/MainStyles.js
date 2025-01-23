@@ -314,11 +314,18 @@ continueSIButton: {
     zIndex: 11,
     textAlign: 'left',
   },
+  headerImageHS: {
+    width: 70,
+    height: 66,
+    position: 'relative',
+    marginTop: 0,
+    marginLeft: 'auto',
+  },
   titleTextHS: {
     height: 39,
     fontFamily: 'Poppins',
     fontSize: 26,
-    fontWeight: '600',
+    fontWeight: 'bold',
     lineHeight: 39,
     color: '#000000',
     position: 'relative',
@@ -390,7 +397,7 @@ continueSIButton: {
     backgroundColor: 'rgba(196, 196, 196, 0.2)',
     borderRadius: 15,
     marginTop: 15,
-    marginLeft: 20.893,
+    marginLeft: 20,
   },
   popularFestivityTextHS: {
     height: 35,
@@ -405,7 +412,7 @@ continueSIButton: {
   popularFestivityDetailsHS: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 1,
+    marginTop: 10,
     marginLeft: 18,
   },
   dateTextHS: {
@@ -421,20 +428,20 @@ continueSIButton: {
     fontFamily: 'Poppins',
     fontSize: 12,
     color: '#ffffff',
+    marginRight: 5,
   },
   ratingIconHS: {
-    width: 16,
-    height: 16,
+    marginRight: 5,
   },
   otherFestivitiesContainerHS: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 14,
-    marginLeft: 20.893,
+    marginLeft: 20,
   },
   otherFestivityHS: {
     width: 146,
-    height: 200,
+    height: 230,
     borderRadius: 15,
   },
   otherFestivityTitleHS: {

@@ -9,7 +9,7 @@ import HomeScreen from "./src/screens/HomeScreen";
 import EventScreen from "./src/screens/EventScreen";
 import MapScreen from "./src/screens/MapScreen";
 import ScheduleScreen from "./src/screens/ScheduleScreen";
-import Calendar from "./src/screens/Calendar";
+import CalendarScreen from "./src/screens/CalendarScreen";
 
 const Stack = createStackNavigator();
 
@@ -56,8 +56,9 @@ export default function App() {
     // return <SingInScreen />;
     // return <HomeScreen />;
     // return <EventScreen />;
-    // return <MapScreen />;
+    return <MapScreen />;
     // return <ScheduleScreen />;
+<<<<<<< HEAD
 <<<<<<< HEAD
     return <CalendarScreen />;
   }
@@ -79,3 +80,7 @@ export default function App() {
     return <Calendar />;
 }
 >>>>>>> 577444df416fa0eef1c3268efc775ec706964c7b
+=======
+    // return <CalendarScreen />;
+}
+>>>>>>> 2dc108fe0d5eb106b7cc42ae658647dc2ceb8099
