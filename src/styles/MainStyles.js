@@ -383,7 +383,7 @@ const MainStyles = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 27,
     color: '#000000',
-    marginTop: 43,
+    marginTop: 10,
     marginLeft: 20.893,
   },
   popularFestivityHS: {
@@ -431,14 +431,16 @@ const MainStyles = StyleSheet.create({
   otherFestivitiesContainerHS: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 14,
+    marginTop: 120,
     marginLeft: 20,
   },
-  otherFestivityHS: {
-    width: 146,
-    height: 230,
-    borderRadius: 15,
-  },
+ otherFestivityHS: {
+  width: 146,
+  height: 230,
+  borderRadius: 15,
+  marginRight: 20, // Aumentado para mayor separación
+  marginLeft: 5,  // Agregar un pequeño margen izquierdo opcional
+},
   otherFestivityTitleHS: {
     fontFamily: 'Andika',
     fontSize: 14,
@@ -470,6 +472,25 @@ const MainStyles = StyleSheet.create({
     marginLeft: 315,
     top: 5,
   },
+  // homescreen recuadros 
+  horizontalScrollHS: {
+  flexDirection: "row",
+  paddingHorizontal: 10,
+},
+popularFestivityHS: {
+  width: 200,
+  height: 150,
+  marginRight: 10,
+  borderRadius: 10,
+  overflow: "hidden",
+},
+popularFestivityTextHS: {
+  color: "#fff",
+  fontSize: 16,
+  fontWeight: "bold",
+  padding: 10,
+},
+
 
   //EVENT SCREEN
   safeAreaES: {

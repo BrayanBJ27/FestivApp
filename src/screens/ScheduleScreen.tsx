@@ -1,22 +1,27 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
   ImageBackground,
   SafeAreaView,
   ScrollView,
-} from 'react-native';
+  TouchableOpacity,
+} from "react-native";
 import BottomNavbar from "../components/BottomNavbar";
 import Icon from "react-native-vector-icons/FontAwesome6";
 import MainStyles from "../styles/MainStyles";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../types/types";
 
 const ScheduleScreen: React.FC = (): JSX.Element => {
-    const [activeTab, setActiveTab] = useState<string>("Home");
+  const [activeTab, setActiveTab] = useState<string>("Home");
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>(); // Navegación configurada
+
   return (
     <SafeAreaView style={MainStyles.safeAreaSS}>
       <ScrollView
         scrollEnabled={true}
-        contentInsetAdjustmentBehavior='automatic'
+        contentInsetAdjustmentBehavior="automatic"
         style={MainStyles.scrollViewSS}
       >
         <View style={MainStyles.containerSS}>
@@ -24,28 +29,31 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
           <Text style={MainStyles.mainTitleSS}>Hello, Brayan</Text>
           <ImageBackground
             style={MainStyles.profileIconSS}
-            source={require('../assets/images/diablada.jpg')}
-            resizeMode='cover'
+            source={require("../assets/images/diablada.jpg")}
+            resizeMode="cover"
           />
 
           <Text style={MainStyles.sectionTitleSS}>Diablada Pillareña</Text>
           <ImageBackground
             style={MainStyles.mainImageSS}
-            source={require('../assets/images/diablada.jpg')}
-            resizeMode='cover'
+            source={require("../assets/images/diablada.jpg")}
+            resizeMode="cover"
           >
             <View style={MainStyles.overlayContainerSS}>
-            <Icon
-                name="location-arrow"
-                size={20}
-                color="#fff"
-              />
+              <Icon name="location-arrow" size={20} color="#fff" />
               <Text style={MainStyles.locationTextSS}>Pillaro/Tungurahua</Text>
+
+              {/* Ícono de calendario con redirección */}
               <View style={MainStyles.buttonContainerSS}>
-              <Icon name="calendar" size={20} color="#ffffff" />
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("Calendar")} // Navega a CalendarScreen
+                >
+                  <Icon name="calendar" size={20} color="#ffffff" />
+                </TouchableOpacity>
               </View>
             </View>
           </ImageBackground>
+
           <View style={MainStyles.dragIndicatorSS} />
           <View style={MainStyles.scheduleContainerSS}>
             <View style={MainStyles.scheduleHeaderSS}>
@@ -77,7 +85,9 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
               <View style={MainStyles.timelineSS}>
                 <View style={MainStyles.timelineInactiveSS} />
               </View>
-              <Text style={MainStyles.locationNameSS}>San Vicente de Quilimbulo</Text>
+              <Text style={MainStyles.locationNameSS}>
+                San Vicente de Quilimbulo
+              </Text>
               <Text style={MainStyles.dateTextSS}>Jan 2nd-3rd</Text>
               <Icon
                 name="sun"

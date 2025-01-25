@@ -7,10 +7,15 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-import MainStyles from "../styles/MainStyles";
+import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import MainStyles from "../styles/MainStyles";
+import { NavigationProp } from "@react-navigation/native";
+import { RootStackParamList } from "../types/types";
 
 const EventScreen: React.FC = (): JSX.Element => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
   return (
     <SafeAreaView style={MainStyles.safeAreaES}>
       <ImageBackground
@@ -21,7 +26,10 @@ const EventScreen: React.FC = (): JSX.Element => {
         <ScrollView contentInsetAdjustmentBehavior="automatic">
           <View style={MainStyles.eventContainerES}>
             {/* Back Button */}
-            <TouchableOpacity style={MainStyles.backButtonES}>
+            <TouchableOpacity
+              style={MainStyles.backButtonES}
+              onPress={() => navigation.goBack()}
+            >
               <Icon name="arrow-left" size={20} color="#000" />
             </TouchableOpacity>
 
@@ -35,12 +43,37 @@ const EventScreen: React.FC = (): JSX.Element => {
             {/* Reviews Section */}
             <View style={MainStyles.reviewContainerES}>
               <View style={MainStyles.ratingContainerES}>
-              <Icon name="star" size={16} color="#FFD700" style={MainStyles.starIconES} />
-              <Icon name="star" size={16} color="#FFD700" style={MainStyles.starIconES} />
-              <Icon name="star" size={16} color="#FFD700" style={MainStyles.starIconES} />
-              <Icon name="star" size={16} color="#FFD700" style={MainStyles.starIconES} />
-              <Icon name="star-half" size={16} color="#FFD700" style={MainStyles.starIconES} />
-            <Text style={MainStyles.ratingTextES}>4.79</Text>
+                <Icon
+                  name="star"
+                  size={16}
+                  color="#FFD700"
+                  style={MainStyles.starIconES}
+                />
+                <Icon
+                  name="star"
+                  size={16}
+                  color="#FFD700"
+                  style={MainStyles.starIconES}
+                />
+                <Icon
+                  name="star"
+                  size={16}
+                  color="#FFD700"
+                  style={MainStyles.starIconES}
+                />
+                <Icon
+                  name="star"
+                  size={16}
+                  color="#FFD700"
+                  style={MainStyles.starIconES}
+                />
+                <Icon
+                  name="star-half"
+                  size={16}
+                  color="#FFD700"
+                  style={MainStyles.starIconES}
+                />
+                <Text style={MainStyles.ratingTextES}>4.79</Text>
               </View>
               <Text style={MainStyles.reviewTextES}>(78 reviews)</Text>
               <TouchableOpacity>
@@ -50,12 +83,21 @@ const EventScreen: React.FC = (): JSX.Element => {
 
             {/* Action Buttons */}
             <View style={MainStyles.buttonContainerES}>
-              <TouchableOpacity style={MainStyles.primaryButtonES}>
+              {/* Navigate to ScheduleScreen */}
+              <TouchableOpacity
+                style={MainStyles.primaryButtonES}
+                onPress={() => navigation.navigate("Schedule")} // Redirige a ScheduleScreen
+              >
                 <Text style={MainStyles.primaryButtonTextES}>
                   Enter the plan
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={MainStyles.secondaryButtonES}>
+
+              {/* Navigate back to HomeScreen */}
+              <TouchableOpacity
+                style={MainStyles.secondaryButtonES}
+                onPress={() => navigation.navigate("Home")} // Redirige a HomeScreen
+              >
                 <Text style={MainStyles.secondaryButtonTextES}>
                   View other
                 </Text>
