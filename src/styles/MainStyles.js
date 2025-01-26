@@ -321,7 +321,7 @@ const MainStyles = StyleSheet.create({
     fontFamily: 'Poppins',
     fontSize: 26,
     fontWeight: 'bold',
-    lineHeight: 39,
+    lineHeight: 50,
     color: '#000000',
     position: 'relative',
     marginLeft: 15.893,
@@ -377,14 +377,15 @@ const MainStyles = StyleSheet.create({
     left: 318,
   },
   sectionTitleHS: {
-    height: 27,
+    height: 50,
     fontFamily: 'Poppins',
     fontSize: 18,
+    
     fontWeight: '600',
-    lineHeight: 27,
+    lineHeight: 50,
     color: '#000000',
     marginTop: 10,
-    marginLeft: 20.893,
+    marginLeft: 25.893,
   },
   popularFestivityHS: {
     width: 230,
@@ -445,7 +446,7 @@ const MainStyles = StyleSheet.create({
     fontFamily: 'Andika',
     fontSize: 14,
     color: '#ffffff',
-    marginTop: 128,
+    marginTop: 128 ,
     marginLeft: 8,
   },
   otherFestivityDateHS: {
@@ -529,7 +530,7 @@ popularFestivityTextHS: {
     fontFamily: "Andika",
     fontWeight: "400",
     color: "#fff",
-    marginTop: 630,
+    marginTop: 450,
     marginLeft: 20,
   },
   eventDescriptionES: {
@@ -1094,6 +1095,7 @@ popularFestivityTextHS: {
     top: 40,
     left: '150',
   },
+  
 
   //HISTORY SCREEN
   containerHS: {

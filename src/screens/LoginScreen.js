@@ -11,7 +11,7 @@ export default function LoginScreen() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isPasswordVisible, setPasswordVisible] = useState(false); 
+  const [isPasswordVisible, setPasswordVisible] = useState(false);
 
   const handleSignIn = () => {
     const foundUser = registeredUsers.find(
@@ -28,32 +28,32 @@ export default function LoginScreen() {
 
   return (
     <SafeAreaView>
-    <ScrollView scrollEnabled={true} contentInsetAdjustmentBehavior="automatic">
-      <View style={MainStyles.mainContainer}>
-        {/* Logo */}
-        <View style={MainStyles.logoContainer}>
-          <Image
-            source={require("../assets/images/oficial_festiapp.png")}
-            style={MainStyles.logoIcon}
-          />
-        </View>
+      <ScrollView scrollEnabled={true} contentInsetAdjustmentBehavior="automatic">
+        <View style={MainStyles.mainContainer}>
+          {/* Logo */}
+          <View style={MainStyles.logoContainer}>
+            <Image
+              source={require("../assets/images/oficial_festiapp.png")}
+              style={MainStyles.logoIcon}
+            />
+          </View>
 
-        <Text style={MainStyles.title}>Log in FestivApp</Text>
+          <Text style={MainStyles.title}>Log in FestivApp</Text>
 
-        {/* Email Input */}
-        <View style={MainStyles.inputContainer}>
-          <Icon name="envelope" size={20} color="#adadad" style={MainStyles.inputIcon} />
-          <TextInput
-            style={MainStyles.textInput}
-            placeholder="Enter e-mail address"
-            placeholderTextColor="#adadad"
-            value={email}
-            onChangeText={(text) => setEmail(text)}
-          />
-        </View>
+          {/* Email Input */}
+          <View style={MainStyles.inputContainer}>
+            <Icon name="envelope" size={20} color="#adadad" style={MainStyles.inputIcon} />
+            <TextInput
+              style={MainStyles.textInput}
+              placeholder="Enter e-mail address"
+              placeholderTextColor="#adadad"
+              value={email}
+              onChangeText={(text) => setEmail(text)}
+            />
+          </View>
 
-        {/* Password Input */}
-        <View style={MainStyles.inputContainer}>
+          {/* Password Input */}
+          <View style={MainStyles.inputContainer}>
             <Icon
               name="key"
               size={20}
@@ -80,43 +80,45 @@ export default function LoginScreen() {
             </TouchableOpacity>
           </View>
 
-        <View style={MainStyles.buttonRow}>
-          <TouchableOpacity style={MainStyles.continueSIButton} onPress={handleSignIn}>
-            <Text style={MainStyles.continueText}>Sign In</Text>
-          </TouchableOpacity>
+          {/* Botones para iniciar sesión */}
+          <View style={MainStyles.buttonRow}>
+            <TouchableOpacity style={MainStyles.continueSIButton} onPress={handleSignIn}>
+              <Text style={MainStyles.continueText}>Sign In</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            style={[MainStyles.continueSIButton, { backgroundColor: "#00BFFF" }]}
-            onPress={() => navigation.navigate("SignUp")}
-          >
-            <Text style={MainStyles.continueText}>Create</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={[MainStyles.continueSIButton, { backgroundColor: "#00BFFF" }]}
+              onPress={() => navigation.navigate("SignUp")}
+            >
+              <Text style={MainStyles.continueText}>Create</Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* Botones de redes sociales */}
+          <View style={MainStyles.socialLoginContainer}>
+            {/* Botón para Apple */}
+            <TouchableOpacity style={MainStyles.appleButton}>
+              <Icon name="apple" size={20} color="#fff" style={MainStyles.buttonIcon} />
+              <Text style={MainStyles.buttonText}>Continue with Apple</Text>
+            </TouchableOpacity>
+
+            {/* Botón para Facebook */}
+            <TouchableOpacity style={MainStyles.facebookButton}>
+              <Icon name="facebook" size={20} color="#fff" style={MainStyles.buttonIcon} />
+              <Text style={MainStyles.buttonText}>Continue with Facebook</Text>
+            </TouchableOpacity>
+
+            {/* Botón para Google */}
+            <TouchableOpacity style={MainStyles.googleButton}>
+              <ImageBackground
+                style={MainStyles.buttonIcon}
+                source={require('../assets/images/google-icon.png')}
+              />
+              <Text style={MainStyles.googleButtonText}>Continue with Google</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-
-        <View style={MainStyles.socialLoginContainer}>
-        {/* Botón para Apple */}
-        <TouchableOpacity style={MainStyles.appleButton}>
-          <Icon name="apple" size={20} color="#fff" style={MainStyles.buttonIcon} />
-          <Text style={MainStyles.buttonText}>Continue with Apple</Text>
-        </TouchableOpacity>
-
-        {/* Botón para Facebook */}
-        <TouchableOpacity style={MainStyles.facebookButton}>
-          <Icon name="facebook" size={20} color="#fff" style={MainStyles.buttonIcon} />
-          <Text style={MainStyles.buttonText}>Continue with Facebook</Text>
-        </TouchableOpacity>
-
-        {/* Botón para Google */}
-        <TouchableOpacity style={MainStyles.googleButton}>
-          <ImageBackground
-              style={MainStyles.buttonIcon}
-              source={require('../assets/images/google-icon.png')}
-            />
-          <Text style={MainStyles.googleButtonText}>Continue with Google</Text>
-        </TouchableOpacity>
-      </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
     </SafeAreaView>
   );
 }

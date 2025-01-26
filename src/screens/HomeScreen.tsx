@@ -25,7 +25,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
           {/* Header */}
           <View style={MainStyles.headerContainerHS}>
             <Text style={MainStyles.headerTextHS}>
-              Find your next trip and discover more about Ecuador
+Find your next trip and discover more about Ecuador
             </Text>
             <ImageBackground
               style={MainStyles.headerImageHS}
@@ -67,7 +67,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
             >
               <ImageBackground
                 style={MainStyles.popularFestivityHS}
-                source={require("../assets/images/diablada.jpg")}
+                source={require("../assets/images/guranda.jpg")}
                 resizeMode="cover"
               >
                 <Text style={MainStyles.popularFestivityTextHS}>
@@ -121,7 +121,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
             >
               <ImageBackground
                 style={MainStyles.popularFestivityHS}
-                source={require("../assets/images/diablada.jpg")}
+                source={require("../assets/images/mamanegra.jpg")}
                 resizeMode="cover"
               >
                 <Text style={MainStyles.popularFestivityTextHS}>
@@ -129,6 +129,32 @@ const HomeScreen: React.FC = (): JSX.Element => {
                 </Text>
                 <View style={MainStyles.popularFestivityDetailsHS}>
                   <Text style={MainStyles.dateTextHS}>November 30th</Text>
+                  <View style={MainStyles.ratingContainerHS}>
+                    <Text style={MainStyles.ratingTextHS}>4.7</Text>
+                    <Icon
+                      name="star"
+                      size={20}
+                      color="#FFD700"
+                      style={MainStyles.ratingIconHS}
+                    />
+                  </View>
+                </View>
+              </ImageBackground>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Event", { eventId: 3 })}
+            >
+              <ImageBackground
+                style={MainStyles.popularFestivityHS}
+                source={require("../assets/images/semanasanta.jpg")}
+                resizeMode="cover"
+              >
+                <Text style={MainStyles.popularFestivityTextHS}>
+                  Semana Santa
+                </Text>
+                <View style={MainStyles.popularFestivityDetailsHS}>
+                  <Text style={MainStyles.dateTextHS}>April 18</Text>
                   <View style={MainStyles.ratingContainerHS}>
                     <Text style={MainStyles.ratingTextHS}>4.7</Text>
                     <Icon
@@ -156,14 +182,14 @@ const HomeScreen: React.FC = (): JSX.Element => {
             >
               <ImageBackground
                 style={MainStyles.otherFestivityHS}
-                source={require("../assets/images/diablada.jpg")}
+                source={require("../assets/images/QUITO.jpg")}
                 resizeMode="cover"
               >
                 <Text style={MainStyles.otherFestivityTitleHS}>
-                  Diablada Pillareña
+                  Independencia de Quito
                 </Text>
                 <Text style={MainStyles.otherFestivityDateHS}>
-                  January 6th
+                December 6th
                 </Text>
               </ImageBackground>
             </TouchableOpacity>
@@ -174,10 +200,10 @@ const HomeScreen: React.FC = (): JSX.Element => {
             >
               <ImageBackground
                 style={MainStyles.otherFestivityHS}
-                source={require("../assets/images/diablada.jpg")}
+                source={require("../assets/images/guayaquil.jpg")}
                 resizeMode="cover"
               >
-                <Text style={MainStyles.otherFestivityTitleHS}>Mama Negra</Text>
+                <Text style={MainStyles.otherFestivityTitleHS}>Fiestas de Guayaquil</Text>
                 <Text style={MainStyles.otherFestivityDateHS}>
                   November 30th
                 </Text>
@@ -190,7 +216,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
             >
               <ImageBackground
                 style={MainStyles.otherFestivityHS}
-                source={require("../assets/images/diablada.jpg")}
+                source={require("../assets/images/fiestasol.jpg")}
                 resizeMode="cover"
               >
                 <Text style={MainStyles.otherFestivityTitleHS}>
@@ -206,7 +232,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
             >
               <ImageBackground
                 style={MainStyles.otherFestivityHS}
-                source={require("../assets/images/diablada.jpg")}
+                source={require("../assets/images/intiraymi.jpg")}
                 resizeMode="cover"
               >
                 <Text style={MainStyles.otherFestivityTitleHS}>

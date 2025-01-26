@@ -1,6 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { useUser } from "../hooks/UserContext"; // Importa el contexto del usuario
 
 // Importa tus pantallas
 import LoginScreen from "../screens/LoginScreen";
@@ -8,7 +9,7 @@ import SingInScreen from "../screens/SingInScreen";
 import HomeScreen from "../screens/HomeScreen";
 import EventScreen from "../screens/EventScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
-import CalendarScreen from "../screens/CalendarScreen"; // Asegúrate de que CalendarScreen esté correctamente importado
+import CalendarScreen from "../screens/CalendarScreen";
 import MapScreen from "../screens/MapScreen";
 import AccountScreen from "../screens/AccountScreen";
 import NotificationScreen from "../screens/NotificationScreen";
@@ -29,9 +30,11 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 const AppNavigator: React.FC = () => {
+  const { user } = useUser(); // Obtén el estado del usuario autenticado
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName={user ? "Home" : "Login"}>
         {/* Pantalla de Login */}
         <Stack.Screen
           name="Login"
@@ -67,7 +70,7 @@ const AppNavigator: React.FC = () => {
           options={{ headerShown: true, title: "Schedule" }}
         />
 
-        {/* Pantalla de Historial (Visited Destinations) */}
+        {/* Pantalla de Historial */}
         <Stack.Screen
           name="Calendar"
           component={CalendarScreen}

@@ -7,6 +7,6 @@ export type RootStackParamList = {
   Calendar: undefined;
   Map: undefined;
   Account: undefined;
-  
+  GuarandaEvent: undefined; // Esta entrada debe estar aquí
   Notification: undefined;
 };
