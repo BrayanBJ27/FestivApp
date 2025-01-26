@@ -1062,10 +1062,12 @@ popularFestivityTextHS: {
     height: 28,
   },
   titleTextAS: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 10,
-    textAlign: "center",
+    fontSize: 24, // Tamaño del texto del título
+    fontWeight: 'bold', // Negrita para el título
+    color: '#000', // Color del texto
+    textAlign: 'center', // Centrar el texto horizontalmente
+    marginVertical: 8, // Reducir el margen vertical
+    marginTop: -75,
   },
   subTitleTextAS: {
     fontSize: 18,

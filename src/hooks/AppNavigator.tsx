@@ -2,18 +2,31 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
-// Importa tus pantallas según los nombres de archivo
+// Importa tus pantallas
 import LoginScreen from "../screens/LoginScreen";
 import SingInScreen from "../screens/SingInScreen";
 import HomeScreen from "../screens/HomeScreen";
 import EventScreen from "../screens/EventScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
-import CalendarScreen from "../screens/CalendarScreen";
+import CalendarScreen from "../screens/CalendarScreen"; // Asegúrate de que CalendarScreen esté correctamente importado
 import MapScreen from "../screens/MapScreen";
 import AccountScreen from "../screens/AccountScreen";
 import NotificationScreen from "../screens/NotificationScreen";
 
-const Stack = createStackNavigator();
+// Define las rutas del stack navigator
+export type RootStackParamList = {
+  Login: undefined;
+  SignUp: undefined;
+  Home: undefined;
+  Event: undefined;
+  Schedule: undefined;
+  Calendar: undefined;
+  Map: undefined;
+  Account: undefined;
+  Notification: undefined;
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 const AppNavigator: React.FC = () => {
   return (
@@ -54,11 +67,11 @@ const AppNavigator: React.FC = () => {
           options={{ headerShown: true, title: "Schedule" }}
         />
 
-        {/* Pantalla de Calendario */}
+        {/* Pantalla de Historial (Visited Destinations) */}
         <Stack.Screen
           name="Calendar"
           component={CalendarScreen}
-          options={{ headerShown: true, title: "Calendar" }}
+          options={{ headerShown: true, title: "Visited Destinations" }}
         />
 
         {/* Pantalla de Mapas */}

@@ -7,5 +7,6 @@ export type RootStackParamList = {
   Calendar: undefined;
   Map: undefined;
   Account: undefined;
+  
   Notification: undefined;
 };
