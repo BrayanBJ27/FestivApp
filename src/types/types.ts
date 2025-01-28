@@ -9,4 +9,5 @@ export type RootStackParamList = {
   Account: undefined;
   GuarandaEvent: undefined; // Esta entrada debe estar aquí
   Notification: undefined;
+  History: undefined;
 };
