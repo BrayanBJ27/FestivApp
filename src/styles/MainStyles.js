@@ -1167,6 +1167,72 @@ popularFestivityTextHS: {
     marginBottom: 10,
     marginLeft: 20,
   },
+  // TermsscreenStyles 
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: "center",
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: "bold",
+    marginBottom: 20,
+    textAlign: "center", // Se asegura que el título esté centrado
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 24,
+    marginBottom: 15,
+  },
+  //  HelpCenterStyles 
+  container: {
+    padding: 16,
+    flex: 1,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 16,
+    textAlign: "center",
+  },
+  button: {
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignItems: "center",
+  },
+  buttonText: {
+    fontSize: 16,
+    textAlign: "center",
+  },
+  //AccountStyles 
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    backgroundColor: "transparent",
+  },
+  iconTextContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  buttonText: {
+    marginLeft: 16,
+    fontSize: 16,
+  },
+  separator: {
+    height: 1,
+    backgroundColor: "#ccc",
+    marginHorizontal: 16,
+  },
+  safeArea: {
+    flex: 1,
+  },
 });
 
 export default MainStyles;

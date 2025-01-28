@@ -1,48 +1,42 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+import { useTheme } from "../hooks/ThemeContext"; // Importa el ThemeContext
+import HelpCenterStyles from "../styles/MainStyles"; // Importa los estilos
 
 const HelpCenterScreen: React.FC = () => {
+  const { isDarkMode } = useTheme(); // Obtiene el estado del modo oscuro
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Centro de Ayuda</Text>
+    <View style={[HelpCenterStyles.container, { backgroundColor: isDarkMode ? "#000" : "#fff" }]}>
+      <Text style={[HelpCenterStyles.title, { color: isDarkMode ? "#fff" : "#000" }]}>
+        Help Center
+      </Text>
 
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>¿Cómo usar la app?</Text>
+      <TouchableOpacity
+        style={[HelpCenterStyles.button, { backgroundColor: isDarkMode ? "#444" : "#007AFF" }]}
+      >
+        <Text style={[HelpCenterStyles.buttonText, { color: isDarkMode ? "#fff" : "#fff" }]}>
+          How to use the app?
+        </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Contacto de desarrolladores</Text>
+      <TouchableOpacity
+        style={[HelpCenterStyles.button, { backgroundColor: isDarkMode ? "#444" : "#007AFF" }]}
+      >
+        <Text style={[HelpCenterStyles.buttonText, { color: isDarkMode ? "#fff" : "#fff" }]}>
+          Developer Contact
+        </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Agradecimientos</Text>
+      <TouchableOpacity
+        style={[HelpCenterStyles.button, { backgroundColor: isDarkMode ? "#444" : "#007AFF" }]}
+      >
+        <Text style={[HelpCenterStyles.buttonText, { color: isDarkMode ? "#fff" : "#fff" }]}>
+          Acknowledgements
+        </Text>
       </TouchableOpacity>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-    backgroundColor: "#fff",
-    flex: 1,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 16,
-  },
-  button: {
-    padding: 12,
-    backgroundColor: "#007AFF",
-    borderRadius: 8,
-    marginBottom: 10,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    textAlign: "center",
-  },
-});
 
 export default HelpCenterScreen;

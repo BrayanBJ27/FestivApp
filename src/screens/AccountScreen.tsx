@@ -6,45 +6,52 @@ import {
   Text,
   TouchableOpacity,
   Alert,
-  StyleSheet,
   Switch,
 } from "react-native";
 import MainStyles from "../styles/MainStyles";
+import AccountStyles from "../styles/MainStyles"; // Importa los estilos separados
 import BottomNavbar from "../components/BottomNavbar";
 import Icon from "react-native-vector-icons/FontAwesome6";
 import { StackScreenProps } from "@react-navigation/stack";
 import { RootStackParamList } from "../hooks/AppNavigator";
-import { useUser } from "../hooks/UserContext"; // Contexto del usuario
-import { useTheme } from "../hooks/ThemeContext"; // Importa el contexto del tema
+import { useUser } from "../hooks/UserContext";
+import { useTheme } from "../hooks/ThemeContext";
 
 type AccountScreenProps = StackScreenProps<RootStackParamList, "Account">;
 
 const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
   const [activeTab, setActiveTab] = useState("Account");
-  const { setUser } = useUser(); // Obtiene la función para modificar el estado del usuario
-  const { isDarkMode, toggleTheme } = useTheme(); // Obtiene el estado del tema y la función para alternarlo
+  const { setUser } = useUser();
+  const { isDarkMode, toggleTheme } = useTheme();
 
   // Renderiza un botón con ícono, texto y separador
   const renderButton = (text: string, icon: string, onPress: () => void) => (
     <>
-      <TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
-        <View style={styles.iconTextContainer}>
+      <TouchableOpacity
+        onPress={onPress}
+        style={AccountStyles.buttonContainer}
+      >
+        <View style={AccountStyles.iconTextContainer}>
           <Icon name={icon} size={20} color={isDarkMode ? "#fff" : "#000"} />
-          <Text style={[styles.buttonText, { color: isDarkMode ? "#fff" : "#000" }]}>{text}</Text>
+          <Text style={[AccountStyles.buttonText, { color: isDarkMode ? "#fff" : "#000" }]}>
+            {text}
+          </Text>
         </View>
         <Icon name="chevron-right" size={20} color={isDarkMode ? "#fff" : "#000"} />
       </TouchableOpacity>
-      <View style={styles.separator} />
+      <View style={AccountStyles.separator} />
     </>
   );
 
   // Renderiza el interruptor de modo oscuro
   const renderDarkModeToggle = () => (
     <>
-      <View style={styles.buttonContainer}>
-        <View style={styles.iconTextContainer}>
+      <View style={AccountStyles.buttonContainer}>
+        <View style={AccountStyles.iconTextContainer}>
           <Icon name="moon" size={20} color={isDarkMode ? "#fff" : "#000"} />
-          <Text style={[styles.buttonText, { color: isDarkMode ? "#fff" : "#000" }]}>Modo Oscuro</Text>
+          <Text style={[AccountStyles.buttonText, { color: isDarkMode ? "#fff" : "#000" }]}>
+            Dark Mode
+          </Text>
         </View>
         <Switch
           value={isDarkMode}
@@ -53,7 +60,7 @@ const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
           trackColor={{ false: "#ccc", true: "#555" }}
         />
       </View>
-      <View style={styles.separator} />
+      <View style={AccountStyles.separator} />
     </>
   );
 
@@ -72,7 +79,7 @@ const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
           </View>
 
           {/* Title */}
-          <Text style={[MainStyles.titleTextAS, { color: isDarkMode ? "#fff" : "#000" }]}>
+          <Text style={[MainStyles.titleTextAS, { color: isDarkMode ? "#fff" : "#000", textAlign: "center" }]}>
             Settings
           </Text>
 
@@ -81,10 +88,10 @@ const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
           {renderButton("Country", "globe", () => console.log("Navigate to Country Screen"))}
           {renderButton("History", "history", () => navigation.navigate("Calendar"))}
           {renderButton("Terms of Services", "file-contract", () =>
-            navigation.navigate("TermsScreen") // Navega a TermsScreen
+            navigation.navigate("TermsScreen")
           )}
           {renderButton("Help Center", "question-circle", () =>
-            navigation.navigate("HelpCenterScreen") // Navega a HelpCenterScreen
+            navigation.navigate("HelpCenterScreen")
           )}
           {renderButton("Profile", "user", () =>
             console.log("Navigate to Profile Screen")
@@ -96,8 +103,8 @@ const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
               {
                 text: "Sí",
                 onPress: () => {
-                  setUser(null); // Limpia el usuario en el contexto
-                  navigation.navigate("Login"); // Redirige a la pantalla de login
+                  setUser(null);
+                  navigation.navigate("Login");
                 },
               },
             ])
@@ -110,29 +117,5 @@ const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    backgroundColor: "transparent",
-  },
-  iconTextContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  buttonText: {
-    marginLeft: 16,
-    fontSize: 16,
-  },
-  separator: {
-    height: 1,
-    backgroundColor: "#ccc",
-    marginHorizontal: 16,
-  },
-});
 
 export default AccountScreen;
