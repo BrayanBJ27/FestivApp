@@ -918,8 +918,21 @@ popularFestivityTextHS: {
     width: 40, 
     height: 40,
     borderRadius: 20,
-    left: 30,
+    left: 10,
     top: 10,
+  },
+  weatherTextSS: {
+    fontSize: 14,
+    color: "#0373f3", // Azul para el texto del clima
+    marginLeft: 5, // Separación del ícono
+    fontWeight: "500",
+  },
+  
+  errorTextSS: {
+    fontSize: 14,
+    color: "red", // Rojo para errores
+    marginLeft: 5, // Separación del ícono
+    fontWeight: "500",
   },
   
 
@@ -1098,74 +1111,217 @@ popularFestivityTextHS: {
   
 
   //HISTORY SCREEN
-  containerHS: {
-    width: 404,
-    height: 874,
+  safeAreaHiS: {
+    flex: 1,
     backgroundColor: '#ffffff',
-    marginTop: 0,
-    marginHorizontal: 'auto',
   },
-  headerHS: {
+  containerHiS: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
+  headerHiS: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 71,
-    marginHorizontal: 18,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 20,
   },
-  backButtonHS: {
-    width: 28,
-    height: 28,
+  backButtonHiS: {
+    padding: 8,
   },
-  headerTextHS: {
-    fontFamily: 'Poppins',
+  headerTextHiS: {
     fontSize: 20,
     fontWeight: '600',
-    lineHeight: 33,
-    color: '#000',
-    right: 100,
+    marginLeft: 16,
   },
-  buttonHS: {
-    backgroundColor: '#0373f3',
-    borderRadius: 36,
-    marginTop: 34,
-    marginHorizontal: 20,
-    height: 54,
-    width: 350,
+  filterScrollHiS: {
+    paddingHorizontal: 16,
+    marginBottom: 20,
+  },
+  cityFilterHiS: {
+    paddingHorizontal: 20,
+    paddingVertical: 8,
+    borderRadius: 20,
+    marginRight: 12,
+    backgroundColor: '#F5F5F5',
+  },
+  cityFilterActiveHiS: {
+    backgroundColor: '#0373F3',
+  },
+  cityFilterTextHiS: {
+    fontSize: 14,
+    color: '#666666',
+  },
+  cityFilterTextActiveHiS: {
+    color: '#FFFFFF',
+  },
+  dayTabsContainerHiS: {
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    marginBottom: 20,
+  },
+  dayTabHiS: {
+    marginRight: 24,
+  },
+  dayTabActiveHiS: {
+    borderBottomWidth: 2,
+    borderBottomColor: '#0373F3',
+  },
+  dayTabTextHiS: {
+    fontSize: 16,
+    fontWeight: '500',
+    paddingBottom: 8,
+  },
+  timelineContainerHiS: {
+    paddingHorizontal: 16,
+  },
+  destinationItemHiS: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 24,
+  },
+  timelineLeftHiS: {
+    alignItems: 'center',
+    width: 60,
+  },
+  timeTextHiS: {
+    fontSize: 14,
+    color: '#666666',
+    marginBottom: 8,
+  },
+  timelineDotHiS: {
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    borderWidth: 2,
+  },
+  visitedDotHiS: {
+    backgroundColor: '#0373F3',
+    borderColor: '#0373F3',
+  },
+  unvisitedDotHiS: {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#CCCCCC',
+  },
+  destinationContentHiS: {
+    flex: 1,
+    marginLeft: 12,
+  },
+  destinationNameHiS: {
+    fontSize: 16,
+    fontWeight: '500',
+    marginBottom: 4,
+  },
+  destinationLocationHiS: {
+    fontSize: 14,
+    color: '#666666',
+  },
+  mapIconHiS: {
+    marginLeft: 16,
+  },
+  buttonHiS: {
+    backgroundColor: '#0373F3',
+    borderRadius: 28,
+    marginHorizontal: 16,
+    marginVertical: 24,
+    height: 56,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  buttonTextHS: {
-    fontFamily: 'Poppins',
+  buttonTextHiS: {
     fontSize: 16,
     fontWeight: '500',
-    color: '#fff',
-    justifyContent: 'center',
+    color: '#FFFFFF',
   },
 
   //NOTIFICATIONS SCREEN
   containerNS: {
-    width: 404,
-    height: 874,
+    flex: 1,
     backgroundColor: '#ffffff',
-    marginTop: 0,
-    marginHorizontal: 'auto',
+  },
+  scrollViewNS: {
+    flex: 1,
   },
   headerNS: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 71,
-    marginHorizontal: 18,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e0e0e0',
   },
   backButtonNS: {
-    width: 28,
-    height: 28,
+    padding: 8,
   },
   titleTextNS: {
     fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 10,
-    marginLeft: 20,
+    fontWeight: "600",
+  },
+  viewAllTextNS: {
+    fontSize: 14,
+    color: "#007AFF",
+  },
+  festivalContainerNS: {
+    flexDirection: 'row',
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e0e0e0',
+  },
+  iconContainerNS: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#cefffe',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  contentContainerNS: {
+    flex: 1,
+  },
+  mainContentNS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+  },
+  nameAndDateNS: {
+    flex: 1,
+  },
+  festivalNameNS: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 4,
+  },
+  festivalDateNS: {
+    fontSize: 14,
+    color: '#666',
+  },
+  ratingContainerNS: {
+    alignItems: 'flex-end',
+  },
+  ratingLabelNS: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 4,
+  },
+  starsContainerNS: {
+    flexDirection: 'row',
+  },
+  festivalDescriptionNS: {
+    fontSize: 14,
+    color: '#666',
+    lineHeight: 20,
+  },
+  starNS: {
+    color: '#00CEC9',
+    fontSize: 16,
+    marginLeft: 2,
+  },
+  inactiveStarNS: {
+    color: '#e0e0e0',
+    fontSize: 16,
+    marginLeft: 2,
   },
 });
 
