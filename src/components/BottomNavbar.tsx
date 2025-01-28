@@ -5,6 +5,7 @@ import MainStyles from "../styles/MainStyles";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../types/types";
+import { useTheme } from "../hooks/ThemeContext"; // Importa el contexto de tema
 
 interface NavbarProps {
   activeTab: string;
@@ -14,32 +15,38 @@ type NavigationProp = StackNavigationProp<RootStackParamList>;
 
 const BottomNavbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
   const navigation = useNavigation<NavigationProp>(); // Hook de navegación
+  const { isDarkMode } = useTheme(); // Obtiene el estado del tema
 
   return (
-    <View style={MainStyles.bottomNavContainer}>
-      <TouchableOpacity style={MainStyles.navButton}
+    <View
+      style={[
+        MainStyles.bottomNavContainer,
+        { backgroundColor: isDarkMode ? "#000" : "#fff" }, // Fondo cambia según el modo oscuro
+      ]}
+    >
+      {/* Home */}
+      <TouchableOpacity
+        style={MainStyles.navButton}
         onPress={() => {
           setActiveTab("Home");
-          navigation.navigate("Home"); // Navega a la pantalla Home
-        }}>
-        <Icon name="house-user" size={24}
-          style={
-            activeTab === "Home"
-              ? MainStyles.activeIcon
-              : MainStyles.inactiveIcon
-          }/>
+          navigation.navigate("Home");
+        }}
+      >
+        <Icon
+          name="house-user"
+          size={24}
+          color={activeTab === "Home" ? (isDarkMode ? "#fff" : "#007AFF") : "#bcbcbc"}
+        />
         <Text
-          style={[
-            MainStyles.navText,
-            activeTab === "Home"
-              ? MainStyles.activeNavText
-              : MainStyles.inactiveNavText,
-          ]}
+          style={{
+            color: activeTab === "Home" ? (isDarkMode ? "#fff" : "#007AFF") : "#bcbcbc",
+          }}
         >
           Home
         </Text>
       </TouchableOpacity>
 
+      {/* Notification */}
       <TouchableOpacity
         style={MainStyles.navButton}
         onPress={() => {
@@ -50,24 +57,18 @@ const BottomNavbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
         <Icon
           name="bell"
           size={24}
-          style={
-            activeTab === "Notification"
-              ? MainStyles.activeIcon
-              : MainStyles.inactiveIcon
-          }
+          color={activeTab === "Notification" ? (isDarkMode ? "#fff" : "#007AFF") : "#bcbcbc"}
         />
         <Text
-          style={[
-            MainStyles.navText,
-            activeTab === "Notification"
-              ? MainStyles.activeNavText
-              : MainStyles.inactiveNavText,
-          ]}
+          style={{
+            color: activeTab === "Notification" ? (isDarkMode ? "#fff" : "#007AFF") : "#bcbcbc",
+          }}
         >
           Notification
         </Text>
       </TouchableOpacity>
 
+      {/* Map */}
       <TouchableOpacity
         style={MainStyles.navButton}
         onPress={() => {
@@ -78,24 +79,18 @@ const BottomNavbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
         <Icon
           name="map-location-dot"
           size={24}
-          style={
-            activeTab === "Map"
-              ? MainStyles.activeIcon
-              : MainStyles.inactiveIcon
-          }
+          color={activeTab === "Map" ? (isDarkMode ? "#fff" : "#007AFF") : "#bcbcbc"}
         />
         <Text
-          style={[
-            MainStyles.navText,
-            activeTab === "Map"
-              ? MainStyles.activeNavText
-              : MainStyles.inactiveNavText,
-          ]}
+          style={{
+            color: activeTab === "Map" ? (isDarkMode ? "#fff" : "#007AFF") : "#bcbcbc",
+          }}
         >
           Map
         </Text>
       </TouchableOpacity>
 
+      {/* Account */}
       <TouchableOpacity
         style={MainStyles.navButton}
         onPress={() => {
@@ -106,19 +101,12 @@ const BottomNavbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
         <Icon
           name="user"
           size={24}
-          style={
-            activeTab === "Account"
-              ? MainStyles.activeIcon
-              : MainStyles.inactiveIcon
-          }
+          color={activeTab === "Account" ? (isDarkMode ? "#fff" : "#007AFF") : "#bcbcbc"}
         />
         <Text
-          style={[
-            MainStyles.navText,
-            activeTab === "Account"
-              ? MainStyles.activeNavText
-              : MainStyles.inactiveNavText,
-          ]}
+          style={{
+            color: activeTab === "Account" ? (isDarkMode ? "#fff" : "#007AFF") : "#bcbcbc",
+          }}
         >
           Account
         </Text>

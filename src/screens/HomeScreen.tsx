@@ -13,55 +13,102 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../types/types";
 import BottomNavbar from "../components/BottomNavbar";
 import MainStyles from "../styles/MainStyles";
+import { useTheme } from "../hooks/ThemeContext"; // Importa el contexto del tema
 
 const HomeScreen: React.FC = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState("Home");
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const { isDarkMode } = useTheme(); // Accede al estado del modo oscuro
 
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={[
+        { backgroundColor: isDarkMode ? "#000" : "#fff" },
+        { flex: 1 },
+      ]}
+    >
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View style={MainStyles.containerHS}>
+        <View
+          style={[
+            MainStyles.containerHS,
+            { backgroundColor: isDarkMode ? "#000" : "#fff" },
+          ]}
+        >
           {/* Header */}
           <View style={MainStyles.headerContainerHS}>
-            <Text style={MainStyles.headerTextHS}>
-Find your next trip and discover more about Ecuador
+            <Text
+              style={[
+                MainStyles.headerTextHS,
+                { color: isDarkMode ? "#fff" : "#000" },
+              ]}
+            >
+              Find your next trip and discover more about Ecuador
             </Text>
             <ImageBackground
               style={MainStyles.headerImageHS}
               source={require("../assets/images/oficial_festiapp.png")}
             />
           </View>
-          <Text style={MainStyles.titleTextHS}>The following holidays.</Text>
+          <Text
+            style={[
+              MainStyles.titleTextHS,
+              { color: isDarkMode ? "#fff" : "#000" },
+            ]}
+          >
+            The following holidays.
+          </Text>
 
           {/* Search Box */}
           <View style={MainStyles.searchContainerHS}>
-            <View style={MainStyles.searchBoxHS}>
+            <View
+              style={[
+                MainStyles.searchBoxHS,
+                {
+                  backgroundColor: isDarkMode ? "#333" : "#f5f5f5",
+                  borderColor: isDarkMode ? "#555" : "#ccc",
+                },
+              ]}
+            >
               <Icon
                 name="search"
                 size={20}
-                color="#adadad"
+                color={isDarkMode ? "#bbb" : "#adadad"}
                 style={MainStyles.inputIcon}
               />
               <TextInput
-                style={MainStyles.textInputHS}
+                style={[
+                  MainStyles.textInputHS,
+                  { color: isDarkMode ? "#fff" : "#000" },
+                ]}
                 placeholder="Search..."
-                placeholderTextColor="#adadad"
+                placeholderTextColor={isDarkMode ? "#555" : "#adadad"}
               />
             </View>
-            <TouchableOpacity style={MainStyles.filterButtonHS}>
+            <TouchableOpacity
+              style={[
+                MainStyles.filterButtonHS,
+                { backgroundColor: isDarkMode ? "#555" : "#007AFF" },
+              ]}
+            >
               <Icon name="sliders" size={20} color="#fff" />
             </TouchableOpacity>
           </View>
 
           {/* Popular Festivities */}
-          <Text style={MainStyles.sectionTitleHS}>Popular festivities</Text>
+          <Text
+            style={[
+              MainStyles.sectionTitleHS,
+              { color: isDarkMode ? "#fff" : "#000" },
+            ]}
+          >
+            Popular festivities
+          </Text>
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={MainStyles.horizontalScrollHS}
           >
-            {/* Recuadro 1 */}
+            {/* Carnaval Guaranda */}
             <TouchableOpacity
               onPress={() => navigation.navigate("Event", { eventId: 1 })}
             >
@@ -88,7 +135,7 @@ Find your next trip and discover more about Ecuador
               </ImageBackground>
             </TouchableOpacity>
 
-            {/* Recuadro 2 */}
+            {/* Diablada Pillareña */}
             <TouchableOpacity
               onPress={() => navigation.navigate("Event", { eventId: 2 })}
             >
@@ -115,7 +162,7 @@ Find your next trip and discover more about Ecuador
               </ImageBackground>
             </TouchableOpacity>
 
-            {/* Recuadro 3 */}
+            {/* Mama Negra */}
             <TouchableOpacity
               onPress={() => navigation.navigate("Event", { eventId: 3 })}
             >
@@ -141,42 +188,23 @@ Find your next trip and discover more about Ecuador
                 </View>
               </ImageBackground>
             </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Event", { eventId: 3 })}
-            >
-              <ImageBackground
-                style={MainStyles.popularFestivityHS}
-                source={require("../assets/images/semanasanta.jpg")}
-                resizeMode="cover"
-              >
-                <Text style={MainStyles.popularFestivityTextHS}>
-                  Semana Santa
-                </Text>
-                <View style={MainStyles.popularFestivityDetailsHS}>
-                  <Text style={MainStyles.dateTextHS}>April 18</Text>
-                  <View style={MainStyles.ratingContainerHS}>
-                    <Text style={MainStyles.ratingTextHS}>4.7</Text>
-                    <Icon
-                      name="star"
-                      size={20}
-                      color="#FFD700"
-                      style={MainStyles.ratingIconHS}
-                    />
-                  </View>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
           </ScrollView>
 
           {/* Other Festivities */}
-          <Text style={MainStyles.sectionTitleHS}>Other festivities</Text>
+          <Text
+            style={[
+              MainStyles.sectionTitleHS,
+              { color: isDarkMode ? "#fff" : "#000" },
+            ]}
+          >
+            Other festivities
+          </Text>
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={MainStyles.horizontalScrollHS}
           >
-            {/* Diablada Pillareña */}
+            {/* Independencia de Quito */}
             <TouchableOpacity
               onPress={() => navigation.navigate("Event", { eventId: 5 })}
             >
@@ -189,12 +217,12 @@ Find your next trip and discover more about Ecuador
                   Independencia de Quito
                 </Text>
                 <Text style={MainStyles.otherFestivityDateHS}>
-                December 6th
+                  December 6th
                 </Text>
               </ImageBackground>
             </TouchableOpacity>
 
-            {/* Mama Negra */}
+            {/* Fiestas de Guayaquil */}
             <TouchableOpacity
               onPress={() => navigation.navigate("Event", { eventId: 6 })}
             >
@@ -203,14 +231,16 @@ Find your next trip and discover more about Ecuador
                 source={require("../assets/images/guayaquil.jpg")}
                 resizeMode="cover"
               >
-                <Text style={MainStyles.otherFestivityTitleHS}>Fiestas de Guayaquil</Text>
+                <Text style={MainStyles.otherFestivityTitleHS}>
+                  Fiestas de Guayaquil
+                </Text>
                 <Text style={MainStyles.otherFestivityDateHS}>
                   November 30th
                 </Text>
               </ImageBackground>
             </TouchableOpacity>
 
-            {/* Recuadro 3 */}
+            {/* Fiesta del Sol */}
             <TouchableOpacity
               onPress={() => navigation.navigate("Event", { eventId: 7 })}
             >
@@ -222,11 +252,13 @@ Find your next trip and discover more about Ecuador
                 <Text style={MainStyles.otherFestivityTitleHS}>
                   Fiesta del Sol
                 </Text>
-                <Text style={MainStyles.otherFestivityDateHS}>June 21st</Text>
+                <Text style={MainStyles.otherFestivityDateHS}>
+                  June 21st
+                </Text>
               </ImageBackground>
             </TouchableOpacity>
 
-            {/* Recuadro 4 */}
+            {/* Inti Raymi */}
             <TouchableOpacity
               onPress={() => navigation.navigate("Event", { eventId: 8 })}
             >

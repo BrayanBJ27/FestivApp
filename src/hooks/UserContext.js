@@ -7,9 +7,10 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null); // Estado para el usuario actual
   const [registeredUsers] = useState([
-   
     { email: "maribel@hotmail.com", password: "123", role: "user" },
   ]);
+
+  console.log("UserProvider inicializado. Usuario actual:", user);
 
   return (
     <UserContext.Provider value={{ user, setUser, registeredUsers }}>
@@ -19,4 +20,10 @@ export const UserProvider = ({ children }) => {
 };
 
 // Hook para usar el contexto del usuario
-export const useUser = () => useContext(UserContext);
+export const useUser = () => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error("useUser debe ser usado dentro de un UserProvider");
+  }
+  return context;
+};

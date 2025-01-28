@@ -1,7 +1,8 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
-import { useUser } from "../hooks/UserContext"; // Importa el contexto del usuario
+import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native";
+import { useUser } from "../hooks/UserContext";
+import { useTheme } from "./ThemeContext"; // Si AppNavigator.tsx está en hooks/
 
 // Importa tus pantallas
 import LoginScreen from "../screens/LoginScreen";
@@ -13,6 +14,8 @@ import CalendarScreen from "../screens/CalendarScreen";
 import MapScreen from "../screens/MapScreen";
 import AccountScreen from "../screens/AccountScreen";
 import NotificationScreen from "../screens/NotificationScreen";
+import TermsScreen from "../screens/TermsScreen"; // Importa la pantalla de Terms of Services
+import HelpCenterScreen from "../screens/HelpCenterScreen"; // Importa la pantalla de Help Center
 
 // Define las rutas del stack navigator
 export type RootStackParamList = {
@@ -25,15 +28,18 @@ export type RootStackParamList = {
   Map: undefined;
   Account: undefined;
   Notification: undefined;
+  TermsScreen: undefined; // Agrega la ruta para TermsScreen
+  HelpCenterScreen: undefined; // Agrega la ruta para HelpCenterScreen
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 const AppNavigator: React.FC = () => {
   const { user } = useUser(); // Obtén el estado del usuario autenticado
+  const { isDarkMode } = useTheme(); // Obtén el estado del tema desde el ThemeContext
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={isDarkMode ? DarkTheme : DefaultTheme}>
       <Stack.Navigator initialRouteName={user ? "Home" : "Login"}>
         {/* Pantalla de Login */}
         <Stack.Screen
@@ -96,6 +102,20 @@ const AppNavigator: React.FC = () => {
           name="Notification"
           component={NotificationScreen}
           options={{ headerShown: true, title: "Notifications" }}
+        />
+
+        {/* Pantalla de Terms of Services */}
+        <Stack.Screen
+          name="TermsScreen"
+          component={TermsScreen}
+          options={{ headerShown: true, title: "Terms of Services" }}
+        />
+
+        {/* Pantalla de Help Center */}
+        <Stack.Screen
+          name="HelpCenterScreen"
+          component={HelpCenterScreen}
+          options={{ headerShown: true, title: "Help Center" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
