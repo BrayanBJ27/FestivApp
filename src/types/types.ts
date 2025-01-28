@@ -10,4 +10,6 @@ export type RootStackParamList = {
   GuarandaEvent: undefined; // Esta entrada debe estar aquí
   Notification: undefined;
   History: undefined;
+  TermsScreen: undefined; // Agrega la ruta para TermsScreen
+  HelpCenterScreen: undefined
 };
