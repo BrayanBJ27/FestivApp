@@ -9,7 +9,7 @@ import SingInScreen from "../screens/SingInScreen";
 import HomeScreen from "../screens/HomeScreen";
 import EventScreen from "../screens/EventScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
-import CalendarScreen from "../screens/CalendarScreen";
+import HistoryScreen from "../screens/HistoryScreen";
 import MapScreen from "../screens/MapScreen";
 import AccountScreen from "../screens/AccountScreen";
 import NotificationScreen from "../screens/NotificationScreen";
@@ -25,6 +25,7 @@ export type RootStackParamList = {
   Map: undefined;
   Account: undefined;
   Notification: undefined;
+  History: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -72,8 +73,8 @@ const AppNavigator: React.FC = () => {
 
         {/* Pantalla de Historial */}
         <Stack.Screen
-          name="Calendar"
-          component={CalendarScreen}
+          name="History"
+          component={HistoryScreen}
           options={{ headerShown: true, title: "Visited Destinations" }}
         />
 
