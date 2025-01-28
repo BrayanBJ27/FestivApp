@@ -76,7 +76,7 @@ const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
           )}
           <View style={[MainStyles.separator, { marginVertical: 4 }]}></View>
 
-          {renderButton("History", () => navigation.navigate("Calendar"))}
+          {renderButton("History", () => navigation.navigate("History"))}
           <View style={[MainStyles.separator, { marginVertical: 4 }]}></View>
 
           {renderButton("Terms of Services", () =>
