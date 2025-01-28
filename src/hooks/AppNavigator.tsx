@@ -2,20 +2,19 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native";
 import { useUser } from "../hooks/UserContext";
-import { useTheme } from "./ThemeContext"; // Si AppNavigator.tsx está en hooks/
-
+import { useTheme } from "../hooks/ThemeContext"; // 
 // Importa tus pantallas
 import LoginScreen from "../screens/LoginScreen";
 import SingInScreen from "../screens/SingInScreen";
 import HomeScreen from "../screens/HomeScreen";
 import EventScreen from "../screens/EventScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
-import CalendarScreen from "../screens/CalendarScreen";
+import HistoryScreen from "../screens/HistoryScreen";
 import MapScreen from "../screens/MapScreen";
 import AccountScreen from "../screens/AccountScreen";
 import NotificationScreen from "../screens/NotificationScreen";
-import TermsScreen from "../screens/TermsScreen"; // Importa la pantalla de Terms of Services
-import HelpCenterScreen from "../screens/HelpCenterScreen"; // Importa la pantalla de Help Center
+import TermsScreen from "../screens/TermsScreen"; // 
+import HelpCenterScreen from "../screens/HelpCenterScreen"; //
 
 // Define las rutas del stack navigator
 export type RootStackParamList = {
@@ -24,19 +23,19 @@ export type RootStackParamList = {
   Home: undefined;
   Event: undefined;
   Schedule: undefined;
-  Calendar: undefined;
+  History: undefined; //
   Map: undefined;
   Account: undefined;
   Notification: undefined;
-  TermsScreen: undefined; // Agrega la ruta para TermsScreen
-  HelpCenterScreen: undefined; // Agrega la ruta para HelpCenterScreen
+  TermsScreen: undefined; //
+  HelpCenterScreen: undefined; // 
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 const AppNavigator: React.FC = () => {
   const { user } = useUser(); // Obtén el estado del usuario autenticado
-  const { isDarkMode } = useTheme(); // Obtén el estado del tema desde el ThemeContext
+  const { isDarkMode } = useTheme(); // Obtén el estado del tema desde ThemeContext
 
   return (
     <NavigationContainer theme={isDarkMode ? DarkTheme : DefaultTheme}>
@@ -78,8 +77,8 @@ const AppNavigator: React.FC = () => {
 
         {/* Pantalla de Historial */}
         <Stack.Screen
-          name="Calendar"
-          component={CalendarScreen}
+          name="History"
+          component={HistoryScreen}
           options={{ headerShown: true, title: "Visited Destinations" }}
         />
 

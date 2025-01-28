@@ -9,7 +9,7 @@ import {
   Switch,
 } from "react-native";
 import MainStyles from "../styles/MainStyles";
-import AccountStyles from "../styles/MainStyles"; // Importa los estilos separados
+import AccountStyles from "../styles/MainStyles"; // Importa estilos separados
 import BottomNavbar from "../components/BottomNavbar";
 import Icon from "react-native-vector-icons/FontAwesome6";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -86,7 +86,7 @@ const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
           {/* Buttons */}
           {renderButton("Notification", "bell", () => console.log("Navigate to Notification Screen"))}
           {renderButton("Country", "globe", () => console.log("Navigate to Country Screen"))}
-          {renderButton("History", "history", () => navigation.navigate("Calendar"))}
+          {renderButton("History", "history", () => navigation.navigate("History"))         }
           {renderButton("Terms of Services", "file-contract", () =>
             navigation.navigate("TermsScreen")
           )}
