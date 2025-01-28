@@ -34,7 +34,7 @@ const TermsScreen: React.FC = () => {
   );
 };
 
-// 📌 **Estilos**
+// 📌 **Estilos **
 const styles = StyleSheet.create({
   container: {
     flex: 1,
