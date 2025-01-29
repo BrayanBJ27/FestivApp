@@ -121,7 +121,8 @@ const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
           {renderButton("History", "clock-rotate-left", () => navigation.navigate("History"))}
           {renderButton("Terms of Services", "file-lines", () => navigation.navigate("TermsScreen"))}
           {renderButton("Help Center", "circle-question", () => navigation.navigate("HelpCenterScreen"))}
-          {renderButton("Profile", "user", () => console.log("Navigate to Profile Screen"))}
+          {renderButton("Profile", "user", () => navigation.navigate("ProfileSettings"))}
+
           {renderDarkModeToggle()}
           {renderButton("Log Out", "right-from-bracket", () =>
             Alert.alert(

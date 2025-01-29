@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import BottomNavbar from "../components/BottomNavbar";
 import Icon from "react-native-vector-icons/FontAwesome6";
 import MainStyles from "../styles/MainStyles";
@@ -16,101 +18,50 @@ import { RootStackParamList } from "../types/types";
 import axios from "axios";
 import { WEATHER_API_KEY } from "@env"; // Importamos la API Key del .env
 
-// Función para obtener el ícono del clima según la condición
 const getWeatherIcon = (condition: string) => {
-  // Convertimos la condición a minúsculas para hacer la comparación más fácil
   const conditionLower = condition.toLowerCase();
-
-  // Condiciones de lluvia
-  if (conditionLower.includes("rain") || 
-      conditionLower.includes("drizzle") || 
-      conditionLower.includes("shower")) {
+  if (conditionLower.includes("rain") || conditionLower.includes("drizzle") || conditionLower.includes("shower")) {
     return "cloud-rain";
   }
-
-  // Condiciones de tormenta
-  if (conditionLower.includes("thunder") || 
-      conditionLower.includes("storm") || 
-      conditionLower.includes("lightning")) {
+  if (conditionLower.includes("thunder") || conditionLower.includes("storm") || conditionLower.includes("lightning")) {
     return "cloud-bolt";
   }
-
-  // Condiciones de nieve
-  if (conditionLower.includes("snow") || 
-      conditionLower.includes("blizzard") || 
-      conditionLower.includes("sleet")) {
+  if (conditionLower.includes("snow") || conditionLower.includes("blizzard") || conditionLower.includes("sleet")) {
     return "snowflake";
   }
-
-  // Condiciones de niebla/bruma
-  if (conditionLower.includes("mist") || 
-      conditionLower.includes("fog") || 
-      conditionLower.includes("haze")) {
+  if (conditionLower.includes("mist") || conditionLower.includes("fog") || conditionLower.includes("haze")) {
     return "smog";
   }
-
-  // Condiciones soleadas
-  if (conditionLower.includes("sunny") || 
-      conditionLower.includes("clear")) {
+  if (conditionLower.includes("sunny") || conditionLower.includes("clear")) {
     return "sun";
   }
-
-  // Condiciones parcialmente nubladas
-  if (conditionLower.includes("partly cloudy") || 
-      conditionLower.includes("partly sunny")) {
+  if (conditionLower.includes("partly cloudy") || conditionLower.includes("partly sunny")) {
     return "cloud-sun";
   }
-
-  // Condiciones nubladas
-  if (conditionLower.includes("cloudy") || 
-      conditionLower.includes("overcast")) {
+  if (conditionLower.includes("cloudy") || conditionLower.includes("overcast")) {
     return "cloud";
   }
-
-  // Condiciones de viento
-  if (conditionLower.includes("wind") || 
-      conditionLower.includes("gale") || 
-      conditionLower.includes("breezy")) {
+  if (conditionLower.includes("wind") || conditionLower.includes("gale") || conditionLower.includes("breezy")) {
     return "wind";
   }
-
-  // Condiciones de granizo
-  if (conditionLower.includes("hail") || 
-      conditionLower.includes("ice pellets")) {
+  if (conditionLower.includes("hail") || conditionLower.includes("ice pellets")) {
     return "cloud-hail";
   }
-
-  // Condiciones tropicales
-  if (conditionLower.includes("tropical") || 
-      conditionLower.includes("hurricane") || 
-      conditionLower.includes("cyclone")) {
+  if (conditionLower.includes("tropical") || conditionLower.includes("hurricane") || conditionLower.includes("cyclone")) {
     return "hurricane";
   }
-
-  // Condiciones de calor extremo
-  if (conditionLower.includes("hot") || 
-      conditionLower.includes("heat")) {
+  if (conditionLower.includes("hot") || conditionLower.includes("heat")) {
     return "temperature-high";
   }
-
-  // Condiciones de frío extremo
-  if (conditionLower.includes("cold") || 
-      conditionLower.includes("freeze") || 
-      conditionLower.includes("frost")) {
+  if (conditionLower.includes("cold") || conditionLower.includes("freeze") || conditionLower.includes("frost")) {
     return "temperature-low";
   }
-
-  // Condiciones de lluvia y sol
-  if (conditionLower.includes("rain") && 
-      (conditionLower.includes("sun") || conditionLower.includes("clear"))) {
+  if (conditionLower.includes("rain") && (conditionLower.includes("sun") || conditionLower.includes("clear"))) {
     return "cloud-sun-rain";
   }
-
-  // Si no coincide con ninguna condición conocida
-  return "circle-question"; // Cambiado de "question" a "circle-question" para un ícono más apropiado
+  return "circle-question";
 };
 
-// Función para obtener el clima de una ubicación
 const fetchWeather = async (location: string) => {
   try {
     const response = await axios.get(
@@ -126,8 +77,8 @@ const fetchWeather = async (location: string) => {
 const ScheduleScreen: React.FC = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<string>("Home");
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const [nickname, setNickname] = useState("Brayan Davila"); // Default value
 
-  // Estado para almacenar el clima de cada ubicación
   const [weatherData, setWeatherData] = useState<{ [key: string]: any }>({});
   const [loading, setLoading] = useState<{ [key: string]: boolean }>({
     "Pillaro Central": true,
@@ -135,7 +86,21 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
     "Tunguipamba": true,
   });
 
-  // useEffect para cargar el clima de cada lugar
+  // Cargar el nickname guardado en AsyncStorage
+  useEffect(() => {
+    const loadNickname = async () => {
+      try {
+        const savedNickname = await AsyncStorage.getItem("nickname");
+        if (savedNickname) {
+          setNickname(savedNickname);
+        }
+      } catch (error) {
+        console.error("Error al cargar el nickname en Schedule:", error);
+      }
+    };
+    loadNickname();
+  }, []);
+
   useEffect(() => {
     const fetchAllWeather = async () => {
       const locations = ["Pillaro, Ecuador", "San Vicente de Quilimbulo, Ecuador", "Tunguipamba, Ecuador"];
@@ -165,7 +130,7 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
       <ScrollView scrollEnabled={true} contentInsetAdjustmentBehavior="automatic" style={MainStyles.scrollViewSS}>
         <View style={MainStyles.containerSS}>
           <Text style={MainStyles.greetingTextSS}>Good morning</Text>
-          <Text style={MainStyles.mainTitleSS}>Hello, Brayan</Text>
+          <Text style={MainStyles.mainTitleSS}>Hello, {nickname}</Text>
           <ImageBackground style={MainStyles.profileIconSS} source={require("../assets/images/diablada.jpg")} resizeMode="cover" />
 
           <Text style={MainStyles.sectionTitleSS}>Diablada Pillareña</Text>
@@ -188,7 +153,6 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
               <Text style={MainStyles.scheduleTitleSS}>Schedule</Text>
             </View>
 
-            {/* Lista de Lugares en el Timeline */}
             {["Pillaro Central", "San Vicente de Quilimbulo", "Tunguipamba"].map((location, index) => (
               <View key={index} style={MainStyles.scheduleItemSS}>
                 <Text style={MainStyles.timeTextSS}>{index === 0 ? "10:30" : index === 1 ? "12:00" : "15:00"}</Text>
@@ -200,7 +164,6 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
                   {index === 0 ? "Jan 1" : index === 1 ? "Jan 2nd-3rd" : "Jan 4th-5th"}
                 </Text>
 
-                {/* Clima */}
                 {loading[location] ? (
                   <ActivityIndicator size="small" color="#0373f3" />
                 ) : weatherData[location] ? (
