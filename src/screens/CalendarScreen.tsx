@@ -60,7 +60,7 @@ export default function CalendarScreen() {
             <Switch
               value={emailEnabled}
               onValueChange={setEmailEnabled}
-              style={{ marginLeft: 'auto', marginRight: 20, top: 15 }}
+              style={{ marginLeft: 'auto', marginRight: 20, top: 10 }}
               trackColor={{ false: '#e9e9e9', true: '#0373f3' }}
             />
           </View>
