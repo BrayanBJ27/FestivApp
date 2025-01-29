@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SafeAreaView, ScrollView, View, Text, TextInput, TouchableOpacity, Image, Alert, ImageBackground } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/FontAwesome6";
 import MainStyles from "../styles/MainStyles";
 import { useNavigation } from "@react-navigation/native";
 import { useUser } from "../hooks/UserContext"; // Importa el contexto del usuario
@@ -38,7 +38,7 @@ export default function LoginScreen() {
             />
           </View>
 
-          <Text style={MainStyles.title}>Log in FestivApp</Text>
+          <Text style={MainStyles.titleL}>Log in FestivApp</Text>
 
           {/* Email Input */}
           <View style={MainStyles.inputContainer}>
@@ -99,13 +99,13 @@ export default function LoginScreen() {
             {/* Botón para Apple */}
             <TouchableOpacity style={MainStyles.appleButton}>
               <Icon name="apple" size={20} color="#fff" style={MainStyles.buttonIcon} />
-              <Text style={MainStyles.buttonText}>Continue with Apple</Text>
+              <Text style={MainStyles.buttonTextCwA}>Continue with Apple</Text>
             </TouchableOpacity>
 
             {/* Botón para Facebook */}
             <TouchableOpacity style={MainStyles.facebookButton}>
               <Icon name="facebook" size={20} color="#fff" style={MainStyles.buttonIcon} />
-              <Text style={MainStyles.buttonText}>Continue with Facebook</Text>
+              <Text style={MainStyles.buttonTextCwF}>Continue with Facebook</Text>
             </TouchableOpacity>
 
             {/* Botón para Google */}
