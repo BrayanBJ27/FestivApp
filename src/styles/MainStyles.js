@@ -1466,7 +1466,7 @@ const MainStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  buttonTextHiS: {
+  buttonTextADS: {
     color: '#fff',
     fontWeight: '600'
   },
@@ -1511,7 +1511,7 @@ const MainStyles = StyleSheet.create({
     justifyContent: "space-evenly",
     flex: 1
   },
-  popularFestivityDetailsHS: {
+  popularFestivityDetailsADS: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -1522,24 +1522,27 @@ const MainStyles = StyleSheet.create({
     left: 0,
     right: 0
   },
-  dateTextHS: {
+  dateTextADS: {
     color: '#fff',
     fontSize: 12,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10
   },
-  ratingContainerHS: {
+  ratingContainerADS: {
     flexDirection: 'row',
     alignItems: 'center'
   },
-  ratingTextHS: {
+  ratingTextADS: {
     color: '#fff',
     marginRight: 5,
     fontSize: 14,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10
+  },
+  ratingIconADS: {
+    marginRight: 5,
   },
 
   //ADD EVENT SCREEN
