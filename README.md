@@ -29,7 +29,7 @@ To install and run FestivApp on your local machine, follow these steps:
     ```
 4. Run the application:
     ```sh
-    npm start
+    npx expo start
     ```
 
 ## Technologies Used
