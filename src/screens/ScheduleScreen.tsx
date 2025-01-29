@@ -18,10 +18,96 @@ import { WEATHER_API_KEY } from "@env"; // Importamos la API Key del .env
 
 // Función para obtener el ícono del clima según la condición
 const getWeatherIcon = (condition: string) => {
-  if (condition.includes("Rain")) return "cloud-showers-heavy";
-  if (condition.includes("Clear") || condition.includes("Sunny")) return "cloud-sun";
-  if (condition.includes("Cloudy") || condition.includes("Overcast")) return "cloud";
-  return "question"; // Default si no hay coincidencias
+  // Convertimos la condición a minúsculas para hacer la comparación más fácil
+  const conditionLower = condition.toLowerCase();
+
+  // Condiciones de lluvia
+  if (conditionLower.includes("rain") || 
+      conditionLower.includes("drizzle") || 
+      conditionLower.includes("shower")) {
+    return "cloud-rain";
+  }
+
+  // Condiciones de tormenta
+  if (conditionLower.includes("thunder") || 
+      conditionLower.includes("storm") || 
+      conditionLower.includes("lightning")) {
+    return "cloud-bolt";
+  }
+
+  // Condiciones de nieve
+  if (conditionLower.includes("snow") || 
+      conditionLower.includes("blizzard") || 
+      conditionLower.includes("sleet")) {
+    return "snowflake";
+  }
+
+  // Condiciones de niebla/bruma
+  if (conditionLower.includes("mist") || 
+      conditionLower.includes("fog") || 
+      conditionLower.includes("haze")) {
+    return "smog";
+  }
+
+  // Condiciones soleadas
+  if (conditionLower.includes("sunny") || 
+      conditionLower.includes("clear")) {
+    return "sun";
+  }
+
+  // Condiciones parcialmente nubladas
+  if (conditionLower.includes("partly cloudy") || 
+      conditionLower.includes("partly sunny")) {
+    return "cloud-sun";
+  }
+
+  // Condiciones nubladas
+  if (conditionLower.includes("cloudy") || 
+      conditionLower.includes("overcast")) {
+    return "cloud";
+  }
+
+  // Condiciones de viento
+  if (conditionLower.includes("wind") || 
+      conditionLower.includes("gale") || 
+      conditionLower.includes("breezy")) {
+    return "wind";
+  }
+
+  // Condiciones de granizo
+  if (conditionLower.includes("hail") || 
+      conditionLower.includes("ice pellets")) {
+    return "cloud-hail";
+  }
+
+  // Condiciones tropicales
+  if (conditionLower.includes("tropical") || 
+      conditionLower.includes("hurricane") || 
+      conditionLower.includes("cyclone")) {
+    return "hurricane";
+  }
+
+  // Condiciones de calor extremo
+  if (conditionLower.includes("hot") || 
+      conditionLower.includes("heat")) {
+    return "temperature-high";
+  }
+
+  // Condiciones de frío extremo
+  if (conditionLower.includes("cold") || 
+      conditionLower.includes("freeze") || 
+      conditionLower.includes("frost")) {
+    return "temperature-low";
+  }
+
+  // Condiciones de lluvia y sol
+  if (conditionLower.includes("rain") && 
+      (conditionLower.includes("sun") || conditionLower.includes("clear"))) {
+    return "cloud-sun-rain";
+  }
+
+  // Si no coincide con ninguna condición conocida
+  return "circle-question"; // Cambiado de "question" a "circle-question" para un ícono más apropiado
 };
 
 // Función para obtener el clima de una ubicación
@@ -85,7 +171,7 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
           <Text style={MainStyles.sectionTitleSS}>Diablada Pillareña</Text>
           <ImageBackground style={MainStyles.mainImageSS} source={require("../assets/images/diablada.jpg")} resizeMode="cover">
             <View style={MainStyles.overlayContainerSS}>
-              <Icon name="location-arrow" size={20} color="#fff" />
+              <Icon name="location-dot" size={20} color="#fff" />
               <Text style={MainStyles.locationTextSS}>Pillaro/Tungurahua</Text>
 
               <View style={MainStyles.buttonContainerSS}>
@@ -122,7 +208,7 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
                     <Icon
                       name={getWeatherIcon(weatherData[location].condition.text)}
                       size={20}
-                      color="#0373f3"
+                      color="#00CEC9"
                       style={MainStyles.weatherIconSS}
                     />
                     <Text style={MainStyles.weatherTextSS}>
