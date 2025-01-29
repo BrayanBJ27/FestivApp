@@ -9,7 +9,6 @@ import {
   Switch,
 } from "react-native";
 import MainStyles from "../styles/MainStyles";
-import AccountStyles from "../styles/MainStyles"; // Importa estilos separados
 import BottomNavbar from "../components/BottomNavbar";
 import Icon from "react-native-vector-icons/FontAwesome6";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -24,95 +23,126 @@ const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
   const { setUser } = useUser();
   const { isDarkMode, toggleTheme } = useTheme();
 
-  // Renderiza un botón con ícono, texto y separador
   const renderButton = (text: string, icon: string, onPress: () => void) => (
     <>
       <TouchableOpacity
         onPress={onPress}
-        style={AccountStyles.buttonContainer}
+        style={MainStyles.buttonContainerASS}
       >
-        <View style={AccountStyles.iconTextContainer}>
-          <Icon name={icon} size={20} color={isDarkMode ? "#fff" : "#000"} />
-          <Text style={[AccountStyles.buttonText, { color: isDarkMode ? "#fff" : "#000" }]}>
+        <View style={MainStyles.iconTextContainerASS}>
+          <Icon 
+            name={icon} 
+            size={24} 
+            color={isDarkMode ? "#fff" : "#000"} 
+            style={{ width: 30 }}
+          />
+          <Text 
+            style={[
+              MainStyles.buttonTextASS, 
+              { color: isDarkMode ? "#fff" : "#000" }
+            ]}
+          >
             {text}
           </Text>
         </View>
-        <Icon name="chevron-right" size={20} color={isDarkMode ? "#fff" : "#000"} />
+        <Icon 
+          name="chevron-right" 
+          size={20} 
+          color={isDarkMode ? "#666" : "#666"} 
+        />
       </TouchableOpacity>
-      <View style={AccountStyles.separator} />
+      <View style={MainStyles.separatorASS} />
     </>
   );
 
-  // Renderiza el interruptor de modo oscuro
   const renderDarkModeToggle = () => (
     <>
-      <View style={AccountStyles.buttonContainer}>
-        <View style={AccountStyles.iconTextContainer}>
-          <Icon name="moon" size={20} color={isDarkMode ? "#fff" : "#000"} />
-          <Text style={[AccountStyles.buttonText, { color: isDarkMode ? "#fff" : "#000" }]}>
+      <View style={MainStyles.buttonContainerASS}>
+        <View style={MainStyles.iconTextContainerASS}>
+          <Icon 
+            name="moon" 
+            size={24} 
+            color={isDarkMode ? "#fff" : "#000"} 
+            style={{ width: 30 }}
+          />
+          <Text 
+            style={[
+              MainStyles.buttonTextASS, 
+              { color: isDarkMode ? "#fff" : "#000" }
+            ]}
+          >
             Dark Mode
           </Text>
         </View>
         <Switch
           value={isDarkMode}
           onValueChange={toggleTheme}
-          thumbColor={isDarkMode ? "#fff" : "#000"}
-          trackColor={{ false: "#ccc", true: "#555" }}
+          thumbColor={isDarkMode ? "#fff" : "#fff"}
+          trackColor={{ false: "#ccc", true: "#666" }}
         />
       </View>
-      <View style={AccountStyles.separator} />
+      <View style={MainStyles.separatorASS} />
     </>
   );
 
   return (
-    <SafeAreaView style={{ backgroundColor: isDarkMode ? "#000" : "#fff", flex: 1 }}>
+    <SafeAreaView style={[MainStyles.safeAreaASS, { backgroundColor: isDarkMode ? "#000" : "#fff" }]}>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View style={[MainStyles.containerAS, { backgroundColor: isDarkMode ? "#000" : "#fff" }]}>
+        <View style={[MainStyles.containerASS, { backgroundColor: isDarkMode ? "#000" : "#fff" }]}>
           {/* Header */}
-          <View style={MainStyles.headerAS}>
+          <View style={MainStyles.headerASS}>
             <TouchableOpacity
-              style={MainStyles.backButtonAS}
+              style={MainStyles.backButtonASS}
               onPress={() => navigation.goBack()}
             >
-              <Icon name="arrow-left" size={20} color={isDarkMode ? "#fff" : "#000"} />
+              <Icon name="arrow-left" size={24} color={isDarkMode ? "#fff" : "#000"} />
             </TouchableOpacity>
           </View>
 
           {/* Title */}
-          <Text style={[MainStyles.titleTextAS, { color: isDarkMode ? "#fff" : "#000", textAlign: "center" }]}>
+          <Text 
+            style={[
+              MainStyles.titleTextASS, 
+              { 
+                color: isDarkMode ? "#fff" : "#000", 
+                textAlign: "center",
+                fontSize: 24,
+                marginBottom: 20,
+                fontWeight: "600"
+              }
+            ]}
+          >
             Settings
           </Text>
 
           {/* Buttons */}
           {renderButton("Notification", "bell", () => console.log("Navigate to Notification Screen"))}
           {renderButton("Country", "globe", () => console.log("Navigate to Country Screen"))}
-          {renderButton("History", "history", () => navigation.navigate("History"))         }
-          {renderButton("Terms of Services", "file-contract", () =>
-            navigation.navigate("TermsScreen")
-          )}
-          {renderButton("Help Center", "question-circle", () =>
-            navigation.navigate("HelpCenterScreen")
-          )}
-          {renderButton("Profile", "user", () =>
-            console.log("Navigate to Profile Screen")
-          )}
+          {renderButton("History", "clock-rotate-left", () => navigation.navigate("History"))}
+          {renderButton("Terms of Services", "file-lines", () => navigation.navigate("TermsScreen"))}
+          {renderButton("Help Center", "circle-question", () => navigation.navigate("HelpCenterScreen"))}
+          {renderButton("Profile", "user", () => console.log("Navigate to Profile Screen"))}
           {renderDarkModeToggle()}
-          {renderButton("Log Out", "", () =>
-            Alert.alert("Salir", "¿Estás seguro de que quieres cerrar sesión?", [
-              { text: "No", onPress: () => console.log("Acción cancelada"), style: "cancel" },
-              {
-                text: "Sí",
-                onPress: () => {
-                  setUser(null);
-                  navigation.navigate("Login");
+          {renderButton("Log Out", "right-from-bracket", () =>
+            Alert.alert(
+              "Log Out", 
+              "Are you sure you want to log out?",
+              [
+                { text: "Cancel", style: "cancel" },
+                {
+                  text: "Log Out",
+                  onPress: () => {
+                    setUser(null);
+                    navigation.navigate("Login");
+                  },
+                  style: "destructive"
                 },
-              },
-            ])
+              ]
+            )
           )}
         </View>
       </ScrollView>
 
-      {/* Footer Navigation */}
       <BottomNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
     </SafeAreaView>
   );
