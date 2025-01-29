@@ -8,7 +8,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/FontAwesome6";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../types/types";
 import BottomNavbar from "../components/BottomNavbar";
@@ -70,7 +70,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
               ]}
             >
               <Icon
-                name="search"
+                name="magnifying-glass"
                 size={20}
                 color={isDarkMode ? "#bbb" : "#adadad"}
                 style={MainStyles.inputIcon}
@@ -191,12 +191,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
           </ScrollView>
 
           {/* Other Festivities */}
-          <Text
-            style={[
-              MainStyles.sectionTitleHS,
-              { color: isDarkMode ? "#fff" : "#000" },
-            ]}
-          >
+          <Text style={[MainStyles.sectionTitleOtherHS, { color: isDarkMode ? "#fff" : "#000" },]}>
             Other festivities
           </Text>
           <ScrollView
