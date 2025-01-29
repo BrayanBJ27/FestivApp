@@ -83,13 +83,13 @@ const MainStyles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 20,
-    width: "100%", // Asegura el ancho total del contenedor
+    width: "98%", // Asegura el ancho total del contenedor
     paddingHorizontal: 20, // Añade algo de espacio a los lados
   },
   
   continueSIButton: {
     flex: 1, // Esto hará que cada botón tome el mismo ancho dentro del contenedor
-    height: 54,
+    height: 50,// Ajusta el ancho al 48% del contenedor
     backgroundColor: "#0373f3",
     borderRadius: 36,
     alignItems: "center",
@@ -97,12 +97,11 @@ const MainStyles = StyleSheet.create({
     marginHorizontal: 5, // Espacio entre botones
   },
 
-  title: {
+  titleL: {
     fontSize: 30,
     fontWeight: "600",
-    marginTop: 27,
-    marginLeft: 24,
     color: "#1f1f1f",
+    marginTop: 20,
     alignSelf: "center",
   },
   inputContainer: {
@@ -188,7 +187,12 @@ const MainStyles = StyleSheet.create({
     height: 22,
     marginRight: 12,
   },
-  buttonText: {
+  buttonTextCwA: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "500",
+  },
+  buttonTextCwF: {
     color: "#fff",
     fontSize: 16,
     fontWeight: "500",
@@ -237,7 +241,7 @@ const MainStyles = StyleSheet.create({
     fontWeight: "600",
     color: "#1f1f1f",
     marginTop: 20,
-    marginLeft: 24,
+    alignSelf: "center",
   },
   checkbox: {
     width: 20,
@@ -475,22 +479,22 @@ const MainStyles = StyleSheet.create({
   },
   // homescreen recuadros 
   horizontalScrollHS: {
-  flexDirection: "row",
-  paddingHorizontal: 10,
-},
-popularFestivityHS: {
-  width: 200,
-  height: 150,
-  marginRight: 10,
-  borderRadius: 10,
-  overflow: "hidden",
-},
-popularFestivityTextHS: {
-  color: "#fff",
-  fontSize: 16,
-  fontWeight: "bold",
-  padding: 10,
-},
+    flexDirection: "row",
+    paddingHorizontal: 10,
+  },
+  popularFestivityHS: {
+    width: 200,
+    height: 150,
+    marginRight: 10,
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+  popularFestivityTextHS: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+    padding: 10,
+  },
 
 
   //EVENT SCREEN
@@ -1389,6 +1393,593 @@ popularFestivityTextHS: {
   safeArea: {
     flex: 1,
   },
+
+  //ADMIN SCREEN
+  safeAreaADS: { 
+    flex: 1, 
+    backgroundColor: '#fff' 
+  },
+  containerADS: { 
+    padding: 16,
+    top: 40 
+  },
+  titleADS: { 
+    fontSize: 24, 
+    fontWeight: 'bold',
+    marginBottom: 10
+  },
+  subtitleADS: { 
+    fontSize: 18, 
+    fontWeight: '600', 
+    marginBottom: 10
+  },
+  horizontalScrollADS: {
+    flexDirection: "row",
+    paddingHorizontal: 10,
+    marginBottom: 15,
+    height: 160 // Altura fija para los cards
+  },
+  popularFestivityADS: {
+    width: 280,
+    height: 150,
+    marginRight: 10,
+    borderRadius: 10,
+    overflow: "hidden",
+    justifyContent: 'space-between'
+  },
+  popularFestivityTextADS: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+    padding: 10,
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10
+  },
+  searchSectionADS: {
+    marginVertical: 1
+  },
+  searchContainerADS: { 
+    flexDirection: 'row', 
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 10
+  },
+  searchInputADS: { 
+    flex: 1,
+    height: 40,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#e9e9e9',
+    paddingHorizontal: 15,
+    marginRight: 10,
+    backgroundColor: '#fff'
+  },
+  buttonnADS: {
+    backgroundColor: '#0373F3',
+    borderRadius: 20,
+    height: 40,
+    width: 110,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonTextHiS: {
+    color: '#fff',
+    fontWeight: '600'
+  },
+  tableContainerADS: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+  tableHeaderADS: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#f4f4f4",
+    padding: 12
+  },
+  tableHeaderTextADS: {
+    fontWeight: "bold",
+    fontSize: 15,
+    flex: 1,
+    textAlign: "center"
+  },
+  tableRowADS: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: 'center',
+    padding: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd"
+  },
+  eventImageADS: {
+    width: 40,
+    height: 40,
+    borderRadius: 5
+  },
+  tableTextADS: {
+    flex: 1,
+    textAlign: "center",
+    fontSize: 14
+  },
+  actionsContainerADS: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    flex: 1
+  },
+  popularFestivityDetailsHS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0
+  },
+  dateTextHS: {
+    color: '#fff',
+    fontSize: 12,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10
+  },
+  ratingContainerHS: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  ratingTextHS: {
+    color: '#fff',
+    marginRight: 5,
+    fontSize: 14,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10
+  },
+
+  //ADD EVENT SCREEN
+  safeAreaAFS: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  scrollViewAFS: {
+    flex: 1,
+  },
+  containerAFS: {
+    flex: 1,
+    padding: 15,
+    backgroundColor: '#fff',
+    top: 40,
+  },
+  titleAFS: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    color: '#333',
+  },
+  labelAFS: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#333',
+    marginBottom: 8,
+  },
+  inputAFS: {
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+    fontSize: 16,
+  },
+  textAreaAFS: {
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+    fontSize: 16,
+    height: 120,
+    textAlignVertical: 'top',
+  },
+  imagePickerAFS: {
+    width: '100%',
+    height: 200,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10,
+    marginBottom: 20,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+  },
+  imagePreviewAFS: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  imagePlaceholderAFS: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imagePlaceholderTextAFS: {
+    marginTop: 10,
+    color: '#666',
+    fontSize: 16,
+  },
+  buttonContainerAFS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+    paddingBottom: 20,
+  },
+  cancelButtonAFS: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+    padding: 15,
+    borderRadius: 36,
+    marginRight: 10,
+    alignItems: 'center',
+  },
+  cancelButtonTextAFS: {
+    color: '#666',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  createButtonAFS: {
+    flex: 1,
+    backgroundColor: '#00CEC9',
+    padding: 15,
+    borderRadius: 36,
+    marginLeft: 10,
+    alignItems: 'center',
+  },
+  createButtonTextAFS: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  dateContainerAFS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  dateInputAFS: {
+    flex: 1,
+    marginRight: 5,
+  },
+  datePickerFieldAFS: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10,
+    padding: 15,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+  },
+  locationInputAFS: {
+    position: 'relative',
+    width: '100%',
+  },
+  iconInputAFS: {
+    position: 'absolute',
+    right: 15,
+  },
+  inputWithIconAFS: {
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10,
+    paddingLeft: 50, // Espacio para el ícono a la izquierda
+    paddingRight: 15, 
+    height: 50,
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+  },
+  iconInsideInputAFS: {
+    position: 'absolute',
+    left: 15, // Coloca el ícono dentro del input
+    top: 15,
+  },
+
+  //EDIT EVENT SCREEN
+  safeAreaADS: { 
+    flex: 1, 
+    backgroundColor: '#fff' 
+  },
+  containerADS: { 
+    padding: 16,
+    top: 40 
+  },
+  titleADS: { 
+    fontSize: 24, 
+    fontWeight: 'bold',
+    marginBottom: 10
+  },
+  subtitleADS: { 
+    fontSize: 18, 
+    fontWeight: '600', 
+    marginBottom: 10
+  },
+  horizontalScrollADS: {
+    flexDirection: "row",
+    paddingHorizontal: 10,
+    marginBottom: 15,
+    height: 160 // Altura fija para los cards
+  },
+  popularFestivityADS: {
+    width: 280,
+    height: 150,
+    marginRight: 10,
+    borderRadius: 10,
+    overflow: "hidden",
+    justifyContent: 'space-between'
+  },
+  popularFestivityTextADS: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+    padding: 10,
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10
+  },
+  searchSectionADS: {
+    marginVertical: 1
+  },
+  searchContainerADS: { 
+    flexDirection: 'row', 
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 10
+  },
+  searchInputADS: { 
+    flex: 1,
+    height: 40,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#e9e9e9',
+    paddingHorizontal: 15,
+    marginRight: 10,
+    backgroundColor: '#fff'
+  },
+  buttonnADS: {
+    backgroundColor: '#0373F3',
+    borderRadius: 20,
+    height: 40,
+    width: 110,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonTextHiS: {
+    color: '#fff',
+    fontWeight: '600'
+  },
+  tableContainerADS: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+  tableHeaderADS: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#f4f4f4",
+    padding: 12
+  },
+  tableHeaderTextADS: {
+    fontWeight: "bold",
+    fontSize: 15,
+    flex: 1,
+    textAlign: "center"
+  },
+  tableRowADS: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: 'center',
+    padding: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd"
+  },
+  eventImageADS: {
+    width: 40,
+    height: 40,
+    borderRadius: 5
+  },
+  tableTextADS: {
+    flex: 1,
+    textAlign: "center",
+    fontSize: 14
+  },
+  actionsContainerADS: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    flex: 1
+  },
+  popularFestivityDetailsHS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0
+  },
+  dateTextHS: {
+    color: '#fff',
+    fontSize: 12,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10
+  },
+  ratingContainerHS: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  ratingTextHS: {
+    color: '#fff',
+    marginRight: 5,
+    fontSize: 14,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10
+  },
+
+  //EDIT EVENT SCREEN
+  safeAreaEFS: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  scrollViewEFS: {
+    flex: 1,
+  },
+  containerEFS: {
+    flex: 1,
+    padding: 15,
+    backgroundColor: '#fff',
+    top: 40,
+  },
+  titleEFS: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    color: '#333',
+  },
+  labelEFS: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#333',
+    marginBottom: 8,
+  },
+  inputEFS: {
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+    fontSize: 16,
+  },
+  textAreaEFS: {
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+    fontSize: 16,
+    height: 120,
+    textAlignVertical: 'top',
+  },
+  imagePickerEFS: {
+    width: '100%',
+    height: 200,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10,
+    marginBottom: 20,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+  },
+  imagePreviewEFS: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  imagePlaceholderEFS: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imagePlaceholderTextEFS: {
+    marginTop: 10,
+    color: '#666',
+    fontSize: 16,
+  },
+  buttonContainerEFS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+    paddingBottom: 20,
+  },
+  cancelButtonEFS: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+    padding: 15,
+    borderRadius: 36,
+    marginRight: 10,
+    alignItems: 'center',
+  },
+  cancelButtonTextEFS: {
+    color: '#666',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  updateButtonEFS: {
+    flex: 1,
+    backgroundColor: '#00CEC9',
+    padding: 15,
+    borderRadius: 36,
+    marginLeft: 10,
+    alignItems: 'center',
+  },
+  updateButtonTextEFS: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  dateContainerEFS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  dateInputEFS: {
+    flex: 1,
+    marginRight: 5,
+  },
+  datePickerFieldEFS: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10,
+    padding: 15,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+  },
+  locationInputEFS: {
+    position: 'relative',
+    width: '100%',
+  },
+  iconInputEFS: {
+    position: 'absolute',
+    right: 15,
+  },
+  inputWithIconEFS: {
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10,
+    paddingLeft: 50, // Espacio para el ícono a la izquierda
+    paddingRight: 15, 
+    height: 50,
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+  },
+  iconInsideInputEFS: {
+    position: 'absolute',
+    left: 15, // Coloca el ícono dentro del input
+    top: 15,
+  },
+
 });
 
 export default MainStyles;
