@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ScrollView, View, Text, TextInput, TouchableOpacity, Image, Alert } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/FontAwesome6";
 import MainStyles from "../styles/MainStyles";
 import { useNavigation } from "@react-navigation/native";
 import { useUser } from "../hooks/UserContext"; // Importa el contexto del usuario
