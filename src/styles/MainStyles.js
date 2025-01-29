@@ -317,7 +317,6 @@ const MainStyles = StyleSheet.create({
     width: 70,
     height: 66,
     position: 'relative',
-    marginTop: -40,
     marginLeft: 'auto',
   },
   titleTextHS: {
@@ -384,11 +383,20 @@ const MainStyles = StyleSheet.create({
     height: 50,
     fontFamily: 'Poppins',
     fontSize: 18,
-    
     fontWeight: '600',
     lineHeight: 50,
     color: '#000000',
     marginTop: 10,
+    marginLeft: 25.893,
+  },
+  sectionTitleOtherHS: {
+    height: 50,
+    fontFamily: 'Poppins',
+    fontSize: 18,
+    fontWeight: '600',
+    lineHeight: 50,
+    color: '#000000',
+    marginTop: -70,
     marginLeft: 25.893,
   },
   popularFestivityHS: {
@@ -439,13 +447,13 @@ const MainStyles = StyleSheet.create({
     marginTop: 120,
     marginLeft: 20,
   },
- otherFestivityHS: {
-  width: 146,
-  height: 230,
-  borderRadius: 15,
-  marginRight: 20, // Aumentado para mayor separación
-  marginLeft: 5,  // Agregar un pequeño margen izquierdo opcional
-},
+  otherFestivityHS: {
+    width: 146,
+    height: 230,
+    marginRight: 10, // Aumentado para mayor separación 
+    backgroundColor: 'rgba(196, 196, 196, 0.2)',
+    borderRadius: 15,
+  },
   otherFestivityTitleHS: {
     fontFamily: 'Andika',
     fontSize: 14,
@@ -505,7 +513,7 @@ const MainStyles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
-    padding: 20,
+    padding: 60,
     backgroundColor: "rgba(0, 0, 0, 0.3)",
   },
   backgroundImageES: {
@@ -587,7 +595,7 @@ const MainStyles = StyleSheet.create({
   },
   primaryButtonES: {
     width: "48%",
-    height: 50,
+    height: 40,
     backgroundColor: "#0373f3",
     borderRadius: 25,
     alignItems: "center",
@@ -601,7 +609,7 @@ const MainStyles = StyleSheet.create({
   },
   secondaryButtonES: {
     width: "48%",
-    height: 50,
+    height: 40,
     backgroundColor: "#fff",
     borderRadius: 25,
     alignItems: "center",
@@ -827,6 +835,7 @@ const MainStyles = StyleSheet.create({
     fontSize: 14,
     color: "#fff",
     marginRight: 'auto',
+    left: 10,
   },
   buttonContainerSS: {
     backgroundColor: "#0373f3",
@@ -922,14 +931,15 @@ const MainStyles = StyleSheet.create({
     width: 40, 
     height: 40,
     borderRadius: 20,
-    left: 10,
+    left: 70,
     top: 10,
   },
   weatherTextSS: {
     fontSize: 14,
     color: "#0373f3", // Azul para el texto del clima
-    marginLeft: 5, // Separación del ícono
+    right: -20,
     fontWeight: "500",
+    top: -5,
   },
   
   errorTextSS: {
@@ -945,8 +955,8 @@ const MainStyles = StyleSheet.create({
     width: 404,
     height: 874,
     backgroundColor: '#ffffff',
-    marginTop: 0,
     marginHorizontal: 'auto',
+    top: -60,
   },
   headerCS: {
     flexDirection: 'row',
@@ -971,7 +981,7 @@ const MainStyles = StyleSheet.create({
     width: 345,
     height: 92,
     borderRadius: 4,
-    marginTop: 39,
+    marginTop: 5,
     marginHorizontal: 20,
   },
   eventTitleCS: {
@@ -1016,7 +1026,7 @@ const MainStyles = StyleSheet.create({
     fontFamily: 'Poppins',
     fontSize: 16,
     fontWeight: '600',
-    marginTop: 38,
+    marginTop: 10,
     marginHorizontal: 25,
     color: '#000',
   },
@@ -1038,14 +1048,14 @@ const MainStyles = StyleSheet.create({
     fontFamily: 'Poppins',
     fontSize: 16,
     fontWeight: '400',
-    marginTop: 31,
+    marginTop: 20,
     marginHorizontal: 24,
     color: '#1e1e1e',
   },
   buttonCS: {
     backgroundColor: '#0373f3',
     borderRadius: 36,
-    marginTop: 34,
+    marginTop: 10,
     marginHorizontal: 20,
     height: 54,
     width: 350,
@@ -1369,29 +1379,50 @@ const MainStyles = StyleSheet.create({
     textAlign: "center",
   },
   //AccountStyles 
-  buttonContainer: {
+  buttonContainerASS: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
     backgroundColor: "transparent",
   },
-  iconTextContainer: {
+  iconTextContainerASS: {
     flexDirection: "row",
     alignItems: "center",
   },
-  buttonText: {
+  buttonTextASS: {
     marginLeft: 16,
     fontSize: 16,
+    fontWeight: "400",
   },
-  separator: {
+  separatorASS: {
     height: 1,
-    backgroundColor: "#ccc",
-    marginHorizontal: 16,
+    backgroundColor: "#e0e0e0",
+    marginHorizontal: 20,
   },
-  safeArea: {
+  safeAreaASS: {
     flex: 1,
+  },
+  containerASS: {
+    flex: 1,
+    paddingTop: 10,
+  },
+  headerASS: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
+  backButtonASS: {
+    padding: 8,
+  },
+  titleTextASS: {
+    fontSize: 24,
+    fontWeight: '600',
+    marginVertical: 20,
+    textAlign: 'center',
+    width: '100%',
   },
 
   //ADMIN SCREEN
