@@ -1,113 +1,141 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
-  SafeAreaView,
-  ScrollView,
   TouchableOpacity,
+  SafeAreaView,
+  TextInput,
   ImageBackground,
-} from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import Icon from "react-native-vector-icons/FontAwesome";
-import MainStyles from "../styles/MainStyles";
-import { NavigationProp } from "@react-navigation/native";
-import { RootStackParamList } from "../types/types";
+  ScrollView,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import MainStyles from '../styles/MainStyles';
+import axios from 'axios';
 
-const EventScreen: React.FC = (): JSX.Element => {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+const AdmindashboardScreen: React.FC = (): JSX.Element => {
+  const [recentActivity, setRecentActivity] = useState<any[]>([]);
+  const [events, setEvents] = useState<any[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  return (
-    <SafeAreaView style={MainStyles.safeAreaES}>
+  useEffect(() => {
+    axios.get('/api/admin/recent-activity').then((response) => setRecentActivity(response.data));
+    axios.get('/api/events').then((response) => setEvents(response.data));
+  }, []);
+
+  const filteredEvents = events.filter((event) =>
+    event.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const renderFestivityCard = (
+    title: string,
+    date: string,
+    rating: string,
+    image: any
+  ) => (
+    <TouchableOpacity>
       <ImageBackground
-        source={require("../assets/images/diablada.jpg")}
-        style={MainStyles.backgroundImageES}
+        style={MainStyles.popularFestivityADS}
+        source={image}
         resizeMode="cover"
       >
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <View style={MainStyles.eventContainerES}>
-            {/* Back Button */}
-            <TouchableOpacity
-              style={MainStyles.backButtonES}
-              onPress={() => navigation.goBack()}
-            >
-              <Icon name="arrow-left" size={20} color="#000" />
-            </TouchableOpacity>
+        <Text style={MainStyles.popularFestivityTextADS}>{title}</Text>
+        <View style={MainStyles.popularFestivityDetailsHS}>
+          <Text style={MainStyles.dateTextHS}>{date}</Text>
+          <View style={MainStyles.ratingContainerHS}>
+            <Text style={MainStyles.ratingTextHS}>{rating}</Text>
+            <Icon
+              name="star"
+              size={20}
+              color="#FFD700"
+              style={MainStyles.ratingIconHS}
+            />
+          </View>
+        </View>
+      </ImageBackground>
+    </TouchableOpacity>
+  );
 
-            {/* Title and Description */}
-            <Text style={MainStyles.eventTitleES}>Diablada Pillareña</Text>
-            <Text style={MainStyles.eventDescriptionES}>
-              The "Diablos de Píllaro" parade with colorful costumes and masks,
-              representing a symbolic struggle between good and evil.
-            </Text>
+  return (
+    <SafeAreaView style={MainStyles.safeAreaADS}>
+      <ScrollView>
+        <View style={MainStyles.containerADS}>
+          {/* Header Section */}
+          <Text style={MainStyles.titleADS}>Overview</Text>
 
-            {/* Reviews Section */}
-            <View style={MainStyles.reviewContainerES}>
-              <View style={MainStyles.ratingContainerES}>
-                <Icon
-                  name="star"
-                  size={16}
-                  color="#FFD700"
-                  style={MainStyles.starIconES}
-                />
-                <Icon
-                  name="star"
-                  size={16}
-                  color="#FFD700"
-                  style={MainStyles.starIconES}
-                />
-                <Icon
-                  name="star"
-                  size={16}
-                  color="#FFD700"
-                  style={MainStyles.starIconES}
-                />
-                <Icon
-                  name="star"
-                  size={16}
-                  color="#FFD700"
-                  style={MainStyles.starIconES}
-                />
-                <Icon
-                  name="star-half"
-                  size={16}
-                  color="#FFD700"
-                  style={MainStyles.starIconES}
-                />
-                <Text style={MainStyles.ratingTextES}>4.79</Text>
-              </View>
-              <Text style={MainStyles.reviewTextES}>(78 reviews)</Text>
-              <TouchableOpacity>
-                <Text style={MainStyles.seeReviewsTextES}>See reviews</Text>
-              </TouchableOpacity>
-            </View>
+          {/* Latest Festivities Section */}
+          <Text style={MainStyles.subtitleADS}>Latest Festivities</Text>
+          <ScrollView 
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={MainStyles.horizontalScrollADS}
+          >
+            {renderFestivityCard(
+              "Carnaval Guaranda",
+              "March 3rd & 4th",
+              "4.9",
+              require("../assets/images/guranda.jpg")
+            )}
+            {renderFestivityCard(
+              "Diablada Pillareña",
+              "January 6th",
+              "4.8",
+              require("../assets/images/diablada.jpg")
+            )}
+            {renderFestivityCard(
+              "Mama Negra",
+              "November 30th",
+              "4.7",
+              require("../assets/images/mamanegra.jpg")
+            )}
+          </ScrollView>
 
-            {/* Action Buttons */}
-            <View style={MainStyles.buttonContainerES}>
-              {/* Navigate to ScheduleScreen */}
-              <TouchableOpacity
-                style={MainStyles.primaryButtonES}
-                onPress={() => navigation.navigate("Schedule")} // Redirige a ScheduleScreen
-              >
-                <Text style={MainStyles.primaryButtonTextES}>
-                  Enter the plan
-                </Text>
-              </TouchableOpacity>
-
-              {/* Navigate back to HomeScreen */}
-              <TouchableOpacity
-                style={MainStyles.secondaryButtonES}
-                onPress={() => navigation.navigate("Home")} // Redirige a HomeScreen
-              >
-                <Text style={MainStyles.secondaryButtonTextES}>
-                  View other
-                </Text>
+          {/* Search Section */}
+          <View style={MainStyles.searchSectionADS}>
+            <Text style={MainStyles.subtitleADS}>All Festivities</Text>
+            <View style={MainStyles.searchContainerADS}>
+              <TextInput
+                style={MainStyles.searchInputADS}
+                placeholder="Search festivities..."
+                value={searchQuery}
+                onChangeText={setSearchQuery}
+              />
+              <TouchableOpacity style={MainStyles.buttonnADS}>
+                <Text style={MainStyles.buttonTextHiS}>Add New</Text>
               </TouchableOpacity>
             </View>
           </View>
-        </ScrollView>
-      </ImageBackground>
+
+          {/* Table Section */}
+          <View style={MainStyles.tableContainerADS}>
+            <View style={MainStyles.tableHeaderADS}>
+              <Text style={MainStyles.tableHeaderTextADS}>Photo</Text>
+              <Text style={MainStyles.tableHeaderTextADS}>Name</Text>
+              <Text style={MainStyles.tableHeaderTextADS}>Date</Text>
+              <Text style={MainStyles.tableHeaderTextADS}>Actions</Text>
+            </View>
+            {filteredEvents.map((event) => (
+              <View key={event.id} style={MainStyles.tableRowADS}>
+                <ImageBackground 
+                  source={{ uri: event.image }} 
+                  style={MainStyles.eventImageADS} 
+                />
+                <Text style={MainStyles.tableTextADS}>{event.name}</Text>
+                <Text style={MainStyles.tableTextADS}>{event.date}</Text>
+                <View style={MainStyles.actionsContainerADS}>
+                  <TouchableOpacity>
+                    <Icon name="edit" size={20} color="#007AFF" />
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Icon name="trash" size={20} color="#FF3B30" />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ))}
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default EventScreen;
+export default AdmindashboardScreen;
