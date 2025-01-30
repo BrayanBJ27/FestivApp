@@ -13,266 +13,177 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../types/types";
 import BottomNavbar from "../components/BottomNavbar";
 import MainStyles from "../styles/MainStyles";
-import { useTheme } from "../hooks/ThemeContext"; // Importa el contexto del tema
+import { useTheme } from "../hooks/ThemeContext";
+
+// Definir interfaz para las festividades
+interface Festivity {
+  id: number;
+  name: string;
+  date: string;
+  image: any;
+  rating?: number; 
+}
+
+// Lista de festividades separadas
+const popularFestivities: Festivity[] = [
+  { id: 1, name: "Carnaval Guaranda", date: "March 3rd & 4th", rating: 4.9, image: require("../assets/images/guranda.jpg") },
+  { id: 2, name: "Diablada Pillareña", date: "January 6th", rating: 4.8, image: require("../assets/images/diablada.jpg") },
+  { id: 3, name: "Mamá Negra", date: "November 30th", rating: 4.7, image: require("../assets/images/mamanegra.jpg") },
+];
+
+const otherFestivities: Festivity[] = [
+  { id: 4, name: "Independencia de Quito", date: "December 6th", image: require("../assets/images/QUITO.jpg") },
+  { id: 5, name: "Fiestas de Guayaquil", date: "November 30th", image: require("../assets/images/guayaquil.jpg") },
+  { id: 6, name: "Fiesta del Sol", date: "June 21st", image: require("../assets/images/fiestasol.jpg") },
+  { id: 7, name: "Inti Raymi", date: "June 24th", image: require("../assets/images/intiraymi.jpg") },
+];
+
+// Función para normalizar texto 
+const normalizeText = (text: string) => {
+  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+};
 
 const HomeScreen: React.FC = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState("Home");
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const { isDarkMode } = useTheme(); // Accede al estado del modo oscuro
+  const { isDarkMode } = useTheme();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Combinar todas las festividades en una sola lista para la búsqueda
+  const allFestivities: Festivity[] = [...popularFestivities, ...otherFestivities];
+
+  // Filtrar festividades ignorando tildes y mayúsculas
+  const normalizedSearch = normalizeText(searchQuery);
+  const filteredFestivities = allFestivities.filter(festivity =>
+    normalizeText(festivity.name).includes(normalizedSearch)
+  );
 
   return (
-    <SafeAreaView
-      style={[
-        { backgroundColor: isDarkMode ? "#000" : "#fff" },
-        { flex: 1 },
-      ]}
-    >
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View
-          style={[
-            MainStyles.containerHS,
-            { backgroundColor: isDarkMode ? "#000" : "#fff" },
-          ]}
-        >
-          {/* Header */}
-          <View style={MainStyles.headerContainerHS}>
-            <Text
-              style={[
-                MainStyles.headerTextHS,
-                { color: isDarkMode ? "#fff" : "#000" },
-              ]}
-            >
-              Find your next trip and discover more about Ecuador
-            </Text>
-            <ImageBackground
-              style={MainStyles.headerImageHS}
-              source={require("../assets/images/oficial_festiapp.png")}
+    <SafeAreaView style={[{ backgroundColor: isDarkMode ? "#000" : "#fff" }, { flex: 1 }]}>
+      <View style={[MainStyles.containerHS, { backgroundColor: isDarkMode ? "#000" : "#fff" }]}>
+
+        {/* Header */}
+        <View style={MainStyles.headerContainerHS}>
+          <Text style={[MainStyles.headerTextHS, { color: isDarkMode ? "#fff" : "#000" }]}>
+            Find your next trip and discover more about Ecuador
+          </Text>
+          <ImageBackground style={MainStyles.headerImageHS} source={require("../assets/images/oficial_festiapp.png")} />
+        </View>
+
+        <Text style={[MainStyles.titleTextHS, { color: isDarkMode ? "#fff" : "#000" }]}>
+          The following holidays.
+        </Text>
+
+        {/* Search Box */}
+        <View style={MainStyles.searchContainerHS}>
+          <View
+            style={{
+              backgroundColor: isDarkMode ? "#fff" : "#f5f5f5",
+              borderColor: "#ddd",
+              borderRadius: 50,
+              flexDirection: "row",
+              alignItems: "center",
+              paddingHorizontal: 15,
+              height: 40,
+              flex: 1,
+            }}
+          >
+            <Icon name="magnifying-glass" size={18} color="#aaa" style={{ marginRight: 10 }} />
+            <TextInput
+              style={{
+                flex: 1,
+                color: "#000",
+                fontSize: 16,
+              }}
+              placeholder="Search..."
+              placeholderTextColor="#aaa"
+              value={searchQuery}
+              onChangeText={setSearchQuery}
             />
           </View>
-          <Text
-            style={[
-              MainStyles.titleTextHS,
-              { color: isDarkMode ? "#fff" : "#000" },
-            ]}
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#007AFF",
+              borderRadius: 50,
+              width: 40,
+              height: 40,
+              alignItems: "center",
+              justifyContent: "center",
+              marginLeft: 10,
+            }}
           >
-            The following holidays.
-          </Text>
-
-          {/* Search Box */}
-          <View style={MainStyles.searchContainerHS}>
-            <View
-              style={[
-                MainStyles.searchBoxHS,
-                {
-                  backgroundColor: isDarkMode ? "#333" : "#f5f5f5",
-                  borderColor: isDarkMode ? "#555" : "#ccc",
-                },
-              ]}
-            >
-              <Icon
-                name="magnifying-glass"
-                size={20}
-                color={isDarkMode ? "#bbb" : "#adadad"}
-                style={MainStyles.inputIcon}
-              />
-              <TextInput
-                style={[
-                  MainStyles.textInputHS,
-                  { color: isDarkMode ? "#fff" : "#000" },
-                ]}
-                placeholder="Search..."
-                placeholderTextColor={isDarkMode ? "#555" : "#adadad"}
-              />
-            </View>
-            <TouchableOpacity
-              style={[
-                MainStyles.filterButtonHS,
-                { backgroundColor: isDarkMode ? "#555" : "#007AFF" },
-              ]}
-            >
-              <Icon name="sliders" size={20} color="#fff" />
-            </TouchableOpacity>
-          </View>
-
-          {/* Popular Festivities */}
-          <Text
-            style={[
-              MainStyles.sectionTitleHS,
-              { color: isDarkMode ? "#fff" : "#000" },
-            ]}
-          >
-            Popular festivities
-          </Text>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={MainStyles.horizontalScrollHS}
-          >
-            {/* Carnaval Guaranda */}
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Event", { eventId: 1 })}
-            >
-              <ImageBackground
-                style={MainStyles.popularFestivityHS}
-                source={require("../assets/images/guranda.jpg")}
-                resizeMode="cover"
-              >
-                <Text style={MainStyles.popularFestivityTextHS}>
-                  Carnaval Guaranda
-                </Text>
-                <View style={MainStyles.popularFestivityDetailsHS}>
-                  <Text style={MainStyles.dateTextHS}>March 3rd & 4th</Text>
-                  <View style={MainStyles.ratingContainerHS}>
-                    <Text style={MainStyles.ratingTextHS}>4.9</Text>
-                    <Icon
-                      name="star"
-                      size={20}
-                      color="#FFD700"
-                      style={MainStyles.ratingIconHS}
-                    />
-                  </View>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
-
-            {/* Diablada Pillareña */}
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Event", { eventId: 2 })}
-            >
-              <ImageBackground
-                style={MainStyles.popularFestivityHS}
-                source={require("../assets/images/diablada.jpg")}
-                resizeMode="cover"
-              >
-                <Text style={MainStyles.popularFestivityTextHS}>
-                  Diablada Pillareña
-                </Text>
-                <View style={MainStyles.popularFestivityDetailsHS}>
-                  <Text style={MainStyles.dateTextHS}>January 6th</Text>
-                  <View style={MainStyles.ratingContainerHS}>
-                    <Text style={MainStyles.ratingTextHS}>4.8</Text>
-                    <Icon
-                      name="star"
-                      size={20}
-                      color="#FFD700"
-                      style={MainStyles.ratingIconHS}
-                    />
-                  </View>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
-
-            {/* Mama Negra */}
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Event", { eventId: 3 })}
-            >
-              <ImageBackground
-                style={MainStyles.popularFestivityHS}
-                source={require("../assets/images/mamanegra.jpg")}
-                resizeMode="cover"
-              >
-                <Text style={MainStyles.popularFestivityTextHS}>
-                  Mama Negra
-                </Text>
-                <View style={MainStyles.popularFestivityDetailsHS}>
-                  <Text style={MainStyles.dateTextHS}>November 30th</Text>
-                  <View style={MainStyles.ratingContainerHS}>
-                    <Text style={MainStyles.ratingTextHS}>4.7</Text>
-                    <Icon
-                      name="star"
-                      size={20}
-                      color="#FFD700"
-                      style={MainStyles.ratingIconHS}
-                    />
-                  </View>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
-          </ScrollView>
-
-          {/* Other Festivities */}
-          <Text style={[MainStyles.sectionTitleOtherHS, { color: isDarkMode ? "#fff" : "#000" },]}>
-            Other festivities
-          </Text>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={MainStyles.horizontalScrollHS}
-          >
-            {/* Independencia de Quito */}
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Event", { eventId: 5 })}
-            >
-              <ImageBackground
-                style={MainStyles.otherFestivityHS}
-                source={require("../assets/images/QUITO.jpg")}
-                resizeMode="cover"
-              >
-                <Text style={MainStyles.otherFestivityTitleHS}>
-                  Independencia de Quito
-                </Text>
-                <Text style={MainStyles.otherFestivityDateHS}>
-                  December 6th
-                </Text>
-              </ImageBackground>
-            </TouchableOpacity>
-
-            {/* Fiestas de Guayaquil */}
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Event", { eventId: 6 })}
-            >
-              <ImageBackground
-                style={MainStyles.otherFestivityHS}
-                source={require("../assets/images/guayaquil.jpg")}
-                resizeMode="cover"
-              >
-                <Text style={MainStyles.otherFestivityTitleHS}>
-                  Fiestas de Guayaquil
-                </Text>
-                <Text style={MainStyles.otherFestivityDateHS}>
-                  November 30th
-                </Text>
-              </ImageBackground>
-            </TouchableOpacity>
-
-            {/* Fiesta del Sol */}
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Event", { eventId: 7 })}
-            >
-              <ImageBackground
-                style={MainStyles.otherFestivityHS}
-                source={require("../assets/images/fiestasol.jpg")}
-                resizeMode="cover"
-              >
-                <Text style={MainStyles.otherFestivityTitleHS}>
-                  Fiesta del Sol
-                </Text>
-                <Text style={MainStyles.otherFestivityDateHS}>
-                  June 21st
-                </Text>
-              </ImageBackground>
-            </TouchableOpacity>
-
-            {/* Inti Raymi */}
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Event", { eventId: 8 })}
-            >
-              <ImageBackground
-                style={MainStyles.otherFestivityHS}
-                source={require("../assets/images/intiraymi.jpg")}
-                resizeMode="cover"
-              >
-                <Text style={MainStyles.otherFestivityTitleHS}>
-                  Inti Raymi
-                </Text>
-                <Text style={MainStyles.otherFestivityDateHS}>
-                  June 24th
-                </Text>
-              </ImageBackground>
-            </TouchableOpacity>
-          </ScrollView>
+            <Icon name="sliders" size={18} color="#fff" />
+          </TouchableOpacity>
         </View>
-      </ScrollView>
+
+        {/* Si hay búsqueda, solo muestra los eventos filtrados */}
+        {searchQuery ? (
+          filteredFestivities.length > 0 ? (
+            <View style={{ marginTop: 15, paddingHorizontal: 20 }}>
+              {filteredFestivities.map((festivity) => (
+                <TouchableOpacity
+                  key={festivity.id}
+                  onPress={() => navigation.navigate("Event", { eventId: festivity.id })}
+                  style={{ marginBottom: 15 }} // Espacio entre eventos
+                >
+                  <ImageBackground
+                    style={{
+                      width: "100%",
+                      height: 150,
+                      borderRadius: 10,
+                      overflow: "hidden",
+                    }}
+                    source={festivity.image}
+                    resizeMode="cover"
+                  >
+                    <View style={{ padding: 10, backgroundColor: "rgba(0,0,0,0.5)", borderRadius: 10 }}>
+                      <Text style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}>
+                        {festivity.name}
+                      </Text>
+                      <Text style={{ color: "#ddd", fontSize: 14 }}>{festivity.date}</Text>
+                    </View>
+                  </ImageBackground>
+                </TouchableOpacity>
+              ))}
+            </View>
+          ) : (
+            <Text style={{ textAlign: "center", color: isDarkMode ? "#fff" : "#000", marginTop: 20 }}>
+              No existe ningún evento.
+            </Text>
+          )
+        ) : (
+          <>
+            {/* Popular Festivities */}
+            <Text style={[MainStyles.sectionTitleHS, { color: isDarkMode ? "#fff" : "#000" }]}>
+              Popular festivities
+            </Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={MainStyles.horizontalScrollHS}>
+              {popularFestivities.map((festivity) => (
+                <TouchableOpacity key={festivity.id} onPress={() => navigation.navigate("Event", { eventId: festivity.id })}>
+                  <ImageBackground style={MainStyles.popularFestivityHS} source={festivity.image} resizeMode="cover">
+                    <Text style={MainStyles.popularFestivityTextHS}>{festivity.name}</Text>
+                  </ImageBackground>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+
+            {/* Other Festivities */}
+            <Text style={[MainStyles.sectionTitleOtherHS, { color: isDarkMode ? "#fff" : "#000" }]}>
+              Other festivities
+            </Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={MainStyles.horizontalScrollHS}>
+              {otherFestivities.map((festivity) => (
+                <TouchableOpacity key={festivity.id} onPress={() => navigation.navigate("Event", { eventId: festivity.id })}>
+                  <ImageBackground style={MainStyles.otherFestivityHS} source={festivity.image} resizeMode="cover">
+                    <Text style={MainStyles.otherFestivityTitleHS}>{festivity.name}</Text>
+                  </ImageBackground>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </>
+        )}
+      </View>
+
       <BottomNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
     </SafeAreaView>
   );

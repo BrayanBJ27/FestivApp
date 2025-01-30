@@ -2155,6 +2155,40 @@ const MainStyles = StyleSheet.create({
   // saveButtonText: { color: "#fff", fontSize: 16, fontWeight: "bold" },
   // darkButtonText: { color: "#ddd" },
 
+  //currency
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  headerText: {  // 
+    fontSize: 22,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  input: {
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    marginBottom: 12,
+    paddingHorizontal: 8,
+  },
+  button: {
+    backgroundColor: "blue",
+    padding: 10,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 18,
+  },
+  resultText: {  // 
+    fontSize: 22,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: 20,
+  },
+
 });
 
 
