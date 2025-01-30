@@ -12,4 +12,5 @@ export type RootStackParamList = {
   History: undefined;
   TermsScreen: undefined; // Agrega la ruta para TermsScreen
   HelpCenterScreen: undefined
+  AdminDashboard: undefined;
 };
