@@ -2,6 +2,7 @@
   "expo": {
     "name": "FestivApp",
     "slug": "FestivApp",
+    "scheme": "festivapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/oficial_festiapp.png",
@@ -13,19 +14,36 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
+      "bundleIdentifier": "com.festivapp.app",
       "supportsTablet": true
     },
     "android": {
+      "package": "festiv_app.mb_25",
       "adaptiveIcon": {
         "foregroundImage": "./assets/oficial_festiapp.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "festivapp",
+              "host": "*.festivapp.com",
+              "pathPrefix": "/"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
     },
     "web": {
       "favicon": "./assets/oficial_festiapp.png"
     },
     "plugins": [
-      "expo-font"
+      "expo-font",
+      "expo-secure-store"
     ]
   }
 }
