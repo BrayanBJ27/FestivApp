@@ -18,6 +18,7 @@ import NotificationScreen from "../screens/NotificationScreen";
 import TermsScreen from "../screens/TermsScreen";
 import HelpCenterScreen from "../screens/HelpCenterScreen";
 import ProfileSettings from "../screens/ProfileSettings";
+import AdminDashboardScreen from '../screens/AdminDashboardScreen';
 
 // Define las rutas del stack navigator
 export type RootStackParamList = {
@@ -34,6 +35,7 @@ export type RootStackParamList = {
   TermsScreen: undefined;
   HelpCenterScreen: undefined;
   ProfileSettings: undefined;
+  AdminDashboard: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -48,6 +50,7 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
         <Stack.Screen name="SignUp" component={SingInScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="AdminDashboard" component={AdminDashboardScreen} options={{ headerShown: true, title: "Admin Dashboard" }} />
         <Stack.Screen name="Event" component={EventScreen} options={{ headerShown: true, title: "Event Details" }} />
         <Stack.Screen name="Schedule" component={ScheduleScreen} options={{ headerShown: true, title: "Schedule" }} />
         <Stack.Screen name="Calendar" component={CalendarScreen} options={{ headerShown: true, title: "Calendar" }} />
