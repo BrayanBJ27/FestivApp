@@ -2013,147 +2013,147 @@ const MainStyles = StyleSheet.create({
     left: 15, // Coloca el ícono dentro del input
     top: 15,
   },
-  // profile
-  container: {
-    flex: 1,
-    backgroundColor: "#FFFFFF",
-  },
-  scrollView: {
-    flex: 1,
-    backgroundColor: "#FFFFFF",
-    paddingTop: 81,
-    paddingHorizontal: 23,
-  },
-  profileHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 35,
-  },
-  profileInfo: {
-    flex: 1,
-    marginRight: 4,
-  },
-  profileName: {
-    color: "#000000",
-    fontSize: 26,
-    textAlign: "center",
-  },
-  profileImage: {
-    borderRadius: 145,
-    width: 83,
-    height: 91,
-  },
-  icon: {
-    width: 17,
-    height: 14,
-    marginBottom: 46,
-    marginLeft: 3,
-  },
-  label: {
-    color: "#ADADAD",
-    fontSize: 14,
-    marginBottom: 10,
-  },
-  inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderColor: "#E9E9E9",
-    borderRadius: 36,
-    borderWidth: 1,
-    paddingHorizontal: 19,
-    marginBottom: 32,
-  },
-  inputIcon: {
-    width: 22,
-    height: 22,
-    marginRight: 13,
-  },
-  input: {
-    color: "#272727",
-    fontSize: 16,
-    flex: 1,
-    paddingVertical: 15,
-  },
-  passwordText: {
-    color: "#272727",
-    fontSize: 16,
-  },
-  changeButton: {
-    width: 106,
-    alignItems: "center",
-    backgroundColor: "#0373F3",
-    borderRadius: 19,
-    paddingVertical: 13,
-  },
-  changeButtonText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-  },
-  saveButton: {
-    alignItems: "center",
-    backgroundColor: "#0373F3",
-    borderRadius: 36,
-    paddingVertical: 21,
-  },
-  saveButtonText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-  },
-  icon: {
-    width: 17,
-    height: 14,
-    resizeMode: "contain", // Asegura que se escale correctamente
-  },
-  profileImage: {
-    width: 83,
-    height: 91,
-    borderRadius: 145,
-  },
-  inputIcon: {
-    width: 22,
-    height: 22,
-    resizeMode: "contain",
-  },
-  icon: {
-    width: 17,
-    height: 14,
-    resizeMode: "contain", // Asegura que la imagen se ajuste bien
-  },
-  profileImage: {
-    width: 83,
-    height: 91,
-    borderRadius: 145,
-  },
-  inputIcon: {
-    width: 22,
-    height: 22,
-    resizeMode: "contain",
-  },
-  container: { flex: 1, backgroundColor: "#fff" },
-  darkContainer: { backgroundColor: "#000" },
-  scrollView: { padding: 20 },
-  profileHeader: { flexDirection: "column", alignItems: "center", marginBottom: 20 },
-  profileImageContainer: { position: "relative", alignItems: "center", justifyContent: "center" },
-  profileImage: { width: 100, height: 100, borderRadius: 50, resizeMode: "cover" },
-  cameraIconContainer: {
-    position: "absolute",
-    bottom: 0,
-    right: 0,
-    backgroundColor: "#000",
-    borderRadius: 15,
-    padding: 5,
-  },
-  profileInfo: { marginTop: 10, alignItems: "center" },
-  profileName: { fontSize: 20, fontWeight: "bold", color: "#000" },
-  darkText: { color: "#fff" },
-  label: { fontSize: 16, fontWeight: "bold", marginBottom: 5, color: "#333" },
-  inputContainer: { flexDirection: "row", alignItems: "center", borderWidth: 1, borderColor: "#ddd", borderRadius: 10, paddingHorizontal: 15, paddingVertical: 10, marginBottom: 15 },
-  darkInputContainer: { borderColor: "#555", backgroundColor: "#222" },
-  input: { flex: 1, fontSize: 16, color: "#000" },
-  saveButton: { backgroundColor: "#28a745", padding: 15, borderRadius: 10, alignItems: "center" },
-  darkButton: { backgroundColor: "#444" },
-  saveButtonText: { color: "#fff", fontSize: 16, fontWeight: "bold" },
-  darkButtonText: { color: "#ddd" },
+  // // profile
+  // container: {
+  //   flex: 1,
+  //   backgroundColor: "#FFFFFF",
+  // },
+  // scrollView: {
+  //   flex: 1,
+  //   backgroundColor: "#FFFFFF",
+  //   paddingTop: 81,
+  //   paddingHorizontal: 23,
+  // },
+  // profileHeader: {
+  //   flexDirection: "row",
+  //   alignItems: "center",
+  //   marginBottom: 35,
+  // },
+  // profileInfo: {
+  //   flex: 1,
+  //   marginRight: 4,
+  // },
+  // profileName: {
+  //   color: "#000000",
+  //   fontSize: 26,
+  //   textAlign: "center",
+  // },
+  // profileImage: {
+  //   borderRadius: 145,
+  //   width: 83,
+  //   height: 91,
+  // },
+  // icon: {
+  //   width: 17,
+  //   height: 14,
+  //   marginBottom: 46,
+  //   marginLeft: 3,
+  // },
+  // label: {
+  //   color: "#ADADAD",
+  //   fontSize: 14,
+  //   marginBottom: 10,
+  // },
+  // inputContainer: {
+  //   flexDirection: "row",
+  //   alignItems: "center",
+  //   borderColor: "#E9E9E9",
+  //   borderRadius: 36,
+  //   borderWidth: 1,
+  //   paddingHorizontal: 19,
+  //   marginBottom: 32,
+  // },
+  // inputIcon: {
+  //   width: 22,
+  //   height: 22,
+  //   marginRight: 13,
+  // },
+  // input: {
+  //   color: "#272727",
+  //   fontSize: 16,
+  //   flex: 1,
+  //   paddingVertical: 15,
+  // },
+  // passwordText: {
+  //   color: "#272727",
+  //   fontSize: 16,
+  // },
+  // changeButton: {
+  //   width: 106,
+  //   alignItems: "center",
+  //   backgroundColor: "#0373F3",
+  //   borderRadius: 19,
+  //   paddingVertical: 13,
+  // },
+  // changeButtonText: {
+  //   color: "#FFFFFF",
+  //   fontSize: 16,
+  // },
+  // saveButton: {
+  //   alignItems: "center",
+  //   backgroundColor: "#0373F3",
+  //   borderRadius: 36,
+  //   paddingVertical: 21,
+  // },
+  // saveButtonText: {
+  //   color: "#FFFFFF",
+  //   fontSize: 16,
+  // },
+  // icon: {
+  //   width: 17,
+  //   height: 14,
+  //   resizeMode: "contain", // Asegura que se escale correctamente
+  // },
+  // profileImage: {
+  //   width: 83,
+  //   height: 91,
+  //   borderRadius: 145,
+  // },
+  // inputIcon: {
+  //   width: 22,
+  //   height: 22,
+  //   resizeMode: "contain",
+  // },
+  // icon: {
+  //   width: 17,
+  //   height: 14,
+  //   resizeMode: "contain", // Asegura que la imagen se ajuste bien
+  // },
+  // profileImage: {
+  //   width: 83,
+  //   height: 91,
+  //   borderRadius: 145,
+  // },
+  // inputIcon: {
+  //   width: 22,
+  //   height: 22,
+  //   resizeMode: "contain",
+  // },
+  // container: { flex: 1, backgroundColor: "#fff" },
+  // darkContainer: { backgroundColor: "#000" },
+  // scrollView: { padding: 20 },
+  // profileHeader: { flexDirection: "column", alignItems: "center", marginBottom: 20 },
+  // profileImageContainer: { position: "relative", alignItems: "center", justifyContent: "center" },
+  // profileImage: { width: 100, height: 100, borderRadius: 50, resizeMode: "cover" },
+  // cameraIconContainer: {
+  //   position: "absolute",
+  //   bottom: 0,
+  //   right: 0,
+  //   backgroundColor: "#000",
+  //   borderRadius: 15,
+  //   padding: 5,
+  // },
+  // profileInfo: { marginTop: 10, alignItems: "center" },
+  // profileName: { fontSize: 20, fontWeight: "bold", color: "#000" },
+  // darkText: { color: "#fff" },
+  // label: { fontSize: 16, fontWeight: "bold", marginBottom: 5, color: "#333" },
+  // inputContainer: { flexDirection: "row", alignItems: "center", borderWidth: 1, borderColor: "#ddd", borderRadius: 10, paddingHorizontal: 15, paddingVertical: 10, marginBottom: 15 },
+  // darkInputContainer: { borderColor: "#555", backgroundColor: "#222" },
+  // input: { flex: 1, fontSize: 16, color: "#000" },
+  // saveButton: { backgroundColor: "#28a745", padding: 15, borderRadius: 10, alignItems: "center" },
+  // darkButton: { backgroundColor: "#444" },
+  // saveButtonText: { color: "#fff", fontSize: 16, fontWeight: "bold" },
+  // darkButtonText: { color: "#ddd" },
 
 });
 
