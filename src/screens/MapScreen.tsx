@@ -220,9 +220,8 @@ const MapScreen: React.FC = () => {
             </View>
           </View>
         </ScrollView>
-
-        <BottomNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
       </View>
+      <BottomNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
     </SafeAreaView>
   );
 };
