@@ -317,7 +317,7 @@ const MainStyles = StyleSheet.create({
     width: 70,
     height: 66,
     position: 'relative',
-    marginLeft: 'auto',
+    left: 280,
   },
   titleTextHS: {
     height: 39,
@@ -407,20 +407,10 @@ const MainStyles = StyleSheet.create({
     marginTop: 15,
     marginLeft: 20,
   },
-  popularFestivityTextHS: {
-    height: 35,
-    fontFamily: 'Andika',
-    fontSize: 22,
-    fontWeight: '400',
-    lineHeight: 35,
-    color: '#ffffff',
-    marginTop: 67,
-    marginLeft: 18,
-  },
   popularFestivityDetailsHS: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 10,
+    marginTop: 120,
     marginLeft: 18,
   },
   dateTextHS: {
@@ -458,15 +448,17 @@ const MainStyles = StyleSheet.create({
     fontFamily: 'Andika',
     fontSize: 14,
     color: '#ffffff',
-    marginTop: 128 ,
     marginLeft: 8,
+    alignSelf: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   otherFestivityDateHS: {
     fontFamily: 'Poppins',
     fontSize: 12,
     color: '#ffffff',
-    marginTop: 8,
-    marginLeft: 34,
+    marginTop: 180,
+    alignSelf: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   textInputHS: {
     flex: 1,
@@ -502,6 +494,7 @@ const MainStyles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     padding: 10,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 
 
@@ -634,6 +627,7 @@ const MainStyles = StyleSheet.create({
     height: "100%",
     position: "relative",
     overflow: "hidden",
+    top: -30,
   },
   headerContainerMS: {
     flexDirection: "row",
@@ -685,14 +679,15 @@ const MainStyles = StyleSheet.create({
     fontWeight: "600",
     color: "#000",
     right: 20,
-    marginTop: 530,
+    marginTop: 370,
   },
   locationsContainerMS: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 16,
-    marginTop: 16,
+    paddingHorizontal: 15,
+    marginTop: -6,
     right: 40,
+    height: "33%",
   },
   locationCardMS: {
     backgroundColor: '#fff',
@@ -701,13 +696,16 @@ const MainStyles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
-    elevation: 3,
-    width: '48%',
+    elevation: 6,
+    width: '50%',
     marginVertical: 8,
+    justifyContent: "space-between",
   },
   locationImageMS: {
     width: '90%',
-    height: 40,
+    height: 80,
+    left: 10,
+    top: 10,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
   },
@@ -719,15 +717,18 @@ const MainStyles = StyleSheet.create({
     fontWeight: '600',
     color: '#000',
     marginBottom: 4,
+    top: -25,
   },
   ratingContainerMS: {
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: 4,
+    top: -25,
   },
   priceTextMS: {
     fontSize: 14,
     color: '#aeaeae',
+    top: -25,
   },
   footerContainerMS: {
     flexDirection: "row",
@@ -1406,7 +1407,6 @@ const MainStyles = StyleSheet.create({
   },
   containerASS: {
     flex: 1,
-    paddingTop: 10,
   },
   headerASS: {
     flexDirection: 'row',
@@ -1420,7 +1420,7 @@ const MainStyles = StyleSheet.create({
   titleTextASS: {
     fontSize: 24,
     fontWeight: '600',
-    marginVertical: 20,
+    marginVertical: -10,
     textAlign: 'center',
     width: '100%',
   },
@@ -1432,7 +1432,6 @@ const MainStyles = StyleSheet.create({
   },
   containerADS: { 
     padding: 16,
-    top: 40 
   },
   titleADS: { 
     fontSize: 24, 
@@ -1588,7 +1587,6 @@ const MainStyles = StyleSheet.create({
     flex: 1,
     padding: 15,
     backgroundColor: '#fff',
-    top: 40,
   },
   titleAFS: {
     fontSize: 24,
@@ -1668,7 +1666,7 @@ const MainStyles = StyleSheet.create({
   },
   createButtonAFS: {
     flex: 1,
-    backgroundColor: '#00CEC9',
+    backgroundColor: '#0373F3',
     padding: 15,
     borderRadius: 36,
     marginLeft: 10,
@@ -1719,154 +1717,6 @@ const MainStyles = StyleSheet.create({
     position: 'absolute',
     left: 15, // Coloca el ícono dentro del input
     top: 15,
-  },
-
-  //EDIT EVENT SCREEN
-  safeAreaADS: { 
-    flex: 1, 
-    backgroundColor: '#fff' 
-  },
-  containerADS: { 
-    padding: 16,
-    top: 40 
-  },
-  titleADS: { 
-    fontSize: 24, 
-    fontWeight: 'bold',
-    marginBottom: 10
-  },
-  subtitleADS: { 
-    fontSize: 18, 
-    fontWeight: '600', 
-    marginBottom: 10
-  },
-  horizontalScrollADS: {
-    flexDirection: "row",
-    paddingHorizontal: 10,
-    marginBottom: 15,
-    height: 160 // Altura fija para los cards
-  },
-  popularFestivityADS: {
-    width: 280,
-    height: 150,
-    marginRight: 10,
-    borderRadius: 10,
-    overflow: "hidden",
-    justifyContent: 'space-between'
-  },
-  popularFestivityTextADS: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
-    padding: 10,
-    position: 'absolute',
-    top: 10,
-    left: 10,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
-  },
-  searchSectionADS: {
-    marginVertical: 1
-  },
-  searchContainerADS: { 
-    flexDirection: 'row', 
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 10
-  },
-  searchInputADS: { 
-    flex: 1,
-    height: 40,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: '#e9e9e9',
-    paddingHorizontal: 15,
-    marginRight: 10,
-    backgroundColor: '#fff'
-  },
-  buttonnADS: {
-    backgroundColor: '#0373F3',
-    borderRadius: 20,
-    height: 40,
-    width: 110,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  buttonTextHiS: {
-    color: '#fff',
-    fontWeight: '600'
-  },
-  tableContainerADS: {
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 10,
-    overflow: "hidden",
-  },
-  tableHeaderADS: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    backgroundColor: "#f4f4f4",
-    padding: 12
-  },
-  tableHeaderTextADS: {
-    fontWeight: "bold",
-    fontSize: 15,
-    flex: 1,
-    textAlign: "center"
-  },
-  tableRowADS: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: 'center',
-    padding: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ddd"
-  },
-  eventImageADS: {
-    width: 40,
-    height: 40,
-    borderRadius: 5
-  },
-  tableTextADS: {
-    flex: 1,
-    textAlign: "center",
-    fontSize: 14
-  },
-  actionsContainerADS: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    flex: 1
-  },
-  popularFestivityDetailsHS: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 10,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0
-  },
-  dateTextHS: {
-    color: '#fff',
-    fontSize: 12,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
-  },
-  ratingContainerHS: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  ratingTextHS: {
-    color: '#fff',
-    marginRight: 5,
-    fontSize: 14,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
   },
 
   //EDIT EVENT SCREEN
@@ -2013,150 +1863,151 @@ const MainStyles = StyleSheet.create({
     left: 15, // Coloca el ícono dentro del input
     top: 15,
   },
-  // // profile
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: "#FFFFFF",
-  // },
-  // scrollView: {
-  //   flex: 1,
-  //   backgroundColor: "#FFFFFF",
-  //   paddingTop: 81,
-  //   paddingHorizontal: 23,
-  // },
-  // profileHeader: {
-  //   flexDirection: "row",
-  //   alignItems: "center",
-  //   marginBottom: 35,
-  // },
-  // profileInfo: {
-  //   flex: 1,
-  //   marginRight: 4,
-  // },
-  // profileName: {
-  //   color: "#000000",
-  //   fontSize: 26,
-  //   textAlign: "center",
-  // },
-  // profileImage: {
-  //   borderRadius: 145,
-  //   width: 83,
-  //   height: 91,
-  // },
-  // icon: {
-  //   width: 17,
-  //   height: 14,
-  //   marginBottom: 46,
-  //   marginLeft: 3,
-  // },
-  // label: {
-  //   color: "#ADADAD",
-  //   fontSize: 14,
-  //   marginBottom: 10,
-  // },
-  // inputContainer: {
-  //   flexDirection: "row",
-  //   alignItems: "center",
-  //   borderColor: "#E9E9E9",
-  //   borderRadius: 36,
-  //   borderWidth: 1,
-  //   paddingHorizontal: 19,
-  //   marginBottom: 32,
-  // },
-  // inputIcon: {
-  //   width: 22,
-  //   height: 22,
-  //   marginRight: 13,
-  // },
-  // input: {
-  //   color: "#272727",
-  //   fontSize: 16,
-  //   flex: 1,
-  //   paddingVertical: 15,
-  // },
-  // passwordText: {
-  //   color: "#272727",
-  //   fontSize: 16,
-  // },
-  // changeButton: {
-  //   width: 106,
-  //   alignItems: "center",
-  //   backgroundColor: "#0373F3",
-  //   borderRadius: 19,
-  //   paddingVertical: 13,
-  // },
-  // changeButtonText: {
-  //   color: "#FFFFFF",
-  //   fontSize: 16,
-  // },
-  // saveButton: {
-  //   alignItems: "center",
-  //   backgroundColor: "#0373F3",
-  //   borderRadius: 36,
-  //   paddingVertical: 21,
-  // },
-  // saveButtonText: {
-  //   color: "#FFFFFF",
-  //   fontSize: 16,
-  // },
-  // icon: {
-  //   width: 17,
-  //   height: 14,
-  //   resizeMode: "contain", // Asegura que se escale correctamente
-  // },
-  // profileImage: {
-  //   width: 83,
-  //   height: 91,
-  //   borderRadius: 145,
-  // },
-  // inputIcon: {
-  //   width: 22,
-  //   height: 22,
-  //   resizeMode: "contain",
-  // },
-  // icon: {
-  //   width: 17,
-  //   height: 14,
-  //   resizeMode: "contain", // Asegura que la imagen se ajuste bien
-  // },
-  // profileImage: {
-  //   width: 83,
-  //   height: 91,
-  //   borderRadius: 145,
-  // },
-  // inputIcon: {
-  //   width: 22,
-  //   height: 22,
-  //   resizeMode: "contain",
-  // },
-  // container: { flex: 1, backgroundColor: "#fff" },
-  // darkContainer: { backgroundColor: "#000" },
-  // scrollView: { padding: 20 },
-  // profileHeader: { flexDirection: "column", alignItems: "center", marginBottom: 20 },
-  // profileImageContainer: { position: "relative", alignItems: "center", justifyContent: "center" },
-  // profileImage: { width: 100, height: 100, borderRadius: 50, resizeMode: "cover" },
-  // cameraIconContainer: {
-  //   position: "absolute",
-  //   bottom: 0,
-  //   right: 0,
-  //   backgroundColor: "#000",
-  //   borderRadius: 15,
-  //   padding: 5,
-  // },
-  // profileInfo: { marginTop: 10, alignItems: "center" },
-  // profileName: { fontSize: 20, fontWeight: "bold", color: "#000" },
-  // darkText: { color: "#fff" },
-  // label: { fontSize: 16, fontWeight: "bold", marginBottom: 5, color: "#333" },
-  // inputContainer: { flexDirection: "row", alignItems: "center", borderWidth: 1, borderColor: "#ddd", borderRadius: 10, paddingHorizontal: 15, paddingVertical: 10, marginBottom: 15 },
-  // darkInputContainer: { borderColor: "#555", backgroundColor: "#222" },
-  // input: { flex: 1, fontSize: 16, color: "#000" },
-  // saveButton: { backgroundColor: "#28a745", padding: 15, borderRadius: 10, alignItems: "center" },
-  // darkButton: { backgroundColor: "#444" },
-  // saveButtonText: { color: "#fff", fontSize: 16, fontWeight: "bold" },
-  // darkButtonText: { color: "#ddd" },
 
+  // PROFILE SCREEN
+  containerPS: {
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+  },
+  scrollViewPS: {
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+    paddingHorizontal: 23,
+    padding: 20,
+  },
+  profileHeaderPS: {
+    flexDirection: "colum",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  profileInfoPS: {
+    flex: 1,
+    marginTop: 10,
+    alignItems: "center",
+  },
+  profileNamePS: {
+    color: "#000000",
+    fontSize: 26,
+    textAlign: "center",
+  },
+  profileImagePS: {
+    width: 100,
+    height: 100,
+  },
+  iconPS: {
+    width: 17,
+    height: 14,
+    marginBottom: 46,
+    marginLeft: 3,
+  },
+  labelPS: {
+    color: "#ADADAD",
+    fontSize: 14,
+    marginBottom: 10,
+    fontSize: 16, 
+    fontWeight: "bold", 
+    marginBottom: 5, 
+    color: "#333"
+  },
+  inputContainerPS: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderColor: "#E9E9E9",
+    borderRadius: 36,
+    borderWidth: 1,
+    paddingHorizontal: 19,
+    marginBottom: 32,
+  },
+  inputIconPS: {
+    width: 22,
+    height: 22,
+    marginRight: 13,
+  },
+  inputPS: {
+    color: "#272727",
+    fontSize: 16,
+    flex: 1,
+    paddingVertical: 15,
+  },
+  passwordTextPS: {
+    color: "#272727",
+    fontSize: 16,
+  },
+  changeButton: {
+    width: 106,
+    alignItems: "center",
+    backgroundColor: "#0373F3",
+    borderRadius: 19,
+    paddingVertical: 13,
+  },
+  changeButtonText: {
+    color: "#FFFFFF",
+    fontSize: 16,
+  },
+  saveButtonPS: {
+    alignItems: "center",
+    backgroundColor: "#0373F3",
+    borderRadius: 36,
+    paddingVertical: 19,
+  },
+  saveButtonTextPS: {
+    color: "#FFFFFF",
+    fontSize: 16,
+  },
+  iconPS: {
+    width: 17,
+    height: 14,
+    resizeMode: "contain", // Asegura que se escale correctamente
+  },
+  profileImage: {
+    width: 83,
+    height: 91,
+    borderRadius: 145,
+  },
+  inputIconPS: {
+    width: 22,
+    height: 22,
+    resizeMode: "contain",
+  },
+  darkContainerPS: { 
+    backgroundColor: "#000" 
+  },
+  profileImageContainerPS: { 
+    position: "relative", 
+    alignItems: "center", 
+    justifyContent: "center", 
+  },
+  cameraIconContainerPS: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    backgroundColor: "#000",
+    borderRadius: 15,
+    padding: 5,
+  },
+  darkTextPS: { 
+    color: "#fff" 
+  },
+  darkInputContainerPS: { 
+    borderColor: "#555", 
+    backgroundColor: "#222" 
+  },
+  inputPS: { 
+    flex: 1, 
+    fontSize: 16, 
+    color: "#000" 
+  },
+  darkButtonPS: { 
+    backgroundColor: "#444"
+  },
+  saveButtonTextPS: { 
+    color: "#fff", 
+    fontSize: 16, 
+    fontWeight: "bold" 
+  },
+  darkButtonTextPS: { 
+    color: "#ddd" 
+  },
 });
-
-
 
 export default MainStyles;
