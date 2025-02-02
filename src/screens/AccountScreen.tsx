@@ -107,7 +107,6 @@ const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
                 color: isDarkMode ? "#fff" : "#000", 
                 textAlign: "center",
                 fontSize: 24,
-                marginBottom: 20,
                 fontWeight: "600"
               }
             ]}
