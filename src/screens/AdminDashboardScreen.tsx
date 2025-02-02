@@ -11,8 +11,11 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MainStyles from '../styles/MainStyles';
 import axios from 'axios';
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../types/types";
 
 const AdmindashboardScreen: React.FC = (): JSX.Element => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const [recentActivity, setRecentActivity] = useState<any[]>([]);
   const [events, setEvents] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -100,7 +103,9 @@ const AdmindashboardScreen: React.FC = (): JSX.Element => {
                 onChangeText={setSearchQuery}
               />
               <TouchableOpacity style={MainStyles.buttonnADS}>
-                <Text style={MainStyles.buttonTextHiS}>Add New</Text>
+                <Text style={MainStyles.buttonTextHiS}
+                onPress={() => navigation.navigate("AddFestivityScreen")}
+                >Add New</Text>
               </TouchableOpacity>
             </View>
           </View>
