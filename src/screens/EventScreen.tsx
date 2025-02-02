@@ -7,10 +7,9 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import MainStyles from "../styles/MainStyles";
-import { NavigationProp } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../types/types";
 
 const EventScreen: React.FC = (): JSX.Element => {
