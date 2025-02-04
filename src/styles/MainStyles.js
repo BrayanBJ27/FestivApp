@@ -84,7 +84,7 @@ const MainStyles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
     width: "98%", // Asegura el ancho total del contenedor
-    paddingHorizontal: 20, // Añade algo de espacio a los lados
+    paddingHorizontal: 15, // Añade algo de espacio a los lados
   },
   
   continueSIButton: {
@@ -148,7 +148,7 @@ const MainStyles = StyleSheet.create({
     color: "#000",
   },
   appleButton: {
-    width: 340,
+    width: 310,
     height: 54,
     backgroundColor: "#1f1f1f",
     borderRadius: 36,
@@ -159,7 +159,7 @@ const MainStyles = StyleSheet.create({
     justifyContent: "center",
   },
   facebookButton: {
-    width: 340,
+    width: 310,
     height: 54,
     backgroundColor: "#3b5896",
     borderRadius: 36,
@@ -170,7 +170,7 @@ const MainStyles = StyleSheet.create({
     justifyContent: "center",
   },
   googleButton: {
-    width: 340,
+    width: 310,
     height: 54,
     backgroundColor: "#fff9f9",
     borderRadius: 36,
@@ -272,6 +272,39 @@ const MainStyles = StyleSheet.create({
       color: "#fff", // Texto en blanco
       fontSize: 16, // Tamaño de fuente
       fontWeight: "bold", // Negrita
+    },
+    inputContainer: {
+      width: "90%", // Se adapta al tamaño de la pantalla
+      height: 50,
+      borderRadius: 36,
+      borderWidth: 1,
+      borderColor: "#e9e9e9",
+      marginTop: 18,
+      alignSelf: "center", // Centrado en la pantalla
+      flexDirection: "row", // Elementos en la misma línea
+      alignItems: "center", // Alineados verticalmente
+      paddingHorizontal: 15, // Espacio dentro del input
+      backgroundColor: "#FFF", // Fondo blanco para visibilidad
+    },
+    
+    textInput: {
+      flex: 1, // Ocupa todo el espacio disponible
+      height: "100%",
+      fontSize: 16,
+      color: "#000",
+      paddingLeft: 45, // Espacio para el ícono de la izquierda
+    },
+    
+    inputIcon: {
+      position: "absolute",
+      left: 15, // Ubicado en el lado izquierdo dentro del input
+      zIndex: 10, // Para asegurarse de que esté encima del input
+    },
+    
+    eyeIconContainer: {
+      position: "absolute",
+      right: 15, // Ubicado en el lado derecho dentro del input
+      zIndex: 10,
     },
   
 
@@ -1863,20 +1896,26 @@ const MainStyles = StyleSheet.create({
     left: 15, // Coloca el ícono dentro del input
     top: 15,
   },
+// profile
 
-  // PROFILE SCREEN
+
+  // Contenedor principal
   containerPS: {
     flex: 1,
     backgroundColor: "#FFFFFF",
   },
+  darkContainerPS: { 
+    backgroundColor: "#121212", // Un negro menos agresivo
+  },
   scrollViewPS: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
     paddingHorizontal: 23,
     padding: 20,
   },
+
+  // Header y perfil
   profileHeaderPS: {
-    flexDirection: "colum",
+    flexDirection: "column",
     alignItems: "center",
     marginBottom: 20,
   },
@@ -1890,92 +1929,20 @@ const MainStyles = StyleSheet.create({
     fontSize: 26,
     textAlign: "center",
   },
-  profileImagePS: {
-    width: 100,
-    height: 100,
+  darkTextPS: { 
+    color: "#FFFFFF", // Mejor contraste en modo oscuro
   },
-  iconPS: {
-    width: 17,
-    height: 14,
-    marginBottom: 46,
-    marginLeft: 3,
-  },
-  labelPS: {
-    color: "#ADADAD",
-    fontSize: 14,
-    marginBottom: 10,
-    fontSize: 16, 
-    fontWeight: "bold", 
-    marginBottom: 5, 
-    color: "#333"
-  },
-  inputContainerPS: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderColor: "#E9E9E9",
-    borderRadius: 36,
-    borderWidth: 1,
-    paddingHorizontal: 19,
-    marginBottom: 32,
-  },
-  inputIconPS: {
-    width: 22,
-    height: 22,
-    marginRight: 13,
-  },
-  inputPS: {
-    color: "#272727",
-    fontSize: 16,
-    flex: 1,
-    paddingVertical: 15,
-  },
-  passwordTextPS: {
-    color: "#272727",
-    fontSize: 16,
-  },
-  changeButton: {
-    width: 106,
-    alignItems: "center",
-    backgroundColor: "#0373F3",
-    borderRadius: 19,
-    paddingVertical: 13,
-  },
-  changeButtonText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-  },
-  saveButtonPS: {
-    alignItems: "center",
-    backgroundColor: "#0373F3",
-    borderRadius: 36,
-    paddingVertical: 19,
-  },
-  saveButtonTextPS: {
-    color: "#FFFFFF",
-    fontSize: 16,
-  },
-  iconPS: {
-    width: 17,
-    height: 14,
-    resizeMode: "contain", // Asegura que se escale correctamente
-  },
-  profileImage: {
-    width: 83,
-    height: 91,
-    borderRadius: 145,
-  },
-  inputIconPS: {
-    width: 22,
-    height: 22,
-    resizeMode: "contain",
-  },
-  darkContainerPS: { 
-    backgroundColor: "#000" 
-  },
+
+  // Imagen de perfil y cámara
   profileImageContainerPS: { 
     position: "relative", 
     alignItems: "center", 
     justifyContent: "center", 
+  },
+  profileImagePS: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
   },
   cameraIconContainerPS: {
     position: "absolute",
@@ -1985,20 +1952,51 @@ const MainStyles = StyleSheet.create({
     borderRadius: 15,
     padding: 5,
   },
-  darkTextPS: { 
-    color: "#fff" 
+
+  // Estilos de etiqueta (Nick name, Email, Password)
+  labelPS: {
+    fontSize: 16, 
+    fontWeight: "bold", 
+    marginBottom: 5, 
+    color: "#333" 
+  },
+  darkLabelPS: { 
+    color: "#ddd" // Texto gris claro para modo oscuro
+  },
+
+  // Inputs
+  inputContainerPS: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderColor: "#E9E9E9",
+    borderRadius: 36,
+    borderWidth: 1,
+    paddingHorizontal: 19,
+    marginBottom: 20,
+    backgroundColor: "#F5F5F5",
   },
   darkInputContainerPS: { 
-    borderColor: "#555", 
-    backgroundColor: "#222" 
+    backgroundColor: "#333", // En lugar de negro puro
+    borderColor: "#555", // Borde más visible
   },
   inputPS: { 
     flex: 1, 
     fontSize: 16, 
     color: "#000" 
   },
+  darkInputPS: { 
+    color: "#FFF" // Mejor legibilidad en modo oscuro
+  },
+
+  // Botón de guardar
+  saveButtonPS: {
+    alignItems: "center",
+    backgroundColor: "#0373F3",
+    borderRadius: 36,
+    paddingVertical: 19,
+  },
   darkButtonPS: { 
-    backgroundColor: "#444"
+    backgroundColor: "#0044CC" // Azul más oscuro en modo dark
   },
   saveButtonTextPS: { 
     color: "#fff", 
@@ -2006,41 +2004,391 @@ const MainStyles = StyleSheet.create({
     fontWeight: "bold" 
   },
   darkButtonTextPS: { 
-    color: "#ddd" 
+    color: "#FFF" 
   },
-  //currency
-  container: {
+// visited destinations 
+
+
+  safeAreaHiS: {
     flex: 1,
+    backgroundColor: "#FFFFFF",
+  },
+  darkSafeAreaHiS: {
+    backgroundColor: "#121212",
+  },
+  containerHiS: {
+    flex: 1,
+    backgroundColor: "#F5F5F5",
     padding: 20,
   },
-  headerText: {  // 
-    fontSize: 22,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 10,
+  darkContainerHiS: {
+    backgroundColor: "#121212",
   },
-  input: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginBottom: 12,
-    paddingHorizontal: 8,
-  },
-  button: {
-    backgroundColor: "blue",
-    padding: 10,
+
+  // **FILTRO DE CIUDADES**
+  cityFilterContainerHiS: {
+    flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
+    flexWrap: "wrap",
+    gap: 10,
+    marginVertical: 10,
   },
-  buttonText: {
-    color: "white",
-    fontSize: 18,
+  cityFilterHiS: {
+    backgroundColor: "#EAEAEA",
+    paddingHorizontal: 15,
+    paddingVertical: 8,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: "#ccc",
   },
-  resultText: {  // 
-    fontSize: 22,
-    fontWeight: "bold",
-    textAlign: "center",
+  darkCityFilterHiS: {
+    backgroundColor: "#333",
+    borderColor: "#555",
+  },
+  cityFilterTextHiS: {
+    fontSize: 14,
+    color: "#000",
+  },
+  darkCityFilterTextHiS: {
+    color: "#FFF",
+  },
+
+  // **TABS DE DÍAS**
+  dayTabsContainerHiS: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    flexWrap: "wrap",
+    gap: 10,
+    marginVertical: 15,
+  },
+  darkDayTabsContainerHiS: {
+    backgroundColor: "transparent",
+  },
+  dayTabHiS: {
+    paddingVertical: 8,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    backgroundColor: "#EAEAEA",
+    borderWidth: 1,
+    borderColor: "#ccc",
+  },
+  darkDayTabHiS: {
+    backgroundColor: "#555",
+    borderColor: "#777",
+  },
+  dayTabTextHiS: {
+    fontSize: 14,
+    color: "#000",
+  },
+  darkDayTabTextHiS: {
+    color: "#FFF",
+  },
+
+  // **LÍNEA DE TIEMPO DESTINOS**
+  timelineContainerHiS: {
     marginTop: 20,
   },
+  destinationItemHiS: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 15,
+    backgroundColor: "#FFF",
+    padding: 15,
+    borderRadius: 12,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+  },
+  darkDestinationItemHiS: {
+    backgroundColor: "#333",
+    borderColor: "#555",
+    borderWidth: 1,
+  },
+  destinationContentHiS: {
+    flex: 1,
+  },
+  destinationNameHiS: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#000",
+  },
+  darkDestinationNameHiS: {
+    color: "#FFF",
+  },
+  destinationLocationHiS: {
+    fontSize: 14,
+    color: "#666",
+  },
+  darkDestinationLocationHiS: {
+    color: "#CCC",
+  },
+
+  // **HORA DEL DESTINO**
+  timeTextHiS: {
+    fontSize: 14,
+    color: "#666",
+  },
+  darkTimeTextHiS: {
+    color: "#BBB",
+  },
+
+  // **INDICADOR DE VISITADO/NO VISITADO**
+  timelineDotHiS: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: "#007AFF",
+    marginTop: 5,
+  },
+  visitedDotHiS: {
+    backgroundColor: "#28A745",
+  },
+  unvisitedDotHiS: {
+    backgroundColor: "#DC3545",
+  },
+
+  // **BOTÓN PRINCIPAL**
+  buttonHiS: {
+    backgroundColor: "#007AFF",
+    paddingVertical: 12,
+    borderRadius: 30,
+    alignItems: "center",
+    marginTop: 20,
+  },
+  darkButtonPS: {
+    backgroundColor: "#005FCC",
+  },
+  buttonTextHiS: {
+    fontSize: 16,
+    color: "#FFF",
+    fontWeight: "bold",
+  },
+  darkButtonTextPS: {
+    color: "#FFF",
+  },
+
+  // **HEADER**
+headerHiS: {
+  flexDirection: "row",
+  alignItems: "center",
+  paddingVertical: 15,
+  paddingHorizontal: 10,
+},
+headerTextHiS: {
+  fontSize: 20,
+  fontWeight: "bold",
+  color: "#000",
+},
+darkHeaderTextHiS: {
+  color: "#FFF", // Para que el texto del header sea blanco en modo oscuro
+},
+// **FILTRO DE CIUDADES**
+filterScrollHiS: {
+  paddingVertical: 10,
+  backgroundColor: "#F5F5F5", // Color claro en modo normal
+},
+darkFilterScrollHiS: {
+  backgroundColor: "#222", // Fondo oscuro en modo oscuro
+},
+
+//currency
+  
+currencyScroll: {
+  flexDirection: "row",
+  marginVertical: 10,
+},
+currencyButton: {
+  backgroundColor: "#EAEAEA",
+  paddingHorizontal: 15,
+  paddingVertical: 8,
+  borderRadius: 20,
+  marginHorizontal: 5,
+},
+darkCurrencyButton: {
+  backgroundColor: "#333", // Fondo oscuro en modo dark
+},
+currencyButtonActive: {
+  backgroundColor: "#007AFF", // Color azul cuando está activo
+},
+currencyButtonText: {
+  fontSize: 14,
+  color: "#000",
+},
+darkCurrencyButtonText: {
+  color: "#FFF", // Texto blanco en modo oscuro
+},
+currencyButtonTextActive: {
+  color: "#FFF", // Texto blanco cuando está seleccionado
+},
+label: {
+  fontSize: 16,
+  fontWeight: "bold",
+  color: "#000", // Color en modo claro
+  marginBottom: 5,
+},
+darkLabel: {
+  color: "#FFF", // Color blanco en modo oscuro
+},
+
+// currencyyyyy 
+container: {
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center",
+  padding: 20,
+  backgroundColor: "#FFFFFF",
+},
+darkContainer: {
+  backgroundColor: "#000000",
+},
+
+// **TÍTULO**
+title: {
+  fontSize: 24,
+  fontWeight: "bold",
+  marginBottom: 20,
+  color: "#000",
+},
+darkTitle: {
+  color: "#FFFFFF",
+},
+
+// **INPUT DE MONTO**
+inputContainer: {
+  flexDirection: "row",
+  alignItems: "center",
+  width: "100%",
+  padding: 10,
+  borderWidth: 1,
+  borderRadius: 8,
+  borderColor: "#ccc",
+  backgroundColor: "#F5F5F5",
+  marginBottom: 15,
+},
+darkInputContainer: {
+  borderColor: "#555",
+  backgroundColor: "#222",
+},
+input: {
+  flex: 1,
+  height: 40,
+  fontSize: 16,
+  color: "#000",
+},
+darkInput: {
+  color: "#FFF",
+},
+icon: {
+  marginRight: 10,
+},
+
+// **BOTÓN PRINCIPAL**
+button: {
+  width: "100%",
+  paddingVertical: 15,
+  borderRadius: 10,
+  backgroundColor: "#007AFF",
+  alignItems: "center",
+  marginBottom: 15,
+},
+darkButton: {
+  backgroundColor: "#444",
+},
+buttonText: {
+  fontSize: 16,
+  fontWeight: "bold",
+  color: "#FFFFFF",
+},
+darkButtonText: {
+  color: "#FFFFFF",
+},
+
+// **RESULTADOS DE CONVERSIÓN**
+resultsContainer: {
+  width: "100%",
+  padding: 15,
+  borderRadius: 10,
+  backgroundColor: "#EAEAEA",
+  marginTop: 15,
+},
+darkResultsContainer: {
+  backgroundColor: "#333",
+},
+resultTitle: {
+  fontSize: 18,
+  fontWeight: "bold",
+  marginBottom: 10,
+  color: "#000",
+},
+darkResultTitle: {
+  color: "#FFF",
+},
+resultRow: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  marginBottom: 5,
+},
+resultText: {
+  fontSize: 16,
+  color: "#000",
+},
+darkResultText: {
+  color: "#FFF",
+},
+resultValue: {
+  fontSize: 16,
+  fontWeight: "bold",
+  color: "#000",
+},
+darkResultValue: {
+  color: "#FFF",
+},
+resultsContainer: {
+  width: "100%",
+  padding: 15,
+  borderRadius: 10,
+  backgroundColor: "#EAEAEA", // Fondo claro en modo normal
+  marginTop: 15,
+},
+darkResultsContainer: {
+  backgroundColor: "#222", // Cambia el fondo a un tono oscuro
+  borderWidth: 1,
+  borderColor: "#444",
+},
+resultTitle: {
+  fontSize: 18,
+  fontWeight: "bold",
+  marginBottom: 10,
+  color: "#000",
+},
+darkResultTitle: {
+  color: "#FFF",
+},
+resultRow: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  marginBottom: 5,
+},
+resultText: {
+  fontSize: 16,
+  color: "#000",
+},
+darkResultText: {
+  color: "#FFF",
+},
+resultValue: {
+  fontSize: 16,
+  fontWeight: "bold",
+  color: "#000",
+},
+darkResultValue: {
+  color: "#FFF",
+},
+
+
 
 });
 

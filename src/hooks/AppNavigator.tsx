@@ -20,6 +20,7 @@ import HelpCenterScreen from "../screens/HelpCenterScreen";
 import ProfileSettings from "../screens/ProfileSettings";
 import AdminDashboardScreen from '../screens/AdminDashboardScreen';
 import AddFestivityScreen from '../screens/AddFestivityScreen';
+import CurrencyScreen from "../screens/CurrencyScreen";
 
 // Define las rutas del stack navigator
 export type RootStackParamList = {
@@ -38,6 +39,7 @@ export type RootStackParamList = {
   ProfileSettings: undefined;
   AdminDashboard: undefined;
   AddFestivityScreen: undefined;
+  CurrencyScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -64,6 +66,7 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen name="TermsScreen" component={TermsScreen} options={{ headerShown: true, title: "Terms of Services" }} />
         <Stack.Screen name="HelpCenterScreen" component={HelpCenterScreen} options={{ headerShown: true, title: "Help Center" }} />
         <Stack.Screen name="ProfileSettings" component={ProfileSettings} options={{ headerShown: true, title: "Profile Settings" }} />
+        <Stack.Screen name="CurrencyScreen" component={CurrencyScreen} options={{ headerShown: true, title: "Currency" }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
