@@ -121,6 +121,7 @@ const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
           {renderButton("Terms of Services", "file-lines", () => navigation.navigate("TermsScreen"))}
           {renderButton("Help Center", "circle-question", () => navigation.navigate("HelpCenterScreen"))}
           {renderButton("Profile", "user", () => navigation.navigate("ProfileSettings"))}
+          {renderButton("Currency", "circle-question", () => navigation.navigate("CurrencyScreen"))}
 
           {renderDarkModeToggle()}
           {renderButton("Log Out", "right-from-bracket", () =>

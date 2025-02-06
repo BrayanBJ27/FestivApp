@@ -109,47 +109,44 @@ const ProfileSettings: React.FC = () => {
             <Text style={[MainStyles.profileNamePS, isDarkMode && MainStyles.darkTextPS]}>{nickname}</Text>
           </View>
         </View>
+        <Text style={[MainStyles.labelPS, isDarkMode && MainStyles.darkLabelPS]}>Nick name</Text>
+<View style={[MainStyles.inputContainerPS, isDarkMode && MainStyles.darkInputContainerPS]}>
+  <TextInput
+    placeholder="Edit Nickname"
+    value={newNickname}
+    onChangeText={setNewNickname}
+    style={[MainStyles.inputPS, isDarkMode && MainStyles.darkInputPS]}
+    placeholderTextColor={isDarkMode ? "#bbb" : "#000"}
+  />
+</View>
 
-        {/* Nickname Input */}
-        <Text style={[MainStyles.labelPS, isDarkMode && MainStyles.darkTextPS]}>Nick name</Text>
-        <View style={[MainStyles.inputContainerPS, isDarkMode && MainStyles.darkInputContainerPS]}>
-          <TextInput
-            placeholder="Edit Nickname"
-            value={newNickname}
-            onChangeText={setNewNickname}
-            style={[MainStyles.inputPS, isDarkMode && MainStyles.darkTextPS]}
-            placeholderTextColor={isDarkMode ? "#bbb" : "#000"}
-          />
-        </View>
+{/* Email Input */}
+<Text style={[MainStyles.labelPS, isDarkMode && MainStyles.darkLabelPS]}>E-mail address</Text>
+<View style={[MainStyles.inputContainerPS, isDarkMode && MainStyles.darkInputContainerPS]}>
+  <TextInput
+    placeholder="Enter your email"
+    value={email}
+    onChangeText={setEmail}
+    style={[MainStyles.inputPS, isDarkMode && MainStyles.darkInputPS]}
+    placeholderTextColor={isDarkMode ? "#bbb" : "#000"}
+  />
+</View>
 
-        {/* Email Input */}
-        <Text style={[MainStyles.labelPS, isDarkMode && MainStyles.darkTextPS]}>E-mail address</Text>
-        <View style={[MainStyles.inputContainerPS, isDarkMode && MainStyles.darkInputContainerPS]}>
-          <TextInput
-            placeholder="Enter your email"
-            value={email}
-            onChangeText={setEmail}
-            style={[MainStyles.inputPS, isDarkMode && MainStyles.darkTextPS]}
-            placeholderTextColor={isDarkMode ? "#bbb" : "#000"}
-          />
-        </View>
-
-        {/* Password Input */}
-        <Text style={[MainStyles.labelPS, isDarkMode && MainStyles.darkTextPS]}>Password</Text>
-        <View style={[MainStyles.inputContainerPS, isDarkMode && MainStyles.darkInputContainerPS]}>
-          <TextInput
-            secureTextEntry={!isPasswordVisible}
-            placeholder="Enter your password"
-            value={password}
-            onChangeText={setPassword}
-            style={[MainStyles.inputPS, isDarkMode && MainStyles.darkTextPS]}
-            placeholderTextColor={isDarkMode ? "#bbb" : "#000"}
-          />
-          <TouchableOpacity onPress={() => setIsPasswordVisible(!isPasswordVisible)}>
-            <Icon name={isPasswordVisible ? "eye-slash" : "eye"} size={20} color={isDarkMode ? "#bbb" : "#000"} />
-          </TouchableOpacity>
-        </View>
-
+{/* Password Input */}
+<Text style={[MainStyles.labelPS, isDarkMode && MainStyles.darkLabelPS]}>Password</Text>
+<View style={[MainStyles.inputContainerPS, isDarkMode && MainStyles.darkInputContainerPS]}>
+  <TextInput
+    secureTextEntry={!isPasswordVisible}
+    placeholder="Enter your password"
+    value={password}
+    onChangeText={setPassword}
+    style={[MainStyles.inputPS, isDarkMode && MainStyles.darkInputPS]}
+    placeholderTextColor={isDarkMode ? "#bbb" : "#000"}
+  />
+  <TouchableOpacity onPress={() => setIsPasswordVisible(!isPasswordVisible)}>
+    <Icon name={isPasswordVisible ? "eye-slash" : "eye"} size={20} color={isDarkMode ? "#bbb" : "#000"} />
+  </TouchableOpacity>
+</View>
         {/* Save Button */}
         <TouchableOpacity style={[MainStyles.saveButtonPS, isDarkMode && MainStyles.darkButtonPS]} onPress={saveSettings}>
           <Text style={[MainStyles.saveButtonTextPS, isDarkMode && MainStyles.darkButtonTextPS]}>Save Settings</Text>
