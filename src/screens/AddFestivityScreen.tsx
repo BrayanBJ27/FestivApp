@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import {
   View,
@@ -16,6 +16,25 @@ import axios from 'axios';
 import { launchImageLibrary, PhotoQuality } from 'react-native-image-picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import NewFestivalTypeModal from '../components/NewFestivalTypeModal';
+import { Picker } from '@react-native-picker/picker';
+
+// Primero, definimos la interfaz para el tipo de festival
+interface FestivalType {
+  id_festival_type: number;
+  name_FType: string;
+  description_FType?: string; // El ? indica que es opcional
+}
+
+interface FormData {
+  name: string;
+  description: string;
+  startDate: Date;
+  endDate: Date;
+  location: string;
+  image: Blob | string; // Puede ser Blob cuando se sube o string vacío inicialmente
+  festivalType: string;
+}
 
 const AddFestivityScreen: React.FC = (): JSX.Element => {
   const [formData, setFormData] = useState({
@@ -25,11 +44,42 @@ const AddFestivityScreen: React.FC = (): JSX.Element => {
     endDate: new Date(),
     location: '',
     image: '',
+    festivalType: '',
   });
 
+  const [festivalTypes, setFestivalTypes] = useState<FestivalType[]>([]);
+  const [isTypeModalVisible, setIsTypeModalVisible] = useState(false);
   const [openStartDate, setOpenStartDate] = useState(false);
   const [openEndDate, setOpenEndDate] = useState(false);
   const [imageUri, setImageUri] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchFestivalTypes();
+  }, []);
+
+  const fetchFestivalTypes = async () => {
+    try {
+      const response = await axios.get('/api/festival-types');
+      setFestivalTypes(response.data);
+    } catch (error) {
+      console.error('Error fetching festival types:', error);
+      Alert.alert('Error', 'Could not fetch festival types');
+    }
+  };
+
+  const handleAddNewType = async (name: string, description: string) => {
+    try {
+      const response = await axios.post('/api/festival-types', {
+        name_FType: name,
+        description_FType: description,
+      });
+      await fetchFestivalTypes();
+      Alert.alert('Success', 'New festival type added successfully');
+    } catch (error) {
+      console.error('Error adding new festival type:', error);
+      Alert.alert('Error', 'Could not add new festival type');
+    }
+  };
 
   const handleImageSelect = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -150,7 +200,33 @@ const AddFestivityScreen: React.FC = (): JSX.Element => {
               )}
             </View>
           </View>
-
+          <Text style={MainStyles.labelAFS}>Festival Type</Text>
+          <View style={MainStyles.festivalTypeContainerAFS}>
+            <View style={MainStyles.pickerContainerAFS}>
+              <Picker
+                selectedValue={formData.festivalType}
+                style={MainStyles.pickerAFS}
+                onValueChange={(itemValue) =>
+                  setFormData({ ...formData, festivalType: itemValue })
+                }
+              >
+                <Picker.Item label="Select a type" value="" />
+                {festivalTypes.map((type) => (
+                  <Picker.Item
+                    key={type.id_festival_type}
+                    label={type.name_FType}
+                    value={type.id_festival_type}
+                  />
+                ))}
+              </Picker>
+            </View>
+            <TouchableOpacity
+              style={MainStyles.addTypeButtonAFS}
+              onPress={() => setIsTypeModalVisible(true)}
+            >
+              <Icon name="plus-circle" size={24} color="#00CEC9" />
+            </TouchableOpacity>
+          </View>
           <Text style={MainStyles.labelAFS}>Location</Text>
           <View style={MainStyles.locationInputAFS}>
           <TextInput
@@ -199,6 +275,11 @@ const AddFestivityScreen: React.FC = (): JSX.Element => {
           </View>
         </View>
       </ScrollView>
+      <NewFestivalTypeModal
+        visible={isTypeModalVisible}
+        onClose={() => setIsTypeModalVisible(false)}
+        onSave={handleAddNewType}
+      />
     </SafeAreaView>
   );
 };
