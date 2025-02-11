@@ -3,21 +3,26 @@ import { ScrollView, View, Text, TextInput, TouchableOpacity, Image, Alert } fro
 import Icon from "react-native-vector-icons/FontAwesome6";
 import MainStyles from "../styles/MainStyles";
 import { useNavigation } from "@react-navigation/native";
-import { useUser } from "../hooks/UserContext"; // Importa el contexto del usuario
+import { useUser } from "../hooks/UserContext";
+import axios from "axios";
+
+// Configure backend URL with your local IP
+const BACKEND_URL = "http://192.168.100.11:3000";
 
 export default function SignUpScreen() {
-  const { setUser, registeredUsers } = useUser(); // Accede al contexto del usuario
+  const { setUser } = useUser();
   const navigation = useNavigation();
-
+  const isPasswordMatch = () => password === repeatPassword;
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [isRepeatPasswordVisible, setRepeatPasswordVisible] = useState(false);
-  const [isSelected, setSelection] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSignUp = () => {
-    if (!email || !password || !repeatPassword) {
+  const handleSignUp = async () => {
+    if (!username || !email || !password || !repeatPassword) {
       Alert.alert("Error", "Please fill in all fields");
       return;
     }
@@ -25,16 +30,27 @@ export default function SignUpScreen() {
       Alert.alert("Error", "Passwords do not match");
       return;
     }
-    if (!isSelected) {
-      Alert.alert("Error", "You must accept the Terms of Service");
-      return;
-    }
 
-    const newUser = { email, password, role: "user" };
-    registeredUsers.push(newUser); // Agrega el nuevo usuario al listado
-    setUser(newUser); // Establece el usuario actual
-    Alert.alert("Success", "Account created successfully!");
-    navigation.navigate("Home");
+    setLoading(true);
+    try {
+      const response = await axios.post(`${BACKEND_URL}/auth/register`, {
+        name: username,
+        email,
+        password,
+      });
+
+      if (response.data.success) {
+        Alert.alert("Success", "Account created successfully!");
+        navigation.navigate("Login");
+      } else {
+        Alert.alert("Error", response.data.error || "Registration failed");
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      Alert.alert("Error", "Could not connect to the server");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -49,6 +65,7 @@ export default function SignUpScreen() {
         </View>
 
         <Text style={MainStyles.signUpTitle}>Sign up FestivApp</Text>
+        
         {/* Nickname Input */}
         <View style={MainStyles.inputContainer}>
           <Icon name="id-card-clip" size={20} color="#adadad" style={MainStyles.inputIcon} />
@@ -56,10 +73,12 @@ export default function SignUpScreen() {
             style={MainStyles.textInput}
             placeholder="Nickname"
             placeholderTextColor="#adadad"
-            value={email}
-            onChangeText={(text) => setEmail(text)}
+            value={username}
+            onChangeText={setUsername}
+            editable={!loading}
           />
         </View>
+
         {/* Email Input */}
         <View style={MainStyles.inputContainer}>
           <Icon name="envelope" size={20} color="#adadad" style={MainStyles.inputIcon} />
@@ -68,7 +87,10 @@ export default function SignUpScreen() {
             placeholder="Enter e-mail address"
             placeholderTextColor="#adadad"
             value={email}
-            onChangeText={(text) => setEmail(text)}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            editable={!loading}
           />
         </View>
 
@@ -81,11 +103,14 @@ export default function SignUpScreen() {
             placeholderTextColor="#adadad"
             secureTextEntry={!isPasswordVisible}
             value={password}
-            onChangeText={(text) => setPassword(text)}
+            onChangeText={setPassword}
+            autoCapitalize="none"
+            editable={!loading}
           />
           <TouchableOpacity
             style={MainStyles.eyeIconContainer}
             onPress={() => setPasswordVisible(!isPasswordVisible)}
+            disabled={loading}
           >
             <Icon
               name={isPasswordVisible ? "eye" : "eye-slash"}
@@ -104,11 +129,14 @@ export default function SignUpScreen() {
             placeholderTextColor="#adadad"
             secureTextEntry={!isRepeatPasswordVisible}
             value={repeatPassword}
-            onChangeText={(text) => setRepeatPassword(text)}
+            onChangeText={setRepeatPassword}
+            autoCapitalize="none"
+            editable={!loading}
           />
           <TouchableOpacity
             style={MainStyles.eyeIconContainer}
             onPress={() => setRepeatPasswordVisible(!isRepeatPasswordVisible)}
+            disabled={loading}
           >
             <Icon
               name={isRepeatPasswordVisible ? "eye" : "eye-slash"}
@@ -119,7 +147,11 @@ export default function SignUpScreen() {
         </View>
 
         {/* Continue Button */}
-        <TouchableOpacity style={MainStyles.continueButton} onPress={handleSignUp}>
+        <TouchableOpacity 
+          style={[MainStyles.continueButton, (loading || !isPasswordMatch()) && { opacity: 0.7 }]} 
+          onPress={handleSignUp}
+          disabled={loading || !isPasswordMatch()}
+        >
           <Text style={MainStyles.continueText}>Continue</Text>
         </TouchableOpacity>
       </View>
