@@ -57,8 +57,8 @@ const CurrencyScreen: React.FC = () => {
   };
 
   return (
-    <View style={[MainStyles.container, isDarkMode ? MainStyles.darkContainer : null]}>
-      <Text style={[MainStyles.title, isDarkMode ? MainStyles.darkTitle : null]}>
+    <View style={[MainStyles.container, isDarkMode ? MainStyles.darkContainerCCS : null]}>
+      <Text style={[MainStyles.title, isDarkMode ? MainStyles.darkTitleCCS : null]}>
         Currency Exchange
       </Text>
 
@@ -66,10 +66,10 @@ const CurrencyScreen: React.FC = () => {
         <ActivityIndicator size="large" color={isDarkMode ? "#FFF" : "#000"} />
       ) : (
         <>
-          <View style={[MainStyles.inputContainer, isDarkMode ? MainStyles.darkInputContainer : null]}>
-            <Icon name="money-bill" size={20} color={isDarkMode ? "#FFF" : "#000"} style={MainStyles.icon} />
+          <View style={[MainStyles.inputContainer, isDarkMode ? MainStyles.darkInputContainerCCS : null]}>
+            <Icon name="money-bill" size={20} color={isDarkMode ? "#FFF" : "#000"} style={MainStyles.iconCCS} />
             <TextInput
-              style={[MainStyles.input, isDarkMode ? MainStyles.darkInput : null]}
+              style={[MainStyles.inputCCS, isDarkMode ? MainStyles.darkInputCCS : null]}
               placeholder="Enter amount"
               placeholderTextColor={isDarkMode ? "#BBB" : "#666"}
               keyboardType="numeric"
@@ -80,10 +80,10 @@ const CurrencyScreen: React.FC = () => {
 
           {/* Botón para realizar la conversión */}
           <TouchableOpacity
-            style={[MainStyles.button, isDarkMode ? MainStyles.darkButton : null]}
+            style={[MainStyles.button, isDarkMode ? MainStyles.darkButtonCCS : null]}
             onPress={convertCurrency}
           >
-            <Text style={[MainStyles.buttonText, isDarkMode ? MainStyles.darkButtonText : null]}>
+            <Text style={[MainStyles.buttonText, isDarkMode ? MainStyles.darkButtonTextCCS : null]}>
               Convert to All
             </Text>
           </TouchableOpacity>
@@ -91,27 +91,27 @@ const CurrencyScreen: React.FC = () => {
           {/* Resultados de la conversión */}
           {Object.keys(convertedValues).length > 0 && (
            <View style={[
-            MainStyles.resultsContainer, 
-            isDarkMode ? MainStyles.darkResultsContainer : null
+            MainStyles.resultsContainerCCS, 
+            isDarkMode ? MainStyles.darkResultsContainerCCS : null
           ]}>
             <Text style={[
-              MainStyles.resultTitle, 
-              isDarkMode ? MainStyles.darkResultTitle : null
+              MainStyles.resultTitleCCS, 
+              isDarkMode ? MainStyles.darkResultTitleCCS : null
             ]}>
               Converted Amounts:
             </Text>
           
             {currencies.map((currency) => (
-              <View key={currency} style={MainStyles.resultRow}>
+              <View key={currency} style={MainStyles.resultRowCCS}>
                 <Text style={[
-                  MainStyles.resultText, 
-                  isDarkMode ? MainStyles.darkResultText : null
+                  MainStyles.resultTextCCS, 
+                  isDarkMode ? MainStyles.darkResultTextCCS : null
                 ]}>
                   {currency}:
                 </Text>
                 <Text style={[
-                  MainStyles.resultValue, 
-                  isDarkMode ? MainStyles.darkResultValue : null
+                  MainStyles.resultValueCCS, 
+                  isDarkMode ? MainStyles.darkResultValueCCS : null
                 ]}>
                   {convertedValues[currency]}
                 </Text>
