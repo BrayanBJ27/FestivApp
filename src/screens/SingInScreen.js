@@ -49,7 +49,17 @@ export default function SignUpScreen() {
         </View>
 
         <Text style={MainStyles.signUpTitle}>Sign up FestivApp</Text>
-
+        {/* Nickname Input */}
+        <View style={MainStyles.inputContainer}>
+          <Icon name="id-card-clip" size={20} color="#adadad" style={MainStyles.inputIcon} />
+          <TextInput
+            style={MainStyles.textInput}
+            placeholder="Nickname"
+            placeholderTextColor="#adadad"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
+        </View>
         {/* Email Input */}
         <View style={MainStyles.inputContainer}>
           <Icon name="envelope" size={20} color="#adadad" style={MainStyles.inputIcon} />
