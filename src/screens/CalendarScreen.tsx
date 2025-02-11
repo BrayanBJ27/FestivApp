@@ -16,7 +16,7 @@ import BottomNavbar from "../components/BottomNavbar";
 export default function CalendarScreen() {
   const [selected, setSelected] = useState('');
   const [emailEnabled, setEmailEnabled] = useState(false);
-  const [activeTab, setActiveTab] = useState("Account");
+  const [activeTab, setActiveTab] = useState("Home");
   return (
     <SafeAreaView>
       <ScrollView scrollEnabled={true} contentInsetAdjustmentBehavior="automatic">
