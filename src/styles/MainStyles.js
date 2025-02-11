@@ -1751,6 +1751,27 @@ const MainStyles = StyleSheet.create({
     left: 15, // Coloca el ícono dentro del input
     top: 15,
   },
+  festivalTypeContainerAFS: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  pickerContainerAFS: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+    marginRight: 10,
+  },
+  pickerAFS: {
+    height: 50,
+  },
+  addTypeButtonAFS: {
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
   //EDIT EVENT SCREEN
   safeAreaEFS: {
@@ -2196,68 +2217,68 @@ darkFilterScrollHiS: {
 
 //currency
   
-currencyScroll: {
+currencyScrollCCS: {
   flexDirection: "row",
   marginVertical: 10,
 },
-currencyButton: {
+currencyButtonCCS: {
   backgroundColor: "#EAEAEA",
   paddingHorizontal: 15,
   paddingVertical: 8,
   borderRadius: 20,
   marginHorizontal: 5,
 },
-darkCurrencyButton: {
+darkCurrencyButtonCCS: {
   backgroundColor: "#333", // Fondo oscuro en modo dark
 },
-currencyButtonActive: {
+currencyButtonActiveCCS: {
   backgroundColor: "#007AFF", // Color azul cuando está activo
 },
-currencyButtonText: {
+currencyButtonTextCCS: {
   fontSize: 14,
   color: "#000",
 },
-darkCurrencyButtonText: {
+darkCurrencyButtonTextCCS: {
   color: "#FFF", // Texto blanco en modo oscuro
 },
-currencyButtonTextActive: {
+currencyButtonTextActiveCCS: {
   color: "#FFF", // Texto blanco cuando está seleccionado
 },
-label: {
+labelCCS: {
   fontSize: 16,
   fontWeight: "bold",
   color: "#000", // Color en modo claro
   marginBottom: 5,
 },
-darkLabel: {
+darkLabelCCS: {
   color: "#FFF", // Color blanco en modo oscuro
 },
 
 // currencyyyyy 
-container: {
+containerCCS: {
   flex: 1,
   justifyContent: "center",
   alignItems: "center",
   padding: 20,
   backgroundColor: "#FFFFFF",
 },
-darkContainer: {
+darkContainerCCS: {
   backgroundColor: "#000000",
 },
 
 // **TÍTULO**
-title: {
+titleCCS: {
   fontSize: 24,
   fontWeight: "bold",
   marginBottom: 20,
   color: "#000",
 },
-darkTitle: {
+darkTitleCCS: {
   color: "#FFFFFF",
 },
 
 // **INPUT DE MONTO**
-inputContainer: {
+inputContainerCCS: {
   flexDirection: "row",
   alignItems: "center",
   width: "100%",
@@ -2268,25 +2289,25 @@ inputContainer: {
   backgroundColor: "#F5F5F5",
   marginBottom: 15,
 },
-darkInputContainer: {
+darkInputContainerCCS: {
   borderColor: "#555",
   backgroundColor: "#222",
 },
-input: {
+inputCCS: {
   flex: 1,
   height: 40,
   fontSize: 16,
   color: "#000",
 },
-darkInput: {
+darkInputCCS: {
   color: "#FFF",
 },
-icon: {
+iconCCS: {
   marginRight: 10,
 },
 
 // **BOTÓN PRINCIPAL**
-button: {
+buttonCCS: {
   width: "100%",
   paddingVertical: 15,
   borderRadius: 10,
@@ -2294,97 +2315,97 @@ button: {
   alignItems: "center",
   marginBottom: 15,
 },
-darkButton: {
+darkButtonCCS: {
   backgroundColor: "#444",
 },
-buttonText: {
+buttonTextCCS: {
   fontSize: 16,
   fontWeight: "bold",
   color: "#FFFFFF",
 },
-darkButtonText: {
+darkButtonTextCCS: {
   color: "#FFFFFF",
 },
 
 // **RESULTADOS DE CONVERSIÓN**
-resultsContainer: {
+resultsContainerCCS: {
   width: "100%",
   padding: 15,
   borderRadius: 10,
   backgroundColor: "#EAEAEA",
   marginTop: 15,
 },
-darkResultsContainer: {
+darkResultsContainerCCS: {
   backgroundColor: "#333",
 },
-resultTitle: {
+resultTitleCCS: {
   fontSize: 18,
   fontWeight: "bold",
   marginBottom: 10,
   color: "#000",
 },
-darkResultTitle: {
+darkResultTitleCCS: {
   color: "#FFF",
 },
-resultRow: {
+resultRowCCS: {
   flexDirection: "row",
   justifyContent: "space-between",
   marginBottom: 5,
 },
-resultText: {
+resultTextCCS: {
   fontSize: 16,
   color: "#000",
 },
-darkResultText: {
+darkResultTextCCS: {
   color: "#FFF",
 },
-resultValue: {
+resultValueCCS: {
   fontSize: 16,
   fontWeight: "bold",
   color: "#000",
 },
-darkResultValue: {
+darkResultValueCCS: {
   color: "#FFF",
 },
-resultsContainer: {
+resultsContainerCCS: {
   width: "100%",
   padding: 15,
   borderRadius: 10,
   backgroundColor: "#EAEAEA", // Fondo claro en modo normal
   marginTop: 15,
 },
-darkResultsContainer: {
+darkResultsContainerCCS: {
   backgroundColor: "#222", // Cambia el fondo a un tono oscuro
   borderWidth: 1,
   borderColor: "#444",
 },
-resultTitle: {
+resultTitleCCS: {
   fontSize: 18,
   fontWeight: "bold",
   marginBottom: 10,
   color: "#000",
 },
-darkResultTitle: {
+darkResultTitleCCS: {
   color: "#FFF",
 },
-resultRow: {
+resultRowCCS: {
   flexDirection: "row",
   justifyContent: "space-between",
   marginBottom: 5,
 },
-resultText: {
+resultTextCCS: {
   fontSize: 16,
   color: "#000",
 },
-darkResultText: {
+darkResultTextCCS: {
   color: "#FFF",
 },
-resultValue: {
+resultValueCCS: {
   fontSize: 16,
   fontWeight: "bold",
   color: "#000",
 },
-darkResultValue: {
+darkResultValueCCS: {
   color: "#FFF",
 },
 
