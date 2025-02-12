@@ -33,24 +33,42 @@ export default function SignUpScreen() {
 
     setLoading(true);
     try {
-      const response = await axios.post(`${BACKEND_URL}/auth/register`, {
+      const response = await axios.post(`${BACKEND_URL}/users/register`, {
         name: username,
         email,
         password,
       });
 
       if (response.data.success) {
-        Alert.alert("Success", "Account created successfully!");
-        navigation.navigate("Login");
-      } else {
-        Alert.alert("Error", response.data.error || "Registration failed");
+            Alert.alert(
+                "¡Succes!", 
+                "Account created successfully!",
+                [
+                    { 
+                        text: "OK", 
+                        onPress: () => navigation.navigate("Login") 
+                    }
+                ]
+            );
+        }
+        } catch (error) {
+          console.error("Error during registration:", error);
+          
+          // Manejar diferentes tipos de errores
+          if (error.response) {
+              // El servidor respondió con un error
+              const errorMessage = error.response.data.error || "Error during registration";
+              Alert.alert("Error", errorMessage);
+          } else if (error.request) {
+              // La petición fue hecha pero no se recibió respuesta
+              Alert.alert("Error", "Could not connect to the server. Please check your connection");
+          } else {
+              // Error en la configuración de la petición
+              Alert.alert("Error", "An unexpected error occurred. Please try again");
+          }
+      } finally {
+          setLoading(false);
       }
-    } catch (error) {
-      console.error("Error during registration:", error);
-      Alert.alert("Error", "Could not connect to the server");
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
