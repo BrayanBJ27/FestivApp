@@ -19,6 +19,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import NewFestivalTypeModal from '../components/NewFestivalTypeModal';
 import { Picker } from '@react-native-picker/picker';
 
+// Configure backend URL with your local IP
+const BACKEND_URL = "http://192.168.100.11:3000";
+
 // Primero, definimos la interfaz para el tipo de festival
 interface FestivalType {
   id_festival_type: number;
@@ -59,8 +62,8 @@ const AddFestivityScreen: React.FC = (): JSX.Element => {
 
   const fetchFestivalTypes = async () => {
     try {
-      const response = await axios.get('/api/festival-types');
-      setFestivalTypes(response.data);
+      const response = await axios.get(`${BACKEND_URL}/typefestival/list`, );
+      setFestivalTypes(response.data.remote);
     } catch (error) {
       console.error('Error fetching festival types:', error);
       Alert.alert('Error', 'Could not fetch festival types');
@@ -69,7 +72,7 @@ const AddFestivityScreen: React.FC = (): JSX.Element => {
 
   const handleAddNewType = async (name: string, description: string) => {
     try {
-      const response = await axios.post('/api/festival-types', {
+      const response = await axios.post(`${BACKEND_URL}/typefestival/register`, {
         name_FType: name,
         description_FType: description,
       });
