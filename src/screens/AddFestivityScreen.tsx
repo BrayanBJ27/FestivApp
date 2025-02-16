@@ -317,7 +317,6 @@ const AddFestivityScreen: React.FC = (): JSX.Element => {
             </View>
           </View>
         </View>
-
           <Text style={MainStyles.labelAFS}>Image</Text>
           <TouchableOpacity
             style={MainStyles.imagePickerAFS}
