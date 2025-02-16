@@ -1650,7 +1650,7 @@ const MainStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#e0e0e0',
     fontSize: 16,
-    height: 120,
+    height: 100,
     textAlignVertical: 'top',
   },
   imagePickerAFS: {
