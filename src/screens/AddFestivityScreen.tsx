@@ -29,23 +29,38 @@ interface FestivalType {
   description_FType?: string; // El ? indica que es opcional
 }
 
+interface Location {
+  id_location: number;
+  city: string;
+  province: string;
+  latitude: number;
+  longitude: number;
+}
+
 interface FormData {
   name: string;
   description: string;
   startDate: Date;
   endDate: Date;
-  location: string;
-  image: Blob | string; // Puede ser Blob cuando se sube o string vacío inicialmente
+  locationId: string; 
+  latitude?: number;
+  longitude?: number;
+  image: Blob | string;
   festivalType: string;
+  selectedProvince: string;
+  selectedCity: string;
 }
-
 const AddFestivityScreen: React.FC = (): JSX.Element => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
+    selectedProvince: '',
+    selectedCity: '',
     name: '',
     description: '',
     startDate: new Date(),
     endDate: new Date(),
-    location: '',
+    locationId: '',
+    latitude: undefined,
+    longitude: undefined,
     image: '',
     festivalType: '',
   });
@@ -55,6 +70,42 @@ const AddFestivityScreen: React.FC = (): JSX.Element => {
   const [openStartDate, setOpenStartDate] = useState(false);
   const [openEndDate, setOpenEndDate] = useState(false);
   const [imageUri, setImageUri] = useState<string | null>(null);
+  const [locations, setLocations] = useState<Location[]>([]);
+  const [provinceList, setProvinceList] = useState<string[]>([]);
+  const [cityList, setCityList] = useState<string[]>([]);
+
+
+  useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        const response = await axios.get(`${BACKEND_URL}/locationsfestivity/list`);
+        const fetchedLocations: Location[] = response.data;
+        setLocations(fetchedLocations);
+        
+        // Extraer provincias únicas de la lista de ubicaciones.
+        const provinces = Array.from(new Set(fetchedLocations.map(loc => loc.province)));
+        setProvinceList(provinces);
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+        // Manejar error (por ejemplo, con un Alert)
+      }
+    };
+
+    fetchLocations();
+  }, []);
+
+  const handleProvinceChange = (province: string) => {
+    setFormData({ ...formData, selectedProvince: province, selectedCity: '' });
+    
+    // Filtrar las ciudades que pertenezcan a la provincia seleccionada.
+    const filteredCities = locations
+      .filter((loc: Location) => loc.province === province)
+      .map((loc: Location) => loc.city);
+    
+    // Extraer solo ciudades únicas.
+    const uniqueCities = Array.from(new Set(filteredCities));
+    setCityList(uniqueCities);
+  };
 
   useEffect(() => {
     fetchFestivalTypes();
@@ -111,7 +162,9 @@ const AddFestivityScreen: React.FC = (): JSX.Element => {
       formDataToSend.append('description', formData.description);
       formDataToSend.append('startDate', formData.startDate.toISOString());
       formDataToSend.append('endDate', formData.endDate.toISOString());
-      formDataToSend.append('location', formData.location);
+      formDataToSend.append('id_location', formData.locationId);
+      formDataToSend.append('latitude', formData.latitude?.toString() || '');
+      formDataToSend.append('longitude', formData.longitude?.toString() || '');
 
       if (imageUri) {
         const response = await fetch(imageUri);
@@ -230,16 +283,39 @@ const AddFestivityScreen: React.FC = (): JSX.Element => {
               <Icon name="plus-circle" size={24} color="#00CEC9" />
             </TouchableOpacity>
           </View>
-          <Text style={MainStyles.labelAFS}>Location</Text>
-          <View style={MainStyles.locationInputAFS}>
-          <TextInput
-            style={MainStyles.inputWithIconAFS}
-            placeholder="Enter festivity location"
-            placeholderTextColor="#666"
-            value={formData.location}
-            onChangeText={(text) => setFormData({ ...formData, location: text })}
-        />
-        <Icon name="map-marker" size={20} color="#00CEC9" style={MainStyles.iconInsideInputAFS} />
+          <View style={MainStyles.locationContainerAFS}>
+            <View style={MainStyles.locationDropdownContainerAFS}>
+              <Text style={MainStyles.labelAFS}>Province</Text>
+              <View style={MainStyles.dropdownContainerAFS}>
+                <Picker
+                  selectedValue={formData.selectedProvince}
+                  style={MainStyles.pickerAFS}
+                  onValueChange={(itemValue) => handleProvinceChange(itemValue)}
+                >
+                  <Picker.Item label="Select province" value="" />
+                  {provinceList.map((province) => (
+                    <Picker.Item key={province} label={province} value={province} />
+                  ))}
+                </Picker>
+              </View>
+            </View>
+
+            <View style={MainStyles.locationDropdownContainerAFS}>
+            <Text style={MainStyles.labelAFS}>City</Text>
+            <View style={MainStyles.dropdownContainerAFS}>
+              <Picker
+                selectedValue={formData.selectedCity}
+                style={MainStyles.pickerAFS}
+                enabled={formData.selectedProvince !== ''}
+                onValueChange={(itemValue) => setFormData({ ...formData, selectedCity: itemValue })}
+              >
+                <Picker.Item label="Select city" value="" />
+                {cityList.map((city) => (
+                  <Picker.Item key={city} label={city} value={city} />
+                ))}
+              </Picker>
+            </View>
+          </View>
         </View>
 
           <Text style={MainStyles.labelAFS}>Image</Text>
