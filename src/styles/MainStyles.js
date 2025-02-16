@@ -1574,6 +1574,9 @@ const MainStyles = StyleSheet.create({
     justifyContent: "space-evenly",
     flex: 1
   },
+  actionButtonADS: {
+    padding: 10,
+  },
   popularFestivityDetailsADS: {
     flexDirection: 'row',
     justifyContent: 'space-between',
