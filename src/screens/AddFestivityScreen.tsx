@@ -50,6 +50,7 @@ interface FormData {
   selectedProvince: string;
   selectedCity: string;
 }
+
 const AddFestivityScreen: React.FC = (): JSX.Element => {
   const [formData, setFormData] = useState<FormData>({
     selectedProvince: '',
@@ -78,34 +79,49 @@ const AddFestivityScreen: React.FC = (): JSX.Element => {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        const response = await axios.get(`${BACKEND_URL}/locationsfestivity/list`);
-        const fetchedLocations: Location[] = response.data;
-        setLocations(fetchedLocations);
+        const response = await axios.get(`${BACKEND_URL}/provinces/list`);
+        const { data } = response.data;
         
-        // Extraer provincias únicas de la lista de ubicaciones.
-        const provinces = Array.from(new Set(fetchedLocations.map(loc => loc.province)));
+        // Aseguramos que provinces sea un array de strings
+        const provinces: string[] = Array.from(
+          new Set(
+            data.map((item: { province: string }) => item.province)
+          )
+        );
+        
         setProvinceList(provinces);
       } catch (error) {
-        console.error('Error fetching locations:', error);
-        // Manejar error (por ejemplo, con un Alert)
+        console.error('Error fetching provinces:', error);
+        Alert.alert('Error', 'Could not fetch provinces');
       }
     };
-
+  
     fetchLocations();
   }, []);
 
-  const handleProvinceChange = (province: string) => {
-    setFormData({ ...formData, selectedProvince: province, selectedCity: '' });
-    
-    // Filtrar las ciudades que pertenezcan a la provincia seleccionada.
-    const filteredCities = locations
-      .filter((loc: Location) => loc.province === province)
-      .map((loc: Location) => loc.city);
-    
-    // Extraer solo ciudades únicas.
-    const uniqueCities = Array.from(new Set(filteredCities));
-    setCityList(uniqueCities);
-  };
+  async function handleProvinceChange(province: string) {
+    setFormData(prev => ({ ...prev, selectedProvince: province, selectedCity: '' }));
+  
+    if (!province) {
+      setCityList([]);
+      return;
+    }
+  
+    try {
+      const response = await axios.get(`${BACKEND_URL}/cities/list`, {
+        params: { province }
+      });
+  
+      const { data } = response.data;
+      // Extraer solo las ciudades del array de objetos
+      const cities = data.map((item: { city: string }) => item.city);
+      setCityList(cities);
+    } catch (error) {
+      console.error('Error fetching cities:', error);
+      Alert.alert('Error', 'Could not fetch cities for the selected province');
+      setCityList([]);
+    }
+  }
 
   useEffect(() => {
     fetchFestivalTypes();
@@ -307,7 +323,9 @@ const AddFestivityScreen: React.FC = (): JSX.Element => {
                 selectedValue={formData.selectedCity}
                 style={MainStyles.pickerAFS}
                 enabled={formData.selectedProvince !== ''}
-                onValueChange={(itemValue) => setFormData({ ...formData, selectedCity: itemValue })}
+                onValueChange={(itemValue) => 
+                  setFormData({ ...formData, selectedCity: itemValue })
+                }
               >
                 <Picker.Item label="Select city" value="" />
                 {cityList.map((city) => (
