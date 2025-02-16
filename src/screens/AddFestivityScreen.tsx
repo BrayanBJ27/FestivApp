@@ -169,38 +169,155 @@ const AddFestivityScreen: React.FC = (): JSX.Element => {
         Alert.alert('Error', 'No se pudo seleccionar la imagen');
       }
     };
-  
 
-  const handleCreateEvent = async () => {
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('description', formData.description);
-      formDataToSend.append('startDate', formData.startDate.toISOString());
-      formDataToSend.append('endDate', formData.endDate.toISOString());
-      formDataToSend.append('id_location', formData.locationId);
-      formDataToSend.append('latitude', formData.latitude?.toString() || '');
-      formDataToSend.append('longitude', formData.longitude?.toString() || '');
-
-      if (imageUri) {
-        const response = await fetch(imageUri);
-        const blob = await response.blob();
-        formDataToSend.append('image', blob, 'image.jpg');
+    const handleCreateFestivity = async () => {
+      try {
+        // Validación inicial de campos requeridos
+        if (!formData.name.trim()) {
+          Alert.alert('Error', 'Please enter a festival name');
+          return;
+        }
+        if (!formData.description.trim()) {
+          Alert.alert('Error', 'Please enter a festival description');
+          return;
+        }
+        if (!formData.festivalType) {
+          Alert.alert('Error', 'Please select a festival type');
+          return;
+        }
+        if (!formData.selectedProvince || !formData.selectedCity) {
+          Alert.alert('Error', 'Please select both province and city');
+          return;
+        }
+    
+        console.log('Starting festival creation process...');
+        console.log('Initial form data:', formData);
+    
+        // Obtener el ID de ubicación
+        const locationUrl = `${BACKEND_URL}/cities/location`;
+        console.log('Fetching location ID from:', locationUrl);
+        
+        const locationResponse = await axios.get(locationUrl, {
+          params: {
+            city: formData.selectedCity,
+            province: formData.selectedProvince
+          }
+        });
+    
+        console.log('Location response:', locationResponse.data);
+    
+        if (!locationResponse.data.id_location) {
+          throw new Error('Location ID not found');
+        }
+    
+        // Procesar la imagen si existe
+        let imageBase64 = '';
+        if (imageUri) {
+          console.log('Processing image...');
+          try {
+            const response = await fetch(imageUri);
+            const blob = await response.blob();
+            
+            imageBase64 = await new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onload = () => {
+                const base64String = reader.result as string;
+                // Extraer solo la parte base64, removiendo el prefijo data:image/...
+                resolve(base64String.split(',')[1]);
+              };
+              reader.onerror = reject;
+              reader.readAsDataURL(blob);
+            });
+            console.log('Image processed successfully');
+          } catch (error) {
+            console.error('Error processing image:', error);
+            Alert.alert('Warning', 'Could not process image, continuing without image');
+          }
+        }
+    
+        // Preparar los datos del festival
+        const festivalData = {
+          name: formData.name.trim(),
+          description: formData.description.trim(),
+          startDate: formData.startDate.toISOString().split('T')[0],
+          endDate: formData.endDate.toISOString().split('T')[0],
+          id_festival_type: Number(formData.festivalType),
+          id_location: locationResponse.data.id_location,
+          image: imageBase64 || null
+        };
+    
+        console.log('Prepared festival data:', {
+          ...festivalData,
+          image: imageBase64 ? '[Image data present]' : 'null'
+        });
+    
+        // Enviar la solicitud para crear el festival
+        const createUrl = `${BACKEND_URL}/festivals/register`;
+        console.log('Sending POST request to:', createUrl);
+    
+        const response = await axios.post(createUrl, festivalData, {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          timeout: 10000 // 10 segundos de timeout
+        });
+    
+        console.log('Server response:', response.data);
+    
+        if (response.data) {
+          Alert.alert('Success', 'Festival created successfully!');
+          
+          // Resetear el formulario
+          setFormData({
+            selectedProvince: '',
+            selectedCity: '',
+            name: '',
+            description: '',
+            startDate: new Date(),
+            endDate: new Date(),
+            locationId: '',
+            latitude: undefined,
+            longitude: undefined,
+            image: '',
+            festivalType: '',
+          });
+          setImageUri(null);
+          setCityList([]);
+        }
+    
+      } catch (error: any) {
+        console.error('Full error object:', error);
+        console.error('Error creating festival:', {
+          message: error.message,
+          status: error.response?.status,
+          data: error.response?.data
+        });
+    
+        // Mensaje de error más detallado para el usuario
+        let errorMessage = 'Failed to create festival';
+        if (error.response) {
+          // Error con respuesta del servidor
+          errorMessage = error.response.data?.error || errorMessage;
+        } else if (error.request) {
+          // Error de red
+          errorMessage = 'Network error. Please check your connection';
+        } else {
+          // Otros errores
+          errorMessage = error.message || errorMessage;
+        }
+    
+        Alert.alert(
+          'Error',
+          errorMessage,
+          [
+            {
+              text: 'OK',
+              onPress: () => console.log('Error alert closed')
+            }
+          ]
+        );
       }
-
-      const response = await axios.post('/api/events', formDataToSend, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      console.log('Event created successfully', response.data);
-      Alert.alert('Success', 'Evento creado correctamente');
-    } catch (error) {
-      console.error('Error creating event:', error);
-      Alert.alert('Error', 'No se pudo crear el evento');
-    }
-  };
+    };
 
   return (
     <SafeAreaView style={MainStyles.safeAreaAFS}>
@@ -364,7 +481,7 @@ const AddFestivityScreen: React.FC = (): JSX.Element => {
 
             <TouchableOpacity
               style={MainStyles.createButtonAFS}
-              onPress={handleCreateEvent}
+              onPress={handleCreateFestivity}
             >
               <Text style={MainStyles.createButtonTextAFS}>Create Festivity</Text>
             </TouchableOpacity>
