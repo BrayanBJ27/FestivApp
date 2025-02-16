@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,18 +7,76 @@ import {
   TextInput,
   ImageBackground,
   ScrollView,
+  Alert,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome6';
 import MainStyles from '../styles/MainStyles';
 import axios from 'axios';
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../types/types";
+import DeleteFestivalModal from '../components/DeleteFestivalModal';
+import useDebounce from '../hooks/useDebounce';
+
+interface Festival {
+  id_festival: number;
+  name_Festival: string;
+  start_date: string;
+  end_date: string;
+  image: string;
+}
+
+const BACKEND_URL = "http://192.168.100.11:3000";
 
 const AdmindashboardScreen: React.FC = (): JSX.Element => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const [recentActivity, setRecentActivity] = useState<any[]>([]);
   const [events, setEvents] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [festivals, setFestivals] = useState<Festival[]>([]);
+  const [filteredFestivals, setFilteredFestivals] = useState<Festival[]>([]);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [selectedFestival, setSelectedFestival] = useState<Festival | null>(null);
+
+  const fetchFestivals = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/festivals/list`);
+      setFestivals(response.data.remote);
+      setFilteredFestivals(response.data.remote);
+    } catch (error) {
+      console.error('Error fetching festivals:', error);
+      Alert.alert('Error', 'Could not fetch festivals');
+    }
+  };
+
+  useEffect(() => {
+    fetchFestivals();
+  }, []);
+
+  // Debounced search
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
+
+  useEffect(() => {
+    const filtered = festivals.filter(festival =>
+      festival.name_Festival.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
+    );
+    setFilteredFestivals(filtered);
+  }, [debouncedSearchQuery, festivals]);
+
+  // Handle delete
+  const handleDelete = async () => {
+    if (!selectedFestival) return;
+
+    try {
+      await axios.delete(`${BACKEND_URL}/festivals/${selectedFestival.id_festival}`);
+      await fetchFestivals();
+      setDeleteModalVisible(false);
+      setSelectedFestival(null);
+      Alert.alert('Success', 'Festival deleted successfully');
+    } catch (error) {
+      console.error('Error deleting festival:', error);
+      Alert.alert('Error', 'Could not delete festival');
+    }
+  };
 
   useEffect(() => {
     axios.get('/api/admin/recent-activity').then((response) => setRecentActivity(response.data));
@@ -57,6 +115,57 @@ const AdmindashboardScreen: React.FC = (): JSX.Element => {
       </ImageBackground>
     </TouchableOpacity>
   );
+
+  // Table section rendering
+  const renderTableSection = () => (
+    <View style={MainStyles.tableContainerADS}>
+      <View style={MainStyles.tableHeaderADS}>
+        <Text style={MainStyles.tableHeaderTextADS}>Photo</Text>
+        <Text style={MainStyles.tableHeaderTextADS}>Name</Text>
+        <Text style={MainStyles.tableHeaderTextADS}>Start Date</Text>
+        <Text style={MainStyles.tableHeaderTextADS}>End Date</Text>
+        <Text style={MainStyles.tableHeaderTextADS}>Actions</Text>
+      </View>
+      {filteredFestivals.map((festival) => (
+        <View key={festival.id_festival} style={MainStyles.tableRowADS}>
+          <View style={{ flex: 1, alignItems: 'center' }}>
+          <ImageBackground
+            style={MainStyles.eventImageADS}
+            source={
+              festival.image
+                ? { uri: `data:image/jpeg;base64,${festival.image}` }
+                : require('../assets/images/oficial_festiapp.png')
+            }
+            resizeMode="cover"
+          />
+          </View>
+          <Text style={MainStyles.tableTextADS}>{festival.name_Festival}</Text>
+          <Text style={MainStyles.tableTextADS}>{new Date(festival.start_date).toLocaleDateString()}</Text>
+          <Text style={MainStyles.tableTextADS}>{new Date(festival.end_date).toLocaleDateString()}</Text>
+          <View style={MainStyles.actionsContainerADS}>
+            <TouchableOpacity 
+              onPress={() => navigation.navigate('EditFestivityScreen', { 
+                festivityId: festival.id_festival 
+              })}
+              style={MainStyles.actionButtonADS}
+            >
+              <Icon name="edit" size={20} color="#007AFF" />
+            </TouchableOpacity>
+            <TouchableOpacity 
+              onPress={() => {
+                setSelectedFestival(festival);
+                setDeleteModalVisible(true);
+              }}
+              style={MainStyles.actionButtonADS}
+            >
+              <Icon name="trash" size={20} color="#FF3B30" />
+            </TouchableOpacity>
+          </View>
+        </View>
+      ))}
+    </View>
+  );
+
 
   return (
     <SafeAreaView style={MainStyles.safeAreaADS}>
@@ -111,34 +220,18 @@ const AdmindashboardScreen: React.FC = (): JSX.Element => {
           </View>
 
           {/* Table Section */}
-          <View style={MainStyles.tableContainerADS}>
-            <View style={MainStyles.tableHeaderADS}>
-              <Text style={MainStyles.tableHeaderTextADS}>Photo</Text>
-              <Text style={MainStyles.tableHeaderTextADS}>Name</Text>
-              <Text style={MainStyles.tableHeaderTextADS}>Date</Text>
-              <Text style={MainStyles.tableHeaderTextADS}>Actions</Text>
-            </View>
-            {filteredEvents.map((event) => (
-              <View key={event.id} style={MainStyles.tableRowADS}>
-                <ImageBackground 
-                  source={{ uri: event.image }} 
-                  style={MainStyles.eventImageADS} 
-                />
-                <Text style={MainStyles.tableTextADS}>{event.name}</Text>
-                <Text style={MainStyles.tableTextADS}>{event.date}</Text>
-                <View style={MainStyles.actionsContainerADS}>
-                  <TouchableOpacity>
-                    <Icon name="edit" size={20} color="#007AFF" />
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <Icon name="trash" size={20} color="#FF3B30" />
-                  </TouchableOpacity>
-                </View>
-              </View>
-            ))}
-          </View>
+          {renderTableSection()}
         </View>
       </ScrollView>
+      <DeleteFestivalModal
+        visible={deleteModalVisible}
+        onClose={() => {
+          setDeleteModalVisible(false);
+          setSelectedFestival(null);
+        }}
+        onConfirm={handleDelete}
+        festivalName={selectedFestival?.name_Festival || ''}
+      />
     </SafeAreaView>
   );
 };
