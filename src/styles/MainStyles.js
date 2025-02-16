@@ -1772,6 +1772,24 @@ const MainStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  locationContainerAFS: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  locationDropdownContainerAFS: {
+    flex: 1,
+    marginHorizontal: 5,
+  },
+  dropdownContainerAFS: {
+    backgroundColor: '#f5f5f5',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+    marginBottom: 20,
+    height: 50,
+    justifyContent: 'center',
+  },
 
   //EDIT EVENT SCREEN
   safeAreaEFS: {
