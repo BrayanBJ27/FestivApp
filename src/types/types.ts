@@ -15,4 +15,7 @@ export type RootStackParamList = {
   AdminDashboard: undefined;
   AddFestivityScreen: undefined;
   CurrencyScreen: undefined
+  EditFestivityScreen: {
+    festivityId: number;
+  };
 };
