@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, initializeAuth, browserLocalPersistence } from "firebase/auth";
-import * as SecureStore from "expo-secure-store";
+import { getAuth, initializeAuth, indexedDBLocalPersistence } from "firebase/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { EXPO_PUBLIC_FIREBASE_API_KEY, EXPO_PUBLIC_FIREBASE_PROJECT_ID } from "@env";
 
 // Configuración de Firebase
@@ -10,26 +10,26 @@ const firebaseConfig = {
   projectId: EXPO_PUBLIC_FIREBASE_PROJECT_ID,
 };
 
-// Inicializar la app de Firebase
+// Inicializar Firebase App
 const app = initializeApp(firebaseConfig);
 
-// Función para manejar el almacenamiento seguro
-const secureStorePersistence = {
+// ✅ Implementar persistencia manualmente usando AsyncStorage
+const reactNativePersistence = {
   type: "LOCAL",
   async getItem(key: string) {
-    return await SecureStore.getItemAsync(key);
+    return await AsyncStorage.getItem(key);
   },
   async setItem(key: string, value: string) {
-    await SecureStore.setItemAsync(key, value);
+    await AsyncStorage.setItem(key, value);
   },
   async removeItem(key: string) {
-    await SecureStore.deleteItemAsync(key);
-  },
+    await AsyncStorage.removeItem(key);
+  }
 };
 
-// Inicializar Auth con persistencia en SecureStore
+// ✅ Inicializar Firebase Auth con persistencia en AsyncStorage
 const auth = initializeAuth(app, {
-  persistence: browserLocalPersistence,
+  persistence: indexedDBLocalPersistence, // Para compatibilidad con Firebase 11+
 });
 
 export { auth };
