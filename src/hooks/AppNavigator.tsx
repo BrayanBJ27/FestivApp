@@ -22,6 +22,7 @@ import AdminDashboardScreen from '../screens/AdminDashboardScreen';
 import AddFestivityScreen from '../screens/AddFestivityScreen';
 import CurrencyScreen from "../screens/CurrencyScreen";
 import EditFestivityScreen from "../screens/EditFestivityScreen";
+import AddEventFScreen from "../screens/AddEventFScreen";
 
 // Define las rutas del stack navigator
 export type RootStackParamList = {
@@ -43,6 +44,12 @@ export type RootStackParamList = {
   CurrencyScreen: undefined;
   EditFestivityScreen: {
     festivityId: number;
+  };
+  AddEventFScreen: {
+    festivityId: number;
+    festivalStartDate: string;
+    festivalEndDate: string;
+    festivalName: string;
   };
 };
 
@@ -72,6 +79,7 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen name="ProfileSettings" component={ProfileSettings} options={{ headerShown: true, title: "Profile Settings" }} />
         <Stack.Screen name="CurrencyScreen" component={CurrencyScreen} options={{ headerShown: true, title: "Currency" }} />
         <Stack.Screen name="EditFestivityScreen" component={EditFestivityScreen} options={{ headerShown: true, title: "Edit Festivity" }} />
+        <Stack.Screen name="AddEventFScreen" component={AddEventFScreen} options={{ headerShown: true, title: "Add Event" }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
