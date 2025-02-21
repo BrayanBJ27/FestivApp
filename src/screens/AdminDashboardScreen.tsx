@@ -144,6 +144,17 @@ const AdmindashboardScreen: React.FC = (): JSX.Element => {
           <Text style={MainStyles.tableTextADS}>{new Date(festival.end_date).toLocaleDateString()}</Text>
           <View style={MainStyles.actionsContainerADS}>
             <TouchableOpacity 
+            onPress={() => navigation.navigate('AddEventFScreen', { 
+              festivityId: festival.id_festival,
+              festivalStartDate: festival.start_date,
+              festivalEndDate: festival.end_date,
+              festivalName: festival.name_Festival
+            })}
+            style={MainStyles.actionButtonADS}
+          >
+            <Icon name="circle-plus" size={20} color="#00CC00" />
+            </TouchableOpacity>
+            <TouchableOpacity 
               onPress={() => navigation.navigate('EditFestivityScreen', { 
                 festivityId: festival.id_festival 
               })}
