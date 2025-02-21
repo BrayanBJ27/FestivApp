@@ -1538,12 +1538,13 @@ const MainStyles = StyleSheet.create({
     borderColor: "#ddd",
     borderRadius: 10,
     overflow: "hidden",
+    minWidth: 600,
   },
   tableHeaderADS: {
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: "#f4f4f4",
-    padding: 12
+    padding: 12,
   },
   tableHeaderTextADS: {
     fontWeight: "bold",
@@ -1571,8 +1572,7 @@ const MainStyles = StyleSheet.create({
   },
   actionsContainerADS: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
-    flex: 1
+    justifyContent: "space-around",
   },
   actionButtonADS: {
     padding: 10,
