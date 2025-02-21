@@ -231,7 +231,9 @@ const AdmindashboardScreen: React.FC = (): JSX.Element => {
           </View>
 
           {/* Table Section */}
-          {renderTableSection()}
+          <ScrollView horizontal showsHorizontalScrollIndicator={true}>
+  {renderTableSection()}
+</ScrollView>
         </View>
       </ScrollView>
       <DeleteFestivalModal
