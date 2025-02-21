@@ -1572,7 +1572,7 @@ const MainStyles = StyleSheet.create({
   },
   actionsContainerADS: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "center",
   },
   actionButtonADS: {
     padding: 10,
