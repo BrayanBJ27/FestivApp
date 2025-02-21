@@ -1611,7 +1611,7 @@ const MainStyles = StyleSheet.create({
     marginRight: 5,
   },
 
-  //ADD EVENT SCREEN
+  //ADD FESTIVITY SCREEN
   safeAreaAFS: {
     flex: 1,
     backgroundColor: '#fff',
@@ -2430,7 +2430,119 @@ darkResultValueCCS: {
   color: "#FFF",
 },
 
-
+//ADD EVENT SCREEN
+safeAreaAEFS: {
+  flex: 1,
+  backgroundColor: '#fff',
+},
+scrollViewAEFS: {
+  flex: 1,
+},
+containerAEFS: {
+  flex: 1,
+  padding: 15,
+  backgroundColor: '#fff',
+},
+titleAEFS: {
+  fontSize: 24,
+  fontWeight: 'bold',
+  marginBottom: 20,
+  color: '#333',
+},
+labelAEFS: {
+  fontSize: 16,
+  fontWeight: '600',
+  color: '#333',
+  marginBottom: 8,
+},
+inputAEFS: {
+  backgroundColor: '#f5f5f5',
+  borderRadius: 10,
+  padding: 15,
+  marginBottom: 20,
+  borderWidth: 1,
+  borderColor: '#e0e0e0',
+  fontSize: 16,
+},
+textAreaAEFS: {
+  backgroundColor: '#f5f5f5',
+  borderRadius: 10,
+  padding: 15,
+  marginBottom: 20,
+  borderWidth: 1,
+  borderColor: '#e0e0e0',
+  fontSize: 16,
+  height: 100,
+  textAlignVertical: 'top',
+},
+buttonContainerAEFS: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginTop: 20,
+  paddingBottom: 20,
+},
+cancelButtonAEFS: {
+  flex: 1,
+  backgroundColor: '#f5f5f5',
+  padding: 15,
+  borderRadius: 36,
+  marginRight: 10,
+  alignItems: 'center',
+},
+cancelButtonTextAEFS: {
+  color: '#666',
+  fontSize: 16,
+  fontWeight: '600',
+},
+createButtonAEFS: {
+  flex: 1,
+  backgroundColor: '#0373F3',
+  padding: 15,
+  borderRadius: 36,
+  marginLeft: 10,
+  alignItems: 'center',
+},
+createButtonTextAEFS: {
+  color: '#fff',
+  fontSize: 16,
+  fontWeight: '600',
+},
+dateContainerAEFS: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+},
+dateInputAEFS: {
+  flex: 1,
+  marginRight: 5,
+},
+datePickerFieldAEFS: {
+  flex: 1,
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  backgroundColor: '#f5f5f5',
+  borderRadius: 10,
+  padding: 15,
+  borderWidth: 1,
+  borderColor: '#e0e0e0',
+  marginRight: 5,  // margen para separar del timePicker
+},
+dateTimeContainerAEFS: {
+  flexDirection: 'row',
+  marginBottom: 20,
+},
+timePickerFieldAEFS: {
+  flex: 1,
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  backgroundColor: '#f5f5f5',
+  borderRadius: 10,
+  padding: 15,
+  borderWidth: 1,
+  borderColor: '#e0e0e0',
+  marginLeft: 5,  // margen para separar del datePicker
+},
 
 });
 
