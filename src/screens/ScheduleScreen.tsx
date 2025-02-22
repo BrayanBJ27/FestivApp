@@ -18,6 +18,9 @@ import { RootStackParamList } from "../types/types";
 import axios from "axios";
 import { WEATHER_API_KEY } from "@env"; // Importamos la API Key del .env
 
+// URL base de tu backend
+const BACKEND_URL = "http://192.168.100.11:3000";
+
 const getWeatherIcon = (condition: string) => {
   const conditionLower = condition.toLowerCase();
   if (conditionLower.includes("rain") || conditionLower.includes("drizzle") || conditionLower.includes("shower")) {
@@ -77,8 +80,9 @@ const fetchWeather = async (location: string) => {
 const ScheduleScreen: React.FC = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<string>("Home");
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const [nickname, setNickname] = useState("Brayan Davila"); // Default value
-
+  const [nickname, setNickname] = useState("Brayan Davila"); // Valor por defecto
+  const [profileImage, setProfileImage] = useState<string | null>(null); // Estado para la imagen del usuario
+  const [userProfileImage, setUserProfileImage] = useState<string | null>(null);
   const [weatherData, setWeatherData] = useState<{ [key: string]: any }>({});
   const [loading, setLoading] = useState<{ [key: string]: boolean }>({
     "Pillaro Central": true,
@@ -86,7 +90,51 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
     "Tunguipamba": true,
   });
 
-  // Cargar el nickname guardado en AsyncStorage
+  useEffect(() => {
+    const loadProfileImageFromStorage = async () => {
+      try {
+        const storedImage = await AsyncStorage.getItem("profileImage");
+        if (storedImage) {
+          setUserProfileImage(storedImage);
+        } else {
+          setUserProfileImage(null);
+        }
+      } catch (error) {
+        console.error("Error al cargar la imagen de perfil:", error);
+        setUserProfileImage(null);
+      }
+    };
+    loadProfileImageFromStorage();
+  }, []);
+
+// Cargar perfil (incluyendo imagen) desde el backend
+  useEffect(() => {
+    const loadUserProfile = async () => {
+      try {
+        const storedUserId = await AsyncStorage.getItem("userId");
+        if (storedUserId) {
+          const response = await axios.get(`${BACKEND_URL}/users/${storedUserId}`);
+          if (response.data.success) {
+            const user = response.data.user;
+            setNickname(user.name_User);
+            // Si el backend retorna una imagen válida, la usamos para actualizar el estado.
+            if (user.image) {
+              setUserProfileImage(user.image);
+            }
+          } else {
+            console.error("No se pudo cargar la información del usuario desde el backend");
+          }
+        } else {
+          console.error("UserId not found in AsyncStorage");
+        }
+      } catch (error) {
+        console.error("Error loading user profile in ScheduleScreen:", error);
+      }
+    };
+    loadUserProfile();
+  }, []);
+
+  // Cargar el nickname guardado en AsyncStorage (como respaldo)
   useEffect(() => {
     const loadNickname = async () => {
       try {
@@ -131,7 +179,14 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
         <View style={MainStyles.containerSS}>
           <Text style={MainStyles.greetingTextSS}>Good morning</Text>
           <Text style={MainStyles.mainTitleSS}>Hello, {nickname}</Text>
-          <ImageBackground style={MainStyles.profileIconSS} source={require("../assets/images/diablada.jpg")} resizeMode="cover" />
+          <ImageBackground
+            style={MainStyles.headerImageSS}
+            source={
+              userProfileImage
+                ? { uri: `data:image/jpeg;base64,${userProfileImage}` }
+                : require("../assets/images/profile.jpg")
+            }
+          />
 
           <Text style={MainStyles.sectionTitleSS}>Diablada Pillareña</Text>
           <ImageBackground style={MainStyles.mainImageSS} source={require("../assets/images/diablada.jpg")} resizeMode="cover">
@@ -155,7 +210,9 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
 
             {["Pillaro Central", "San Vicente de Quilimbulo", "Tunguipamba"].map((location, index) => (
               <View key={index} style={MainStyles.scheduleItemSS}>
-                <Text style={MainStyles.timeTextSS}>{index === 0 ? "10:30" : index === 1 ? "12:00" : "15:00"}</Text>
+                <Text style={MainStyles.timeTextSS}>
+                  {index === 0 ? "10:30" : index === 1 ? "12:00" : "15:00"}
+                </Text>
                 <View style={MainStyles.timelineSS}>
                   <View style={index === 0 ? MainStyles.timelineActiveSS : MainStyles.timelineInactiveSS} />
                 </View>
