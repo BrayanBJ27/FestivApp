@@ -58,7 +58,7 @@ const AddEventScreen: React.FC<Props> = ({ route, navigation }) => {
         description_Event: eventDescription.trim(),
         event_date: eventDateTime,
         id_festival: festivityId,
-        location_name: locationName.trim()  // campo para ingresar el nombre de la locación
+        location: locationName.trim()
       };
 
       // Realizamos la petición POST para crear el evento (debes tener el endpoint configurado en el backend)
