@@ -1503,7 +1503,8 @@ const MainStyles = StyleSheet.create({
     textShadowRadius: 10
   },
   searchSectionADS: {
-    marginVertical: 1
+    marginVertical: 1,
+    top: -15
   },
   searchContainerADS: { 
     flexDirection: 'row', 
@@ -1525,11 +1526,25 @@ const MainStyles = StyleSheet.create({
     backgroundColor: '#0373F3',
     borderRadius: 20,
     height: 40,
-    width: 110,
+    width: 160,
     justifyContent: 'center',
     alignItems: 'center'
   },
   buttonTextADS: {
+    color: '#fff',
+    fontWeight: '600'
+  },
+  buttonveADS: {
+    backgroundColor: '#0373F3',
+    borderRadius: 20,
+    height: 40,
+    width: 160,
+    justifyContent: 'center',
+    alignItems: 'center',
+    left: 175,
+    top: -40
+  },
+  buttonTextveADS: {
     color: '#fff',
     fontWeight: '600'
   },
@@ -1538,7 +1553,7 @@ const MainStyles = StyleSheet.create({
     borderColor: "#ddd",
     borderRadius: 10,
     overflow: "hidden",
-    minWidth: 600,
+    minWidth: 600
   },
   tableHeaderADS: {
     flexDirection: "row",
@@ -2544,6 +2559,73 @@ timePickerFieldAEFS: {
   marginLeft: 5,  // margen para separar del datePicker
 },
 
+//EVENTS X FESTIVITY SCREEN
+tableContainerEXFS: {
+  borderWidth: 1,
+  borderColor: "#ddd",
+  borderRadius: 10,
+  overflow: "hidden",
+  minWidth: 600
+},
+tableHeaderEXFS: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  backgroundColor: "#f4f4f4",
+  padding: 12,
+},
+tableHeaderTextEXFS: {
+  fontWeight: "bold",
+  fontSize: 15,
+  flex: 1,
+  textAlign: "center"
+},
+tableRowEXFS: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: 'center',
+  padding: 12,
+  borderBottomWidth: 1,
+  borderBottomColor: "#ddd"
+},
+tableTextEXFS: {
+  flex: 1,
+  textAlign: "center",
+  fontSize: 14
+},
+safeAreaEXFS: {
+  flex: 1,
+  backgroundColor: '#fff',
+},
+containerEXFS: {
+  flex: 1,
+  padding: 15,
+  backgroundColor: '#fff',
+},
+titleEXFS: {
+  fontSize: 24,
+  fontWeight: 'bold',
+  marginBottom: 20,
+  color: '#333',
+},
+pickerEXFS: {
+  height: 50,
+},
+actionButtonEXFS: {
+  padding: 10,
+},
+actionsContainerEXFS: {
+  flexDirection: "row",
+  justifyContent: "center",
+},
+actionButtonEXFS: {
+  padding: 10,
+},
+centeredTitleEXFS: {
+  fontSize: 20,
+  fontWeight: 'bold',
+  textAlign: 'center',
+  marginVertical: 16,
+},
 });
 
 export default MainStyles;
