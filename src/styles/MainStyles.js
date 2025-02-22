@@ -329,6 +329,8 @@ const MainStyles = StyleSheet.create({
     height: 66,
     position: 'relative',
     left: 280,
+    borderRadius: 50,
+    overflow: "hidden",
   },
   titleTextHS: {
     height: 39,
@@ -778,6 +780,15 @@ const MainStyles = StyleSheet.create({
     marginVertical: 5,
     marginLeft: 10,
   },
+  headerImageSS: {
+    width: 70,
+    height: 66,
+    position: 'relative',
+    left: 280,
+    top: -60,
+    borderRadius: 50,
+    overflow: "hidden",
+  },
   profileIconSS: {
     width: 40,
     height: 40,
@@ -790,7 +801,7 @@ const MainStyles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
     color: "#000",
-    marginTop: 40,
+    marginTop: -40,
     marginLeft: 10,
   },
   mainImageSS: {
@@ -1966,16 +1977,20 @@ const MainStyles = StyleSheet.create({
   },
 
   // Imagen de perfil y cámara
-  profileImageContainerPS: { 
-    position: "relative", 
-    alignItems: "center", 
-    justifyContent: "center", 
+  profileImageContainerPS: {
+    position: "relative",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 50,
+    overflow: "hidden", // si quieres recortar lo que sobresalga
   },
+  
   profileImagePS: {
     width: 100,
     height: 100,
     borderRadius: 50,
   },
+  
   cameraIconContainerPS: {
     position: "absolute",
     bottom: 0,
@@ -1983,6 +1998,8 @@ const MainStyles = StyleSheet.create({
     backgroundColor: "#000",
     borderRadius: 15,
     padding: 5,
+    zIndex: 9999,    // Asegura que esté por encima
+    elevation: 9999, // Especialmente para Android
   },
 
   // Estilos de etiqueta (Nick name, Email, Password)
