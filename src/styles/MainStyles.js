@@ -44,21 +44,41 @@ const MainStyles = StyleSheet.create({
   },
 
   
-  //
-  mainContainer: {
+  // SIGN IN SCREEN
+  mainContainerSIS: {
     width: 402,
     height: 870,
     backgroundColor: "#fff",
     marginHorizontal: "auto",
     overflow: "hidden",
   },
-  logoContainer: {
-    width: 28,
-    height: 28,
-    backgroundColor: "#ccc",
-    marginTop: 74,
-    marginLeft: 23,
+  inputContainerSIS: {
+    width: "90%", // Se adapta al tamaño de la pantalla
+    height: 50,
+    borderRadius: 36,
+    borderWidth: 1,
+    borderColor: "#e9e9e9",
+    marginTop: 18,
+    alignSelf: "center", // Centrado en la pantalla
+    flexDirection: "row", // Elementos en la misma línea
+    alignItems: "center", // Alineados verticalmente
+    paddingHorizontal: 15, // Espacio dentro del input
+    backgroundColor: "#FFF", // Fondo blanco para visibilidad
   },
+
+  inputIconSIS: {
+    position: "absolute",
+    left: 15, // Ubicado en el lado izquierdo dentro del input
+    zIndex: 10, // Para asegurarse de que esté encima del input
+  },
+
+  textInputSIS: {
+      flex: 1, // Ocupa todo el espacio disponible
+      height: "100%",
+      fontSize: 16,
+      color: "#000",
+      paddingLeft: 45, // Espacio para el ícono de la izquierda
+    },
 
   // LOGIN SCREEN
   logoContainer: {
@@ -83,7 +103,7 @@ const MainStyles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 20,
-    width: "98%", // Asegura el ancho total del contenedor
+    width: "91%", // Asegura el ancho total del contenedor
     paddingHorizontal: 15, // Añade algo de espacio a los lados
   },
   
@@ -105,7 +125,7 @@ const MainStyles = StyleSheet.create({
     alignSelf: "center",
   },
   inputContainer: {
-    width: 340,
+    width: 320,
     height: 50,
     borderRadius: 36,
     borderWidth: 1,
@@ -113,8 +133,8 @@ const MainStyles = StyleSheet.create({
     marginTop: 18,
     marginLeft: 24,
     position: "relative",
-    flexDirection: "row", // Alineación horizontal
-    alignItems: "center", // Centrar el ícono y el campo de texto
+    flexDirection: "row", 
+    alignItems: "center", 
     paddingHorizontal: 40,
   },
   textInput: {
@@ -125,7 +145,7 @@ const MainStyles = StyleSheet.create({
   },
   inputIcon: {
     position: "absolute",
-    top: 14,
+    top: 10,
     left: 18,
     width: 22,
     height: 22,
@@ -221,21 +241,6 @@ const MainStyles = StyleSheet.create({
   },
 
   // Estilos nuevos para SingInScreen
-  termsContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 20,
-    marginLeft: 24,
-  },
-  termsText: {
-    fontSize: 14,
-    color: "#000",
-    marginLeft: 10,
-  },
-  termsLink: {
-    color: "#0373f3",
-    textDecorationLine: "underline",
-  },
   signUpTitle: {
     fontSize: 30,
     fontWeight: "600",
@@ -258,11 +263,11 @@ const MainStyles = StyleSheet.create({
   checkboxSelected: {
     backgroundColor: "#0373f3",
   }, 
-  // boton sing in 
+
     
     container: {
       width: "100%", // Ancho completo del contenedor
-      backgroundColor: "#4CAF50", // Color de fondo (verde en este caso)
+      backgroundColor: "#FFF", // Color de fondo (verde en este caso)
       paddingVertical: 12, // Espaciado vertical interno
       borderRadius: 8, // Bordes redondeados
       alignItems: "center", // Centrar contenido horizontalmente
@@ -272,33 +277,6 @@ const MainStyles = StyleSheet.create({
       color: "#fff", // Texto en blanco
       fontSize: 16, // Tamaño de fuente
       fontWeight: "bold", // Negrita
-    },
-    inputContainer: {
-      width: "90%", // Se adapta al tamaño de la pantalla
-      height: 50,
-      borderRadius: 36,
-      borderWidth: 1,
-      borderColor: "#e9e9e9",
-      marginTop: 18,
-      alignSelf: "center", // Centrado en la pantalla
-      flexDirection: "row", // Elementos en la misma línea
-      alignItems: "center", // Alineados verticalmente
-      paddingHorizontal: 15, // Espacio dentro del input
-      backgroundColor: "#FFF", // Fondo blanco para visibilidad
-    },
-    
-    textInput: {
-      flex: 1, // Ocupa todo el espacio disponible
-      height: "100%",
-      fontSize: 16,
-      color: "#000",
-      paddingLeft: 45, // Espacio para el ícono de la izquierda
-    },
-    
-    inputIcon: {
-      position: "absolute",
-      left: 15, // Ubicado en el lado izquierdo dentro del input
-      zIndex: 10, // Para asegurarse de que esté encima del input
     },
     
     eyeIconContainer: {
@@ -368,25 +346,6 @@ const MainStyles = StyleSheet.create({
     marginHorizontal: 16,
     marginVertical: 10,
   },
-  searchIconHS: {
-    width: 52,
-    height: 52,
-    position: 'absolute',
-    top: 0,
-    left: 304,
-    zIndex: 19,
-  },
-  searchBoxHS: {
-    width: 305,
-    height: 48,
-    borderRadius: 25,
-    borderWidth: 1,
-    borderColor: '#e9e9e9',
-    position: 'absolute',
-    top: 1,
-    left: 0,
-    zIndex: 13,
-  },
   searchPlaceholderHS: {
     height: 24,
     fontFamily: 'Poppins',
@@ -429,7 +388,7 @@ const MainStyles = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 50,
     color: '#000000',
-    marginTop: -70,
+    marginTop: -110,
     marginLeft: 25.893,
   },
   popularFestivityHS: {
@@ -455,6 +414,11 @@ const MainStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  ratingContainerHSO: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    top: 97,
+  },
   ratingTextHS: {
     fontFamily: 'Poppins',
     fontSize: 12,
@@ -471,11 +435,12 @@ const MainStyles = StyleSheet.create({
     marginLeft: 20,
   },
   otherFestivityHS: {
-    width: 146,
-    height: 230,
-    marginRight: 10, // Aumentado para mayor separación 
-    backgroundColor: 'rgba(196, 196, 196, 0.2)',
+    width: 350,          // Ajusta a tu preferencia
+    height: 220,         // Ajusta a tu preferencia
     borderRadius: 15,
+    overflow: "hidden",
+    marginTop: 15,
+    alignSelf: "center", 
   },
   otherFestivityTitleHS: {
     fontFamily: 'Andika',
@@ -546,12 +511,6 @@ const MainStyles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-  },
-  backButtonES: {
-    position: "absolute",
-    top: 50,
-    left: 20,
-    zIndex: 10,
   },
   mainImageES: {
     position: "absolute", // Asegura que la imagen esté detrás de todo el contenido
@@ -669,26 +628,19 @@ const MainStyles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 16,
   },
-  backButtonMS: {
-    top: 40,
-    zIndex: 10,
-    width: 40,
-    height: 40,
-    right: 40,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   searchBoxMS: {
-    width: 290,
-    height: 48,
-    borderRadius: 25,
+    width: 300,
+    height: 40,
+    borderRadius: 50,
     borderWidth: 1,
-    borderColor: '#adadad',
+    borderColor: '#e9e9e9',
     backgroundColor: '#fff',
     position: 'absolute',
     top: 50,
     left: 10,
     zIndex: 13,
+    paddingHorizontal: 5,
+    flex: 1,
   },
   textInputMS: {
     flex: 1,
@@ -697,22 +649,12 @@ const MainStyles = StyleSheet.create({
     color: "#000",
     left: 40,
   },
-  filterButtonMS: {
-    top: 40,
-    width: 40,
-    height: 40,
-    backgroundColor: "#0373f3",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 20,
-    left: 40,
-  },
   locationTitleMS: {
     fontSize: 24,
     fontWeight: "600",
     color: "#000",
     right: 20,
-    marginTop: 370,
+    marginTop: 420,
   },
   locationsContainerMS: {
     flexDirection: "row",
@@ -805,7 +747,7 @@ const MainStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end', // Asegura que el contenido se posicione en la parte inferior
     paddingHorizontal: 16,
-    paddingBottom: 50, // Espacio para el footer // Fondo translúcido sobre el mapa
+    paddingBottom: 40, // Espacio para el footer // Fondo translúcido sobre el mapa
     borderTopLeftRadius: 20, // Bordes redondeados para el diseño
     borderTopRightRadius: 20,
   },
@@ -826,7 +768,7 @@ const MainStyles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "400",
     color: "#6c6c6c",
-    marginTop: 60,
+    marginTop: 20,
     marginLeft: 10,
   },
   mainTitleSS: {
@@ -842,7 +784,7 @@ const MainStyles = StyleSheet.create({
     borderRadius: 20,
     position: "absolute",
     right: 16,
-    top: 80,
+    top: 30,
   },
   sectionTitleSS: {
     fontSize: 18,
@@ -999,17 +941,13 @@ const MainStyles = StyleSheet.create({
     marginTop: 71,
     marginHorizontal: 18,
   },
-  backButtonCS: {
-    width: 28,
-    height: 28,
-  },
   headerTextCS: {
     fontFamily: 'Poppins',
     fontSize: 20,
     fontWeight: '600',
     lineHeight: 33,
     color: '#000',
-    right: 150,
+    left: 145,
   },
   imageBannerCS: {
     width: 345,
@@ -1371,12 +1309,13 @@ const MainStyles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 2,
   },
+
   // TermsscreenStyles 
-  container: {
+  containerTS: {
     flex: 1,
     padding: 20,
   },
-  scrollContainer: {
+  scrollContainerTS: {
     flexGrow: 1,
     justifyContent: "center",
   },
@@ -1384,31 +1323,32 @@ const MainStyles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
     marginBottom: 20,
-    textAlign: "center", // Se asegura que el título esté centrado
+    textAlign: "center",
   },
   text: {
     fontSize: 16,
     lineHeight: 24,
     marginBottom: 15,
   },
+
   //  HelpCenterStyles 
-  container: {
+  containerHC: {
     padding: 16,
     flex: 1,
   },
-  title: {
+  titleHC: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 16,
     textAlign: "center",
   },
-  button: {
+  buttonHC: {
     padding: 12,
     borderRadius: 8,
     marginBottom: 10,
     alignItems: "center",
   },
-  buttonText: {
+  buttonTextHC: {
     fontSize: 16,
     textAlign: "center",
   },
@@ -1447,13 +1387,10 @@ const MainStyles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
-  backButtonASS: {
-    padding: 8,
-  },
   titleTextASS: {
     fontSize: 24,
     fontWeight: '600',
-    marginVertical: -10,
+    marginVertical: 20,
     textAlign: 'center',
     width: '100%',
   },
@@ -1480,151 +1417,189 @@ const MainStyles = StyleSheet.create({
     flexDirection: "row",
     paddingHorizontal: 10,
     marginBottom: 15,
-    height: 160 // Altura fija para los cards
-  },
-  popularFestivityADS: {
-    width: 280,
-    height: 150,
-    marginRight: 10,
-    borderRadius: 10,
-    overflow: "hidden",
-    justifyContent: 'space-between'
-  },
-  popularFestivityTextADS: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
-    padding: 10,
-    position: 'absolute',
-    top: 10,
-    left: 10,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
-  },
-  searchSectionADS: {
-    marginVertical: 1,
-    top: -15
-  },
-  searchContainerADS: { 
-    flexDirection: 'row', 
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 10
-  },
-  searchInputADS: { 
-    flex: 1,
-    height: 40,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: '#e9e9e9',
-    paddingHorizontal: 15,
-    marginRight: 10,
-    backgroundColor: '#fff'
-  },
-  buttonnADS: {
-    backgroundColor: '#0373F3',
-    borderRadius: 20,
-    height: 40,
-    width: 160,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  buttonTextADS: {
-    color: '#fff',
-    fontWeight: '600'
-  },
-  buttonveADS: {
-    backgroundColor: '#0373F3',
-    borderRadius: 20,
-    height: 40,
-    width: 160,
-    justifyContent: 'center',
-    alignItems: 'center',
-    left: 175,
-    top: -40
-  },
-  buttonTextveADS: {
-    color: '#fff',
-    fontWeight: '600'
-  },
-  tableContainerADS: {
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 10,
-    overflow: "hidden",
-    minWidth: 600
-  },
-  tableHeaderADS: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    backgroundColor: "#f4f4f4",
-    padding: 12,
-  },
-  tableHeaderTextADS: {
-    fontWeight: "bold",
-    fontSize: 15,
-    flex: 1,
-    textAlign: "center"
-  },
-  tableRowADS: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: 'center',
-    padding: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ddd"
-  },
-  eventImageADS: {
-    width: 40,
-    height: 40,
-    borderRadius: 5
-  },
-  tableTextADS: {
-    flex: 1,
-    textAlign: "center",
-    fontSize: 14
-  },
-  actionsContainerADS: {
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  actionButtonADS: {
-    padding: 10,
-  },
-  popularFestivityDetailsADS: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 10,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0
-  },
-  dateTextADS: {
-    color: '#fff',
-    fontSize: 12,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
-  },
-  ratingContainerADS: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  ratingTextADS: {
-    color: '#fff',
-    marginRight: 5,
-    fontSize: 14,
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10
-  },
-  ratingIconADS: {
-    marginRight: 5,
-  },
+    // Altura fija para los cards
+    },
+
+    popularFestivityADS: {
+      width: 280,
+      height: 150,
+      marginRight: 10,
+      borderRadius: 10,
+      overflow: "hidden",
+      justifyContent: 'space-between'
+    },
+
+    otherFestivityADS: {
+      width: "100%",
+      height: 250,
+      borderRadius: 15,
+      overflow: "hidden",
+      marginRight: 10,
+      left: -10,
+    },
+
+    dateTextHSO: {
+      fontFamily: 'Poppins',
+      fontSize: 12,
+      color: '#ffffff',
+      top: 100,
+    },
+
+    popularFestivityTextADS: {
+      color: "#fff",
+      fontSize: 16,
+      fontWeight: "bold",
+      padding: 10,
+      position: 'absolute',
+      top: 0,
+      left: 10,
+      textShadowColor: 'rgba(0, 0, 0, 0.75)',
+      textShadowOffset: { width: -1, height: 1 },
+      textShadowRadius: 10
+    },
+
+    searchSectionADS: {
+      marginVertical: 1,
+      top: -15
+    },
+
+    searchContainerADS: { 
+      flexDirection: 'row', 
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      marginBottom: 10
+    },
+
+    searchInputADS: { 
+      flex: 1,
+      height: 40,
+      borderRadius: 20,
+      borderWidth: 1,
+      borderColor: '#e9e9e9',
+      paddingHorizontal: 15,
+      marginRight: 10,
+      backgroundColor: '#fff'
+    },
+
+    buttonnADS: {
+      backgroundColor: '#0373F3',
+      borderRadius: 20,
+      height: 40,
+      width: 160,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+
+    buttonTextADS: {
+      color: '#fff',
+      fontWeight: '600'
+    },
+
+    buttonveADS: {
+      backgroundColor: '#0373F3',
+      borderRadius: 20,
+      height: 40,
+      width: 160,
+      justifyContent: 'center',
+      alignItems: 'center',
+      left: 175,
+      top: -40
+    },
+
+    buttonTextveADS: {
+      color: '#fff',
+      fontWeight: '600'
+    },
+
+    tableContainerADS: {
+      borderWidth: 1,
+      borderColor: "#ddd",
+      borderRadius: 10,
+      overflow: "hidden",
+      minWidth: 600
+    },
+
+    tableHeaderADS: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      backgroundColor: "#f4f4f4",
+      padding: 12,
+    },
+
+    tableHeaderTextADS: {
+      fontWeight: "bold",
+      fontSize: 15,
+      flex: 1,
+      textAlign: "center"
+    },
+
+    tableRowADS: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: 'center',
+      padding: 12,
+      borderBottomWidth: 1,
+      borderBottomColor: "#ddd"
+    },
+
+    eventImageADS: {
+      width: 40,
+      height: 40,
+      borderRadius: 5
+    },
+
+    tableTextADS: {
+      flex: 1,
+      textAlign: "center",
+      fontSize: 14
+    },
+
+    actionsContainerADS: {
+      flexDirection: "row",
+      justifyContent: "center",
+    },
+
+    actionButtonADS: {
+      padding: 10,
+    },
+
+    popularFestivityDetailsADS: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: 10,
+      backgroundColor: 'rgba(0,0,0,0.3)',
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0
+    },
+
+    dateTextADS: {
+      color: '#fff',
+      fontSize: 12,
+      textShadowColor: 'rgba(0, 0, 0, 0.75)',
+      textShadowOffset: { width: -1, height: 1 },
+      textShadowRadius: 10
+    },
+
+    ratingContainerADS: {
+      flexDirection: 'row',
+      alignItems: 'center'
+    },
+
+    ratingTextADS: {
+      color: '#fff',
+      marginRight: 5,
+      fontSize: 14,
+      textShadowColor: 'rgba(0, 0, 0, 0.75)',
+      textShadowOffset: { width: -1, height: 1 },
+      textShadowRadius: 10
+    },
+
+    ratingIconADS: {
+      marginRight: 5,
+    },
 
   //ADD FESTIVITY SCREEN
   safeAreaAFS: {
