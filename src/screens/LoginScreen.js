@@ -71,8 +71,8 @@ export default function LoginScreen() {
   };
 
   return (
-    <SafeAreaView style={MainStyles.container}>
       <ScrollView contentContainerStyle={MainStyles.scrollContainer}>
+        <View style={MainStyles.mainContainerSIS}>
         <View style={MainStyles.logoContainer}>
           <Image
             source={require("../assets/images/oficial_festiapp.png")}
@@ -163,7 +163,7 @@ export default function LoginScreen() {
             <Text style={MainStyles.googleButtonText}>Continue with Google</Text>
           </TouchableOpacity>
         </View>
+        </View>
       </ScrollView>
-    </SafeAreaView>
   );
 }
