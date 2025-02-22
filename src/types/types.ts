@@ -24,4 +24,12 @@ export type RootStackParamList = {
     festivalEndDate: string;
     festivalName: string;
   };
+  EventsXFestivityScreen: undefined;
+  EditEventFestivityScreen: {
+    eventId: number;
+    festivityId: number;
+    festivalName: string;
+    festivalStartDate: string;
+    festivalEndDate: string;
+  };
 };
