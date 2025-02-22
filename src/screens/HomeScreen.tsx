@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -14,6 +14,7 @@ import { RootStackParamList } from "../types/types";
 import BottomNavbar from "../components/BottomNavbar";
 import MainStyles from "../styles/MainStyles";
 import { useTheme } from "../hooks/ThemeContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Interfaz para festividades
 interface Festivity {
@@ -90,6 +91,25 @@ const HomeScreen: React.FC = (): JSX.Element => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { isDarkMode } = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
+  const [userProfileImage, setUserProfileImage] = useState<string | null>(null);
+
+  // Cargar imagen de perfil del usuario desde AsyncStorage
+  useEffect(() => {
+    const loadProfileImage = async () => {
+      try {
+        const storedImage = await AsyncStorage.getItem("profileImage");
+        if (storedImage) {
+          setUserProfileImage(storedImage);
+        } else {
+          setUserProfileImage(null); // Se usará la imagen por defecto
+        }
+      } catch (error) {
+        console.error("Error al cargar la imagen de perfil:", error);
+        setUserProfileImage(null);
+      }
+    };
+    loadProfileImage();
+  }, []);
 
   // Combina ambas listas para la búsqueda
   const allFestivities: Festivity[] = [...popularFestivities, ...otherFestivities];
@@ -110,7 +130,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
   ) => (
     <TouchableOpacity onPress={() => navigation.navigate("Event", { eventId })}>
       <ImageBackground
-        style={MainStyles.popularFestivityADS} // estilo para popular
+        style={MainStyles.popularFestivityADS}
         source={image}
         resizeMode="cover"
       >
@@ -193,7 +213,11 @@ const HomeScreen: React.FC = (): JSX.Element => {
           </Text>
           <ImageBackground
             style={MainStyles.headerImageHS}
-            source={require("../assets/images/oficial_festiapp.png")}
+            source={
+              userProfileImage
+                ? { uri: `data:image/jpeg;base64,${userProfileImage}` }
+                : require("../assets/images/profile.jpg")
+            }
           />
         </View>
 
