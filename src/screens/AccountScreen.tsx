@@ -89,15 +89,6 @@ const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
     <SafeAreaView style={[MainStyles.safeAreaASS, { backgroundColor: isDarkMode ? "#000" : "#fff" }]}>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <View style={[MainStyles.containerASS, { backgroundColor: isDarkMode ? "#000" : "#fff" }]}>
-          {/* Header */}
-          <View style={MainStyles.headerASS}>
-            <TouchableOpacity
-              style={MainStyles.backButtonASS}
-              onPress={() => navigation.goBack()}
-            >
-              <Icon name="arrow-left" size={24} color={isDarkMode ? "#fff" : "#000"} />
-            </TouchableOpacity>
-          </View>
 
           {/* Title */}
           <Text 
