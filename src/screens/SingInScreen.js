@@ -73,7 +73,7 @@ export default function SignUpScreen() {
 
   return (
     <ScrollView contentContainerStyle={MainStyles.scrollContainer}>
-      <View style={MainStyles.mainContainer}>
+      <View style={MainStyles.mainContainerSIS}>
         {/* Logo */}
         <View style={MainStyles.logoContainer}>
           <Image
@@ -85,10 +85,10 @@ export default function SignUpScreen() {
         <Text style={MainStyles.signUpTitle}>Sign up FestivApp</Text>
         
         {/* Nickname Input */}
-        <View style={MainStyles.inputContainer}>
-          <Icon name="id-card-clip" size={20} color="#adadad" style={MainStyles.inputIcon} />
+        <View style={MainStyles.inputContainerSIS}>
+          <Icon name="id-card-clip" size={20} color="#adadad" style={MainStyles.inputIconSIS} />
           <TextInput
-            style={MainStyles.textInput}
+            style={MainStyles.textInputSIS}
             placeholder="Nickname"
             placeholderTextColor="#adadad"
             value={username}
@@ -98,10 +98,10 @@ export default function SignUpScreen() {
         </View>
 
         {/* Email Input */}
-        <View style={MainStyles.inputContainer}>
-          <Icon name="envelope" size={20} color="#adadad" style={MainStyles.inputIcon} />
+        <View style={MainStyles.inputContainerSIS}>
+          <Icon name="envelope" size={20} color="#adadad" style={MainStyles.inputIconSIS} />
           <TextInput
-            style={MainStyles.textInput}
+            style={MainStyles.textInputSIS}
             placeholder="Enter e-mail address"
             placeholderTextColor="#adadad"
             value={email}
@@ -113,10 +113,10 @@ export default function SignUpScreen() {
         </View>
 
         {/* Password Input */}
-        <View style={MainStyles.inputContainer}>
-          <Icon name="key" size={20} color="#adadad" style={MainStyles.inputIcon} />
+        <View style={MainStyles.inputContainerSIS}>
+          <Icon name="key" size={20} color="#adadad" style={MainStyles.inputIconSIS} />
           <TextInput
-            style={MainStyles.textInput}
+            style={MainStyles.textInputSIS}
             placeholder="Enter password"
             placeholderTextColor="#adadad"
             secureTextEntry={!isPasswordVisible}
@@ -126,7 +126,7 @@ export default function SignUpScreen() {
             editable={!loading}
           />
           <TouchableOpacity
-            style={MainStyles.eyeIconContainer}
+            style={MainStyles.eyeIconContainerSIS}
             onPress={() => setPasswordVisible(!isPasswordVisible)}
             disabled={loading}
           >
@@ -139,10 +139,10 @@ export default function SignUpScreen() {
         </View>
 
         {/* Repeat Password Input */}
-        <View style={MainStyles.inputContainer}>
-          <Icon name="key" size={20} color="#adadad" style={MainStyles.inputIcon} />
+        <View style={MainStyles.inputContainerSIS}>
+          <Icon name="key" size={20} color="#adadad" style={MainStyles.inputIconSIS} />
           <TextInput
-            style={MainStyles.textInput}
+            style={MainStyles.textInputSIS}
             placeholder="Repeat password"
             placeholderTextColor="#adadad"
             secureTextEntry={!isRepeatPasswordVisible}
@@ -152,7 +152,7 @@ export default function SignUpScreen() {
             editable={!loading}
           />
           <TouchableOpacity
-            style={MainStyles.eyeIconContainer}
+            style={MainStyles.eyeIconContainerSIS}
             onPress={() => setRepeatPasswordVisible(!isRepeatPasswordVisible)}
             disabled={loading}
           >
