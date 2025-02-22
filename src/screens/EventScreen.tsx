@@ -24,13 +24,6 @@ const EventScreen: React.FC = (): JSX.Element => {
       >
         <ScrollView contentInsetAdjustmentBehavior="automatic">
           <View style={MainStyles.eventContainerES}>
-            {/* Back Button */}
-            <TouchableOpacity
-              style={MainStyles.backButtonES}
-              onPress={() => navigation.goBack()}
-            >
-              <Icon name="arrow-left" size={20} color="#000" />
-            </TouchableOpacity>
 
             {/* Title and Description */}
             <Text style={MainStyles.eventTitleES}>Diablada Pillareña</Text>
