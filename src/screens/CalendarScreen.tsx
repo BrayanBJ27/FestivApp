@@ -22,9 +22,6 @@ export default function CalendarScreen() {
       <ScrollView scrollEnabled={true} contentInsetAdjustmentBehavior="automatic">
         <View style={MainStyles.containerCS}>
           <View style={MainStyles.headerCS}>
-            <TouchableOpacity style={MainStyles.backButtonCS}>
-              <Icon name="arrow-left" size={20} color="#000" />
-            </TouchableOpacity>
             <Text style={MainStyles.headerTextCS} numberOfLines={1}>
               My Plan
             </Text>
