@@ -7,31 +7,31 @@ const HelpCenterScreen: React.FC = () => {
   const { isDarkMode } = useTheme(); // Obtiene el estado del modo oscuro
 
   return (
-    <View style={[HelpCenterStyles.container, { backgroundColor: isDarkMode ? "#000" : "#fff" }]}>
+    <View style={[HelpCenterStyles.containerHC, { backgroundColor: isDarkMode ? "#000" : "#fff" }]}>
       <Text style={[HelpCenterStyles.title, { color: isDarkMode ? "#fff" : "#000" }]}>
         Help Center
       </Text>
 
       <TouchableOpacity
-        style={[HelpCenterStyles.button, { backgroundColor: isDarkMode ? "#444" : "#007AFF" }]}
+        style={[HelpCenterStyles.buttonHC, { backgroundColor: isDarkMode ? "#444" : "#007AFF" }]}
       >
-        <Text style={[HelpCenterStyles.buttonText, { color: isDarkMode ? "#fff" : "#fff" }]}>
+        <Text style={[HelpCenterStyles.buttonTextHC, { color: isDarkMode ? "#fff" : "#fff" }]}>
           How to use the app?
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[HelpCenterStyles.button, { backgroundColor: isDarkMode ? "#444" : "#007AFF" }]}
+        style={[HelpCenterStyles.buttonHC, { backgroundColor: isDarkMode ? "#444" : "#007AFF" }]}
       >
-        <Text style={[HelpCenterStyles.buttonText, { color: isDarkMode ? "#fff" : "#fff" }]}>
+        <Text style={[HelpCenterStyles.buttonTextHC, { color: isDarkMode ? "#fff" : "#fff" }]}>
           Developer Contact
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[HelpCenterStyles.button, { backgroundColor: isDarkMode ? "#444" : "#007AFF" }]}
+        style={[HelpCenterStyles.buttonHC, { backgroundColor: isDarkMode ? "#444" : "#007AFF" }]}
       >
-        <Text style={[HelpCenterStyles.buttonText, { color: isDarkMode ? "#fff" : "#fff" }]}>
+        <Text style={[HelpCenterStyles.buttonTextHC, { color: isDarkMode ? "#fff" : "#fff" }]}>
           Acknowledgements
         </Text>
       </TouchableOpacity>
