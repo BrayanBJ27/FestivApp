@@ -162,9 +162,6 @@ const MapScreen: React.FC = () => {
 
   const renderHeader = () => (
     <View style={MainStyles.headerContainerMS}>
-      <TouchableOpacity style={MainStyles.backButtonMS}>
-        <Icon name="arrow-left" size={20} color="#000" />
-      </TouchableOpacity>
       <View style={MainStyles.searchBoxMS}>
         <Icon name="search" size={20} color="#adadad" style={MainStyles.inputIcon} />
         <TextInput
@@ -176,9 +173,6 @@ const MapScreen: React.FC = () => {
           onSubmitEditing={handleSearch}
         />
       </View>
-      <TouchableOpacity style={MainStyles.filterButtonMS}>
-        <Icon name="sliders" size={20} color="#fff" />
-      </TouchableOpacity>
     </View>
   );
 
