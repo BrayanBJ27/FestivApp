@@ -222,18 +222,23 @@ const AdmindashboardScreen: React.FC = (): JSX.Element => {
                 value={searchQuery}
                 onChangeText={setSearchQuery}
               />
-              <TouchableOpacity style={MainStyles.buttonnADS}>
-                <Text style={MainStyles.buttonTextHiS}
+            </View>
+            <TouchableOpacity style={MainStyles.buttonnADS}>
+                <Text style={MainStyles.buttonTextADS}
                 onPress={() => navigation.navigate("AddFestivityScreen")}
                 >Add New</Text>
               </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={MainStyles.buttonveADS}>
+                <Text style={MainStyles.buttonTextADS}
+                onPress={() => navigation.navigate("EventsXFestivityScreen")}
+                >View Envents by Festivities</Text>
+          </TouchableOpacity>
           </View>
 
           {/* Table Section */}
           <ScrollView horizontal showsHorizontalScrollIndicator={true}>
-  {renderTableSection()}
-</ScrollView>
+            {renderTableSection()}
+          </ScrollView>
         </View>
       </ScrollView>
       <DeleteFestivalModal
