@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -17,29 +17,50 @@ import { RootStackParamList } from "../types/types";
 import DeleteFestivalModal from '../components/DeleteFestivalModal';
 import useDebounce from '../hooks/useDebounce';
 
+// Interfaz de festividad para la tabla principal (MySQL)
 interface Festival {
   id_festival: number;
   name_Festival: string;
   start_date: string;
   end_date: string;
-  image: string;
+  image: string; // base64
+}
+
+// Interfaz para las festividades con rating (combina MySQL + Mongo)
+interface FestivalWithRating {
+  id_festival: number;
+  name_Festival: string;
+  start_date: string;
+  end_date: string;
+  image: string; // base64
+  rating: number; // proveniente de Mongo
 }
 
 const BACKEND_URL = "http://192.168.100.11:3000";
 
 const AdmindashboardScreen: React.FC = (): JSX.Element => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const [recentActivity, setRecentActivity] = useState<any[]>([]);
-  const [events, setEvents] = useState<any[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
+
+  // Estados para festividades principales (tabla)
   const [festivals, setFestivals] = useState<Festival[]>([]);
   const [filteredFestivals, setFilteredFestivals] = useState<Festival[]>([]);
-  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [selectedFestival, setSelectedFestival] = useState<Festival | null>(null);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
+  // Estados para “Latest Festivities” (con rating)
+  const [latestFestivals, setLatestFestivals] = useState<FestivalWithRating[]>([]);
+
+  // Otros estados
+  const [searchQuery, setSearchQuery] = useState('');
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
+  const [recentActivity, setRecentActivity] = useState<any[]>([]);
+  const [events, setEvents] = useState<any[]>([]);
+
+  // 1. Carga de festivales para la tabla (MySQL)
   const fetchFestivals = async () => {
     try {
       const response = await axios.get(`${BACKEND_URL}/festivals/list`);
+      // Se asume que la respuesta contiene "remote" con los datos
       setFestivals(response.data.remote);
       setFilteredFestivals(response.data.remote);
     } catch (error) {
@@ -48,13 +69,29 @@ const AdmindashboardScreen: React.FC = (): JSX.Element => {
     }
   };
 
+  // 2. Carga de “Latest Festivities” con rating (MySQL + Mongo)
+  const fetchLatestFestivals = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/festivals/latest`);
+      // Se asume que la respuesta es { data: [ { id_festival, name_Festival, ... rating } ] }
+      setLatestFestivals(response.data.data);
+    } catch (error) {
+      console.error('Error fetching latest festivities:', error);
+      Alert.alert('Error', 'Could not fetch latest festivities');
+    }
+  };
+
+  // 3. Efectos iniciales
   useEffect(() => {
     fetchFestivals();
+    fetchLatestFestivals();
+
+    // Cargas adicionales (ejemplo)
+    axios.get('/api/admin/recent-activity').then((response) => setRecentActivity(response.data));
+    axios.get('/api/events').then((response) => setEvents(response.data));
   }, []);
 
-  // Debounced search
-  const debouncedSearchQuery = useDebounce(searchQuery, 300);
-
+  // 4. Filtro de búsqueda en la tabla
   useEffect(() => {
     const filtered = festivals.filter(festival =>
       festival.name_Festival.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
@@ -62,13 +99,12 @@ const AdmindashboardScreen: React.FC = (): JSX.Element => {
     setFilteredFestivals(filtered);
   }, [debouncedSearchQuery, festivals]);
 
-  // Handle delete
+  // 5. Función para eliminar festival
   const handleDelete = async () => {
     if (!selectedFestival) return;
-
     try {
       await axios.delete(`${BACKEND_URL}/festivals/${selectedFestival.id_festival}`);
-      await fetchFestivals();
+      await fetchFestivals(); // Refresca la tabla
       setDeleteModalVisible(false);
       setSelectedFestival(null);
       Alert.alert('Success', 'Festival deleted successfully');
@@ -78,45 +114,42 @@ const AdmindashboardScreen: React.FC = (): JSX.Element => {
     }
   };
 
-  useEffect(() => {
-    axios.get('/api/admin/recent-activity').then((response) => setRecentActivity(response.data));
-    axios.get('/api/events').then((response) => setEvents(response.data));
-  }, []);
+  // 6. Renderiza un card para “Latest Festivities”
+  const renderFestivityCard = (festival: FestivalWithRating) => {
+    // Convertir la fecha al formato "Month Day" (ej. January 6)
+    const options: Intl.DateTimeFormatOptions = { month: 'long', day: 'numeric' };
+    const formattedDate = new Date(festival.start_date).toLocaleDateString('en-US', options);
 
-  const filteredEvents = events.filter((event) =>
-    event.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const renderFestivityCard = (
-    title: string,
-    date: string,
-    rating: string,
-    image: any
-  ) => (
-    <TouchableOpacity>
-      <ImageBackground
-        style={MainStyles.popularFestivityADS}
-        source={image}
-        resizeMode="cover"
-      >
-        <Text style={MainStyles.popularFestivityTextADS}>{title}</Text>
-        <View style={MainStyles.popularFestivityDetailsHS}>
-          <Text style={MainStyles.dateTextHS}>{date}</Text>
-          <View style={MainStyles.ratingContainerHS}>
-            <Text style={MainStyles.ratingTextHS}>{rating}</Text>
-            <Icon
-              name="star"
-              size={20}
-              color="#FFD700"
-              style={MainStyles.ratingIconHS}
-            />
+    return (
+      <TouchableOpacity key={festival.id_festival}>
+        <ImageBackground
+          style={MainStyles.popularFestivityADS}
+          source={
+            festival.image
+              ? { uri: `data:image/jpeg;base64,${festival.image}` }
+              : require("../assets/images/oficial_festiapp.png")
+          }
+          resizeMode="cover"
+        >
+          <Text style={MainStyles.popularFestivityTextADS}>{festival.name_Festival}</Text>
+          <View style={MainStyles.popularFestivityDetailsHS}>
+            <Text style={MainStyles.dateTextHS}>{formattedDate}</Text>
+            <View style={MainStyles.ratingContainerHS}>
+              <Text style={MainStyles.ratingTextHS}>{festival.rating}</Text>
+              <Icon
+                name="star"
+                size={20}
+                color="#FFD700"
+                style={MainStyles.ratingIconHS}
+              />
+            </View>
           </View>
-        </View>
-      </ImageBackground>
-    </TouchableOpacity>
-  );
+        </ImageBackground>
+      </TouchableOpacity>
+    );
+  };
 
-  // Table section rendering
+  // 7. Render de la tabla (All Festivities)
   const renderTableSection = () => (
     <View style={MainStyles.tableContainerADS}>
       <View style={MainStyles.tableHeaderADS}>
@@ -129,30 +162,34 @@ const AdmindashboardScreen: React.FC = (): JSX.Element => {
       {filteredFestivals.map((festival) => (
         <View key={festival.id_festival} style={MainStyles.tableRowADS}>
           <View style={{ flex: 1, alignItems: 'center' }}>
-          <ImageBackground
-            style={MainStyles.eventImageADS}
-            source={
-              festival.image
-                ? { uri: `data:image/jpeg;base64,${festival.image}` }
-                : require('../assets/images/oficial_festiapp.png')
-            }
-            resizeMode="cover"
-          />
+            <ImageBackground
+              style={MainStyles.eventImageADS}
+              source={
+                festival.image
+                  ? { uri: `data:image/jpeg;base64,${festival.image}` }
+                  : require('../assets/images/oficial_festiapp.png')
+              }
+              resizeMode="cover"
+            />
           </View>
           <Text style={MainStyles.tableTextADS}>{festival.name_Festival}</Text>
-          <Text style={MainStyles.tableTextADS}>{new Date(festival.start_date).toLocaleDateString()}</Text>
-          <Text style={MainStyles.tableTextADS}>{new Date(festival.end_date).toLocaleDateString()}</Text>
+          <Text style={MainStyles.tableTextADS}>
+            {new Date(festival.start_date).toLocaleDateString()}
+          </Text>
+          <Text style={MainStyles.tableTextADS}>
+            {new Date(festival.end_date).toLocaleDateString()}
+          </Text>
           <View style={MainStyles.actionsContainerADS}>
             <TouchableOpacity 
-            onPress={() => navigation.navigate('AddEventFScreen', { 
-              festivityId: festival.id_festival,
-              festivalStartDate: festival.start_date,
-              festivalEndDate: festival.end_date,
-              festivalName: festival.name_Festival
-            })}
-            style={MainStyles.actionButtonADS}
-          >
-            <Icon name="circle-plus" size={20} color="#00CC00" />
+              onPress={() => navigation.navigate('AddEventFScreen', { 
+                festivityId: festival.id_festival,
+                festivalStartDate: festival.start_date,
+                festivalEndDate: festival.end_date,
+                festivalName: festival.name_Festival
+              })}
+              style={MainStyles.actionButtonADS}
+            >
+              <Icon name="circle-plus" size={20} color="#00CC00" />
             </TouchableOpacity>
             <TouchableOpacity 
               onPress={() => navigation.navigate('EditFestivityScreen', { 
@@ -177,7 +214,7 @@ const AdmindashboardScreen: React.FC = (): JSX.Element => {
     </View>
   );
 
-
+  // 8. Render principal
   return (
     <SafeAreaView style={MainStyles.safeAreaADS}>
       <ScrollView>
@@ -185,31 +222,14 @@ const AdmindashboardScreen: React.FC = (): JSX.Element => {
           {/* Header Section */}
           <Text style={MainStyles.titleADS}>Overview</Text>
 
-          {/* Latest Festivities Section */}
+          {/* Latest Festivities Section (con rating) */}
           <Text style={MainStyles.subtitleADS}>Latest Festivities</Text>
           <ScrollView 
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={MainStyles.horizontalScrollADS}
           >
-            {renderFestivityCard(
-              "Carnaval Guaranda",
-              "March 3rd & 4th",
-              "4.9",
-              require("../assets/images/guranda.jpg")
-            )}
-            {renderFestivityCard(
-              "Diablada Pillareña",
-              "January 6th",
-              "4.8",
-              require("../assets/images/diablada.jpg")
-            )}
-            {renderFestivityCard(
-              "Mama Negra",
-              "November 30th",
-              "4.7",
-              require("../assets/images/mamanegra.jpg")
-            )}
+            {latestFestivals.map((festival) => renderFestivityCard(festival))}
           </ScrollView>
 
           {/* Search Section */}
@@ -224,15 +244,19 @@ const AdmindashboardScreen: React.FC = (): JSX.Element => {
               />
             </View>
             <TouchableOpacity style={MainStyles.buttonnADS}>
-                <Text style={MainStyles.buttonTextADS}
+              <Text style={MainStyles.buttonTextADS}
                 onPress={() => navigation.navigate("AddFestivityScreen")}
-                >Add New</Text>
-              </TouchableOpacity>
+              >
+                Add New
+              </Text>
+            </TouchableOpacity>
             <TouchableOpacity style={MainStyles.buttonveADS}>
-                <Text style={MainStyles.buttonTextADS}
+              <Text style={MainStyles.buttonTextADS}
                 onPress={() => navigation.navigate("EventsXFestivityScreen")}
-                >View Envents by Festivities</Text>
-          </TouchableOpacity>
+              >
+                View Events by Festivities
+              </Text>
+            </TouchableOpacity>
           </View>
 
           {/* Table Section */}
@@ -241,6 +265,8 @@ const AdmindashboardScreen: React.FC = (): JSX.Element => {
           </ScrollView>
         </View>
       </ScrollView>
+
+      {/* Modal para confirmar eliminación */}
       <DeleteFestivalModal
         visible={deleteModalVisible}
         onClose={() => {
