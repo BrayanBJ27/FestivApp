@@ -8,7 +8,7 @@ import { useTheme } from "../hooks/ThemeContext";
 import LoginScreen from "../screens/LoginScreen";
 import SingInScreen from "../screens/SingInScreen";
 import HomeScreen from "../screens/HomeScreen";
-import EventScreen from "../screens/EventScreen";
+import FestivityScreen from "../screens/FestivityScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
 import CalendarScreen from "../screens/CalendarScreen";
 import HistoryScreen from "../screens/HistoryScreen";
@@ -31,7 +31,7 @@ export type RootStackParamList = {
   Login: undefined;
   SignUp: undefined;
   Home: undefined;
-  Event: undefined;
+  FestivityScreen: { festivityId: number };
   Schedule: undefined;
   Calendar: undefined;
   History: undefined;
@@ -77,7 +77,7 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
         <Stack.Screen name="AdminDashboard" component={AdminDashboardScreen} options={{ headerShown: true, title: "Admin Dashboard" }} />
         <Stack.Screen name="AddFestivityScreen" component={AddFestivityScreen} options={{ headerShown: true, title: "Add Festivity" }} />
-        <Stack.Screen name="Event" component={EventScreen} options={{ headerShown: true, title: "Event Details" }} />
+        <Stack.Screen name="FestivityScreen" component={FestivityScreen} options={{ headerShown: true, title: "Festivity Details" }} />
         <Stack.Screen name="Schedule" component={ScheduleScreen} options={{ headerShown: true, title: "Schedule" }} />
         <Stack.Screen name="Calendar" component={CalendarScreen} options={{ headerShown: true, title: "Calendar" }} />
         <Stack.Screen name="History" component={HistoryScreen} options={{ headerShown: true, title: "Visited Destinations" }} />
