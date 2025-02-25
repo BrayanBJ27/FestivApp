@@ -2,15 +2,15 @@ export type RootStackParamList = {
   Login: undefined;
   SignUp: undefined;
   Home: undefined;
-  Event: { eventId: number }; // Parámetro para EventScreen
+  FestivityScreen: { festivityId: number };
   Schedule: undefined;
   Calendar: undefined;
   Map: undefined;
   Account: undefined;
-  GuarandaEvent: undefined; // Esta entrada debe estar aquí
+  GuarandaEvent: undefined;
   Notification: undefined;
   History: undefined;
-  TermsScreen: undefined; // Agrega la ruta para TermsScreen
+  TermsScreen: undefined;
   HelpCenterScreen: undefined;
   AdminDashboard: undefined;
   AddFestivityScreen: undefined;
