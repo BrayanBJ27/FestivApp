@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome6";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
@@ -15,76 +16,20 @@ import BottomNavbar from "../components/BottomNavbar";
 import MainStyles from "../styles/MainStyles";
 import { useTheme } from "../hooks/ThemeContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
-// Interfaz para festividades
+// Interfaz para festividades (dinámica)
 interface Festivity {
-  id: number;
-  name: string;
-  date: string;
-  image: any;
+  id_festival: number;
+  name_Festival: string;
+  start_date: string;
+  end_date: string;
+  image: string; // en base64
   rating?: number;
+  description?: string;
 }
 
-// Listas de festividades
-const popularFestivities: Festivity[] = [
-  {
-    id: 1,
-    name: "Carnaval Guaranda",
-    date: "March 3rd & 4th",
-    rating: 4.9,
-    image: require("../assets/images/guranda.jpg"),
-  },
-  {
-    id: 2,
-    name: "Diablada Pillareña",
-    date: "January 6th",
-    rating: 4.8,
-    image: require("../assets/images/diablada.jpg"),
-  },
-  {
-    id: 3,
-    name: "Mamá Negra",
-    date: "November 30th",
-    rating: 4.7,
-    image: require("../assets/images/mamanegra.jpg"),
-  },
-];
-
-const otherFestivities: Festivity[] = [
-  {
-    id: 4,
-    name: "Independencia de Quito",
-    date: "December 6th",
-    rating: 4.5,
-    image: require("../assets/images/QUITO.jpg"),
-  },
-  {
-    id: 5,
-    name: "Fiestas de Guayaquil",
-    date: "November 30th",
-    rating: 4.7,
-    image: require("../assets/images/guayaquil.jpg"),
-  },
-  {
-    id: 6,
-    name: "Fiesta del Sol",
-    date: "June 21st",
-    rating: 4.3,
-    image: require("../assets/images/fiestasol.jpg"),
-  },
-  {
-    id: 7,
-    name: "Inti Raymi",
-    date: "June 24th",
-    rating: 4.8,
-    image: require("../assets/images/intiraymi.jpg"),
-  },
-];
-
-// Función para normalizar textos (quitar tildes y convertir a minúsculas)
-const normalizeText = (text: string) => {
-  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-};
+const BACKEND_URL = "http://192.168.100.11:3000";
 
 const HomeScreen: React.FC = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState("Home");
@@ -93,87 +38,106 @@ const HomeScreen: React.FC = (): JSX.Element => {
   const [searchQuery, setSearchQuery] = useState("");
   const [userProfileImage, setUserProfileImage] = useState<string | null>(null);
 
+  // Estados para festividades
+  const [latestFestivities, setLatestFestivities] = useState<Festivity[]>([]);
+  // Por ahora, para "Other Festivities" podemos mantener datos hardcodeados o cargarlos dinámicamente si cuentas con un endpoint.
+  const [otherFestivities, setOtherFestivities] = useState<Festivity[]>([
+    {
+      id_festival: 4,
+      name_Festival: "Independencia de Quito",
+      start_date: "2022-12-06",
+      end_date: "2022-12-06",
+      image: "", // Aquí podrías poner una imagen en base64 o dejar un placeholder
+      rating: 4.5,
+      description: "Celebration in Quito",
+    },
+    {
+      id_festival: 5,
+      name_Festival: "Fiestas de Guayaquil",
+      start_date: "2022-11-30",
+      end_date: "2022-11-30",
+      image: "",
+      rating: 4.7,
+      description: "Celebration in Guayaquil",
+    },
+    // Puedes agregar más según convenga
+  ]);
+
   // Cargar imagen de perfil del usuario desde AsyncStorage
   useEffect(() => {
     const loadProfileImage = async () => {
       try {
         const storedImage = await AsyncStorage.getItem("profileImage");
-        if (storedImage) {
-          setUserProfileImage(storedImage);
-        } else {
-          setUserProfileImage(null); // Se usará la imagen por defecto
-        }
+        setUserProfileImage(storedImage || null);
       } catch (error) {
-        console.error("Error al cargar la imagen de perfil:", error);
+        console.error("Error loading profile image:", error);
         setUserProfileImage(null);
       }
     };
     loadProfileImage();
   }, []);
 
-  // Combina ambas listas para la búsqueda
-  const allFestivities: Festivity[] = [...popularFestivities, ...otherFestivities];
+  // Función para cargar las "Latest Festivities" (Popular) desde el backend
+  const fetchLatestFestivities = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/festivals/latest`);
+      // Se asume que el endpoint retorna { data: Festivity[] }
+      setLatestFestivities(response.data.data);
+    } catch (error) {
+      console.error("Error fetching latest festivities:", error);
+      Alert.alert("Error", "Could not fetch latest festivities");
+    }
+  };
 
-  // Filtra las festividades ignorando acentos y mayúsculas
+  useEffect(() => {
+    fetchLatestFestivities();
+  }, []);
+
+  // Función para normalizar texto (quitar tildes y pasar a minúsculas)
+  const normalizeText = (text: string) =>
+    text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+  // Combina las festividades (popular y otros) para la búsqueda
+  const allFestivities: Festivity[] = [...latestFestivities, ...otherFestivities];
+
   const normalizedSearch = normalizeText(searchQuery);
   const filteredFestivities = allFestivities.filter((festivity) =>
-    normalizeText(festivity.name).includes(normalizedSearch)
+    normalizeText(festivity.name_Festival).includes(normalizedSearch)
   );
 
-  // Render para tarjetas de Popular Festivities (horizontal)
-  const renderPopularFestivityCard = (
-    title: string,
-    date: string,
-    rating: number | undefined,
-    image: any,
-    eventId: number
-  ) => (
-    <TouchableOpacity onPress={() => navigation.navigate("Event", { eventId })}>
-      <ImageBackground
-        style={MainStyles.popularFestivityADS}
-        source={image}
-        resizeMode="cover"
+  // Render para card de Latest Festivities (popular)
+  const renderPopularFestivityCard = (festivity: Festivity) => {
+    // Formatear fecha: por ejemplo, "January 6"
+    const options: Intl.DateTimeFormatOptions = { month: "long", day: "numeric" };
+    const formattedDate = new Date(festivity.start_date).toLocaleDateString(
+      "en-US",
+      options
+    );
+
+    return (
+      <TouchableOpacity
+        key={festivity.id_festival}
+        onPress={() =>
+          navigation.navigate("FestivityScreen", { festivityId: festivity.id_festival })
+        }
       >
-        <Text style={MainStyles.popularFestivityTextADS}>{title}</Text>
-        <View style={MainStyles.popularFestivityDetailsHS}>
-          <Text style={MainStyles.dateTextHS}>{date}</Text>
-          <View style={MainStyles.ratingContainerHS}>
-            {rating !== undefined && (
-              <Text style={MainStyles.ratingTextHS}>{rating}</Text>
-            )}
-            <Icon
-              name="star"
-              size={20}
-              color="#FFD700"
-              style={MainStyles.ratingIconHS}
-            />
-          </View>
-        </View>
-      </ImageBackground>
-    </TouchableOpacity>
-  );
-
-  // Render para tarjetas de Other Festivities (vertical, más alargadas)
-  const renderOtherFestivityCard = (
-    title: string,
-    date: string,
-    rating: number | undefined,
-    image: any,
-    eventId: number
-  ) => (
-    <TouchableOpacity onPress={() => navigation.navigate("Event", { eventId })}>
-      <View style={{ marginHorizontal: 5 }}>
         <ImageBackground
-          style={MainStyles.otherFestivityADS}
-          source={image}
+          style={MainStyles.popularFestivityADS}
+          source={
+            festivity.image
+              ? { uri: `data:image/jpeg;base64,${festivity.image}` }
+              : require("../assets/images/oficial_festiapp.png")
+          }
           resizeMode="cover"
         >
-          <Text style={MainStyles.popularFestivityTextADS}>{title}</Text>
+          <Text style={MainStyles.popularFestivityTextADS}>
+            {festivity.name_Festival}
+          </Text>
           <View style={MainStyles.popularFestivityDetailsHS}>
-            <Text style={MainStyles.dateTextHSO}>{date}</Text>
-            <View style={MainStyles.ratingContainerHSO}>
-              {rating !== undefined && (
-                <Text style={MainStyles.ratingTextHS}>{rating}</Text>
+            <Text style={MainStyles.dateTextHS}>{formattedDate}</Text>
+            <View style={MainStyles.ratingContainerHS}>
+              {festivity.rating !== undefined && (
+                <Text style={MainStyles.ratingTextHS}>{festivity.rating}</Text>
               )}
               <Icon
                 name="star"
@@ -184,9 +148,56 @@ const HomeScreen: React.FC = (): JSX.Element => {
             </View>
           </View>
         </ImageBackground>
-      </View>
-    </TouchableOpacity>
-  );
+      </TouchableOpacity>
+    );
+  };
+
+  // Render para card de Other Festivities
+  const renderOtherFestivityCard = (festivity: Festivity) => {
+    const options: Intl.DateTimeFormatOptions = { month: "long", day: "numeric" };
+    const formattedDate = new Date(festivity.start_date).toLocaleDateString(
+      "en-US",
+      options
+    );
+    return (
+      <TouchableOpacity
+        key={festivity.id_festival}
+        onPress={() =>
+          navigation.navigate("FestivityScreen", { festivityId: festivity.id_festival })
+        }
+      >
+        <View style={{ marginHorizontal: 5 }}>
+          <ImageBackground
+            style={MainStyles.otherFestivityADS}
+            source={
+              festivity.image
+                ? { uri: `data:image/jpeg;base64,${festivity.image}` }
+                : require("../assets/images/oficial_festiapp.png")
+            }
+            resizeMode="cover"
+          >
+            <Text style={MainStyles.popularFestivityTextADS}>
+              {festivity.name_Festival}
+            </Text>
+            <View style={MainStyles.popularFestivityDetailsHS}>
+              <Text style={MainStyles.dateTextHSO}>{formattedDate}</Text>
+              <View style={MainStyles.ratingContainerHSO}>
+                {festivity.rating !== undefined && (
+                  <Text style={MainStyles.ratingTextHS}>{festivity.rating}</Text>
+                )}
+                <Icon
+                  name="star"
+                  size={20}
+                  color="#FFD700"
+                  style={MainStyles.ratingIconHS}
+                />
+              </View>
+            </View>
+          </ImageBackground>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <SafeAreaView
@@ -274,15 +285,15 @@ const HomeScreen: React.FC = (): JSX.Element => {
           </TouchableOpacity>
         </View>
 
-        {/* Muestra resultados de búsqueda o las secciones de festividades */}
+        {/* Sección de festividades: si hay búsqueda, muestra filtrados; si no, muestra las secciones */}
         {searchQuery ? (
           filteredFestivities.length > 0 ? (
             <View style={{ marginTop: 15, paddingHorizontal: 20 }}>
               {filteredFestivities.map((festivity) => (
                 <TouchableOpacity
-                  key={festivity.id}
+                  key={festivity.id_festival}
                   onPress={() =>
-                    navigation.navigate("Event", { eventId: festivity.id })
+                    navigation.navigate("FestivityScreen", { festivityId: festivity.id_festival })
                   }
                   style={{ marginBottom: 15 }}
                 >
@@ -293,7 +304,11 @@ const HomeScreen: React.FC = (): JSX.Element => {
                       borderRadius: 10,
                       overflow: "hidden",
                     }}
-                    source={festivity.image}
+                    source={
+                      festivity.image
+                        ? { uri: `data:image/jpeg;base64,${festivity.image}` }
+                        : require("../assets/images/oficial_festiapp.png")
+                    }
                     resizeMode="cover"
                   >
                     <View
@@ -310,10 +325,10 @@ const HomeScreen: React.FC = (): JSX.Element => {
                           fontWeight: "bold",
                         }}
                       >
-                        {festivity.name}
+                        {festivity.name_Festival}
                       </Text>
                       <Text style={{ color: "#ddd", fontSize: 14 }}>
-                        {festivity.date}
+                        {new Date(festivity.start_date).toLocaleDateString()}
                       </Text>
                     </View>
                   </ImageBackground>
@@ -328,63 +343,47 @@ const HomeScreen: React.FC = (): JSX.Element => {
                 marginTop: 20,
               }}
             >
-              No existe ningún evento.
+              No events found.
             </Text>
           )
         ) : (
           <>
-            {/* Popular Festivities (horizontal) */}
+            {/* Latest Festivities Section */}
             <Text
               style={[
                 MainStyles.sectionTitleHS,
                 { color: isDarkMode ? "#fff" : "#000" },
               ]}
             >
-              Popular festivities
+              Latest Festivities
             </Text>
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={MainStyles.horizontalScrollHS}
             >
-              {popularFestivities.map((festivity) => (
-                <View key={festivity.id} style={{ marginRight: 10 }}>
-                  {renderPopularFestivityCard(
-                    festivity.name,
-                    festivity.date,
-                    festivity.rating,
-                    festivity.image,
-                    festivity.id
-                  )}
-                </View>
-              ))}
+              {latestFestivities.map((festivity) =>
+                renderPopularFestivityCard(festivity)
+              )}
             </ScrollView>
 
-            {/* Other Festivities (vertical) */}
+            {/* Other Festivities Section */}
             <Text
               style={[
                 MainStyles.sectionTitleOtherHS,
                 { color: isDarkMode ? "#fff" : "#000" },
               ]}
             >
-              Other festivities
+              Other Festivities
             </Text>
             <ScrollView
-              horizontal={true}
+              horizontal
               showsHorizontalScrollIndicator={true}
               contentContainerStyle={{ paddingHorizontal: 20 }}
             >
-              {otherFestivities.map((festivity) => (
-                <View key={festivity.id} style={{ marginBottom: 15 }}>
-                  {renderOtherFestivityCard(
-                    festivity.name,
-                    festivity.date,
-                    festivity.rating,
-                    festivity.image,
-                    festivity.id
-                  )}
-                </View>
-              ))}
+              {otherFestivities.map((festivity) =>
+                renderOtherFestivityCard(festivity)
+              )}
             </ScrollView>
           </>
         )}
