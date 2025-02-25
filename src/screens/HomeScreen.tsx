@@ -17,6 +17,7 @@ import MainStyles from "../styles/MainStyles";
 import { useTheme } from "../hooks/ThemeContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import * as Notifications from "expo-notifications";
 
 // Interfaz para festividades (dinámica)
 interface Festivity {
@@ -63,6 +64,39 @@ const HomeScreen: React.FC = (): JSX.Element => {
     // Puedes agregar más según convenga
   ]);
 
+  // Función para presentar notificaciones locales de inmediato
+  const presentLocalNotification = async (title: string, body: string) => {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title,
+        body,
+        sound: "default",
+      },
+      trigger: null, // Se muestra de inmediato
+    });
+  };
+  
+  // Función para obtener y presentar las notificaciones almacenadas en MongoDB
+  const fetchAndPresentNotifications = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/notifications/list`);
+      const notifications = response.data;
+      console.log(`Found ${notifications.length} notifications`);
+      
+      notifications.forEach((notif: any) => {
+        presentLocalNotification("Upcoming Festivity", notif.message);
+      });
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+      Alert.alert("Error", "Could not fetch notifications");
+    }
+  };
+
+  useEffect(() => {
+    // Llama a la función cuando el HomeScreen se carga
+    fetchAndPresentNotifications();
+  }, []);
+
   // Cargar imagen de perfil del usuario desde AsyncStorage
   useEffect(() => {
     const loadProfileImage = async () => {
@@ -75,6 +109,21 @@ const HomeScreen: React.FC = (): JSX.Element => {
       }
     };
     loadProfileImage();
+  }, []);
+
+  // Invocar generación de notificaciones cuando se abra HomeScreen
+  useEffect(() => {
+    const generateNotifications = async () => {
+      try {
+        const response = await axios.post(`${BACKEND_URL}/notifications/generate`);
+        console.log("Notifications generated:", response.data);
+        // Opcional: añadir un Toast o Alert para confirmar éxito
+      } catch (error: any) {
+        console.error("Error generating notifications:", error);
+        console.error("Error details:", error.response?.data || error.message);
+      }
+    };
+    generateNotifications();
   }, []);
 
   // Función para cargar las "Latest Festivities" (Popular) desde el backend
@@ -92,7 +141,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
   useEffect(() => {
     fetchLatestFestivities();
   }, []);
-
+  
   // Función para normalizar texto (quitar tildes y pasar a minúsculas)
   const normalizeText = (text: string) =>
     text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
