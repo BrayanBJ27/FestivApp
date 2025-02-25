@@ -506,7 +506,7 @@ const MainStyles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
-    padding: 60,
+    padding: 40,
     backgroundColor: "rgba(0, 0, 0, 0.3)",
   },
   backgroundImageES: {
@@ -566,13 +566,6 @@ const MainStyles = StyleSheet.create({
     fontFamily: "Poppins",
     color: "rgba(255, 255, 255, 0.8)",
     marginLeft: 10,
-  },
-  seeReviewsTextES: {
-    fontSize: 14,
-    fontFamily: "Poppins",
-    color: "#fff",
-    marginLeft: 20,
-    textDecorationLine: "underline",
   },
   buttonContainerES: {
     flexDirection: "row",
