@@ -106,7 +106,7 @@ const AccountScreen: React.FC<AccountScreenProps> = ({ navigation }) => {
           </Text>
 
           {/* Buttons */}
-          {renderButton("Notification", "bell", () => console.log("Navigate to Notification Screen"))}
+          {renderButton("Notification", "bell", () => console.log("NotificationScreen"))}
           {renderButton("Country", "earth-americas", () => console.log("Navigate to Country Screen"))}
           {renderButton("History", "clock-rotate-left", () => navigation.navigate("History"))}
           {renderButton("Terms of Services", "file-lines", () => navigation.navigate("TermsScreen"))}
