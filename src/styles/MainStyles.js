@@ -1241,16 +1241,9 @@ const MainStyles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0',
   },
-  backButtonNS: {
-    padding: 8,
-  },
   titleTextNS: {
     fontSize: 24,
     fontWeight: "600",
-  },
-  viewAllTextNS: {
-    fontSize: 14,
-    color: "#007AFF",
   },
   festivalContainerNS: {
     flexDirection: 'row',
@@ -1298,20 +1291,14 @@ const MainStyles = StyleSheet.create({
   starsContainerNS: {
     flexDirection: 'row',
   },
+  ratingTextNS: {
+    fontSize: 14,
+    color: '#007AFF',
+  },
   festivalDescriptionNS: {
     fontSize: 14,
     color: '#666',
     lineHeight: 20,
-  },
-  starNS: {
-    color: '#00CEC9',
-    fontSize: 16,
-    marginLeft: 2,
-  },
-  inactiveStarNS: {
-    color: '#e0e0e0',
-    fontSize: 16,
-    marginLeft: 2,
   },
 
   // TermsscreenStyles 
