@@ -1,11 +1,18 @@
-import React from "react";
-import { UserProvider } from "./src/hooks/UserContext"; // Importa tu contexto de usuario
-
+import React, { useEffect } from "react";
+import { UserProvider } from "./src/hooks/UserContext";
+import { setupNotifications } from './src/hooks/notificationSetup';
 import { ThemeProvider } from "./src/hooks/ThemeContext";
-// Importa tu contexto de tema
-import AppNavigator from "./src/hooks/AppNavigator"; // Configuración de navegación principal
+import AppNavigator from "./src/hooks/AppNavigator";
 
 const App: React.FC = () => {
+
+  useEffect(() => {
+    const unsubscribe = setupNotifications();
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   return (
     <ThemeProvider>
       <UserProvider>
