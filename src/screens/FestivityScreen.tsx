@@ -43,50 +43,45 @@ const FestivityScreen: React.FC<Props> = ({ route, navigation }) => {
     );
   }
 
-  // Formatear la fecha de inicio
+  // Formatear la fecha
   const formattedDate = new Date(festivityDetails.start_date).toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
     year: "numeric",
   });
 
-  // Función para renderizar estrellas según el rating
+  // Actualizar el rating en el backend
+  const handleRatingUpdate = async (newRating: number) => {
+    try {
+      const response = await axios.put(`${BACKEND_URL}/ratings/update`, {
+        festivalId: festivityId,
+        rating: newRating,
+      });
+      // Actualizamos el estado con el nuevo rating devuelto
+      setFestivityDetails((prev: any) => ({
+        ...prev,
+        rating: response.data.rating,
+      }));
+    } catch (error) {
+      console.error("Error updating rating:", error);
+      Alert.alert("Error", "Could not update rating");
+    }
+  };
+
+  // Renderizar estrellas dinámicamente
   const renderStars = (rating: number) => {
-    const fullStars = Math.floor(rating);
-    const halfStar = rating - fullStars >= 0.5 ? 1 : 0;
-    const emptyStars = 5 - fullStars - halfStar;
     const stars = [];
-    for (let i = 0; i < fullStars; i++) {
+    for (let i = 1; i <= 5; i++) {
+      let iconName = "star"; // Por defecto, estrella vacía
+      if (rating >= i) {
+        iconName = "star"; // Estrella llena
+      } else if (rating + 0.5 >= i) {
+        iconName = "star-half"; // Media estrella
+      }
       stars.push(
-        <Icon
-          key={`full-${i}`}
-          name="star"
-          size={16}
-          color="#FFD700"
-          style={MainStyles.starIconES}
-        />
-      );
-    }
-    if (halfStar === 1) {
-      stars.push(
-        <Icon
-          key="half"
-          name="star-half"
-          size={16}
-          color="#FFD700"
-          style={MainStyles.starIconES}
-        />
-      );
-    }
-    for (let i = 0; i < emptyStars; i++) {
-      stars.push(
-        <Icon
-          key={`empty-${i}`}
-          name="star"
-          size={16}
-          color="#FFD700"
-          style={MainStyles.starIconES}
-        />
+        <TouchableOpacity key={i} onPress={() => handleRatingUpdate(i)}>
+          <Icon name={iconName} size={16} color="#FFD700" style={MainStyles.starIconES} />
+        </TouchableOpacity>
       );
     }
     return stars;
@@ -116,18 +111,20 @@ const FestivityScreen: React.FC<Props> = ({ route, navigation }) => {
               Date: {formattedDate}
             </Text>
 
-            {/* Reviews Section */}
+            {/* Sección de rating */}
             <View style={MainStyles.reviewContainerES}>
               <View style={MainStyles.ratingContainerES}>
                 {renderStars(festivityDetails.rating || 0)}
-                <Text style={MainStyles.ratingTextES}>{festivityDetails.rating || "0"}</Text>
+                <Text style={MainStyles.ratingTextES}>
+                  {festivityDetails.rating?.toFixed(2) || "0"}
+                </Text>
               </View>
               <Text style={MainStyles.reviewTextES}>
                 ({festivityDetails.reviewCount || 0} reviews)
               </Text>
             </View>
 
-            {/* Action Buttons */}
+            {/* Botones de acción */}
             <View style={MainStyles.buttonContainerES}>
               <TouchableOpacity
                 style={MainStyles.primaryButtonES}
