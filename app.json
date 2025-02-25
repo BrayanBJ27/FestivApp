@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "FestivApp",
-    "slug": "FestivApp",
+    "slug": "festivApp",
     "scheme": "festivapp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -15,7 +15,8 @@
     },
     "ios": {
       "bundleIdentifier": "com.festivapp.app",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "projectId": "7a9acb99-f924-4fd3-81f3-20b74d328d16"
     },
     "android": {
       "package": "festiv_app.mb_25",
@@ -34,16 +35,34 @@
               "pathPrefix": "/"
             }
           ],
-          "category": ["BROWSABLE", "DEFAULT"]
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
         }
-      ]
+      ],
+      "projectId": "7a9acb99-f924-4fd3-81f3-20b74d328d16",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/oficial_festiapp.png"
     },
     "plugins": [
       "expo-font",
-      "expo-secure-store"
-    ]
+      "expo-secure-store",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/oficial_festiapp.png",
+          "color": "#ffffff"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "7a9acb99-f924-4fd3-81f3-20b74d328d16"
+      }
+    },
+    "owner": "brayanbj27"
   }
 }
