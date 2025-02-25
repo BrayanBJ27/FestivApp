@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  SafeAreaView,
   ScrollView,
   View,
   Text,
@@ -14,9 +13,10 @@ import Icon from "react-native-vector-icons/FontAwesome6";
 import MainStyles from "../styles/MainStyles";
 import { useNavigation } from "@react-navigation/native";
 import { useUser } from "../hooks/UserContext";
+import axios from "axios";
+import * as Notifications from "expo-notifications";
 import { auth } from "../config/firebase";
 import { GoogleAuthProvider, FacebookAuthProvider, signInWithCredential } from "firebase/auth";
-import axios from "axios";
 import * as Google from "expo-auth-session/providers/google";
 import * as Facebook from "expo-auth-session/providers/facebook";
 import { makeRedirectUri } from "expo-auth-session";
@@ -33,6 +33,67 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Solicitar permisos y registrar el device token
+  const registerForPushNotificationsAsync = async (userId = null) => {
+    try {
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
+      if (existingStatus !== "granted") {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+      if (finalStatus !== "granted") {
+        console.log("Failed to get push notification permissions");
+        return;
+      }
+      
+      // Obtener el token sin pasar projectId (Managed Workflow)
+      const tokenResponse = await Notifications.getExpoPushTokenAsync();
+      const token = tokenResponse.data;
+      console.log("Push token:", token);
+      
+      // Guardar el token en AsyncStorage
+      await AsyncStorage.setItem("devicePushToken", token);
+      
+      // Obtener el userId almacenado (si ya existe)
+      const storedUserId = await AsyncStorage.getItem("userId");
+      console.log(`Registering token with backend for user: ${userId || storedUserId || "anonymous"}`);
+      
+      // Probar la conexión al backend
+      console.log(`Testing connection to: ${BACKEND_URL}`);
+      await axios.get(`${BACKEND_URL}/health`, { timeout: 5000 });
+      console.log("Backend connection test successful");
+      
+      // Realizar la solicitud principal
+      const response = await axios.post(
+        `${BACKEND_URL}/devices/register`,
+        { token, userId: userId || storedUserId },
+        { timeout: 30000 }
+      );
+      
+      console.log("Token registration response:", response.data);
+      return token;
+    } catch (error) {
+      console.error("Error registering for push notifications:", error);
+      if (error.response) {
+        console.error("Response error data:", error.response.data);
+        console.error("Response error status:", error.response.status);
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      }
+      Alert.alert(
+        "Notification Setup Issue",
+        `Could not register for push notifications: ${error.message}. Please check your network connection.`,
+        [{ text: "OK" }]
+      );
+      return null;
+    }
+  };  
+  
+  useEffect(() => {
+    registerForPushNotificationsAsync();
+  }, []);
 
   // Google Auth con redirectUri
   const [googleRequest, googleResponse, googlePromptAsync] = Google.useAuthRequest({
@@ -52,14 +113,18 @@ export default function LoginScreen() {
       Alert.alert("Error", "Por favor ingresa email y contraseña");
       return;
     }
-
+  
     setLoading(true);
     try {
       const response = await axios.post(`${BACKEND_URL}/auth/login`, { email, password });
-
+  
       if (response.data.success) {
         // Guardar el userId en AsyncStorage
         await AsyncStorage.setItem("userId", response.data.user.id.toString());
+        
+        // Register push notification with user ID
+        await registerForPushNotificationsAsync(response.data.user.id.toString());
+        
         setUser(response.data.user);
         navigation.navigate(response.data.user.isAdmin ? "AdminDashboard" : "Home");
       } else {
