@@ -128,7 +128,7 @@ const FestivityScreen: React.FC<Props> = ({ route, navigation }) => {
             <View style={MainStyles.buttonContainerES}>
               <TouchableOpacity
                 style={MainStyles.primaryButtonES}
-                onPress={() => navigation.navigate("Schedule")}
+                onPress={() => navigation.navigate("ScheduleScreen", { festivityId })}
               >
                 <Text style={MainStyles.primaryButtonTextES}>Enter the plan</Text>
               </TouchableOpacity>
