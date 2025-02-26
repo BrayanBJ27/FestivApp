@@ -907,17 +907,23 @@ const MainStyles = StyleSheet.create({
     left: 20,
     top: 10,
   },
+  noEventsTextSS: {
+    fontSize: 16,
+    color: "#6c6c6c",
+    textAlign: "center",
+    marginTop: 20,
+  },
   weatherIconSS: {
     width: 40, 
     height: 40,
     borderRadius: 20,
-    left: 70,
+    left: 50,
     top: 10,
   },
   weatherTextSS: {
     fontSize: 14,
     color: "#0373f3", // Azul para el texto del clima
-    right: -20,
+    right: -5,
     fontWeight: "500",
     top: -5,
   },
@@ -1005,20 +1011,6 @@ const MainStyles = StyleSheet.create({
     marginTop: 10,
     marginHorizontal: 25,
     color: '#000',
-  },
-  contactInputCS: {
-    borderWidth: 1,
-    borderColor: '#e9e9e9',
-    borderRadius: 25,
-    marginTop: 9,
-    marginHorizontal: 24,
-    padding: 10,
-    width: 350,
-  },
-  selectContactCS: {
-    fontFamily: 'Poppins',
-    fontSize: 16,
-    color: '#a9a9a9',
   },
   sendEmailCS: {
     fontFamily: 'Poppins',
@@ -1421,7 +1413,7 @@ const MainStyles = StyleSheet.create({
     },
 
     otherFestivityADS: {
-      width: "100%",
+      width: "130%",
       height: 250,
       borderRadius: 15,
       overflow: "hidden",
