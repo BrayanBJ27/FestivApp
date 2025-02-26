@@ -32,8 +32,8 @@ export type RootStackParamList = {
   SignUp: undefined;
   Home: undefined;
   FestivityScreen: { festivityId: number };
-  Schedule: undefined;
-  Calendar: undefined;
+  ScheduleScreen: { festivityId: number };
+  Calendar: { festivityId: number };
   History: undefined;
   Map: undefined;
   Account: undefined;
@@ -78,7 +78,7 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen name="AdminDashboard" component={AdminDashboardScreen} options={{ headerShown: true, title: "Admin Dashboard" }} />
         <Stack.Screen name="AddFestivityScreen" component={AddFestivityScreen} options={{ headerShown: true, title: "Add Festivity" }} />
         <Stack.Screen name="FestivityScreen" component={FestivityScreen} options={{ headerShown: true, title: "Festivity Details" }} />
-        <Stack.Screen name="Schedule" component={ScheduleScreen} options={{ headerShown: true, title: "Schedule" }} />
+        <Stack.Screen name="ScheduleScreen" component={ScheduleScreen} options={{ headerShown: true, title: "Schedule" }} />
         <Stack.Screen name="Calendar" component={CalendarScreen} options={{ headerShown: true, title: "Calendar" }} />
         <Stack.Screen name="History" component={HistoryScreen} options={{ headerShown: true, title: "Visited Destinations" }} />
         <Stack.Screen name="Map" component={MapScreen} options={{ headerShown: true, title: "Map" }} />
