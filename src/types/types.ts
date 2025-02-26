@@ -3,8 +3,8 @@ export type RootStackParamList = {
   SignUp: undefined;
   Home: undefined;
   FestivityScreen: { festivityId: number };
-  Schedule: undefined;
-  Calendar: undefined;
+  ScheduleScreen: { festivityId: number };
+  Calendar: { festivityId: number };
   Map: undefined;
   Account: undefined;
   GuarandaEvent: undefined;
