@@ -18,6 +18,7 @@ import { useTheme } from "../hooks/ThemeContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import * as Notifications from "expo-notifications";
+import useDebounce from "../hooks/useDebounce"; // Importamos el hook de debounce
 
 // Interfaz para festividades (dinámica)
 interface Festivity {
@@ -37,32 +38,13 @@ const HomeScreen: React.FC = (): JSX.Element => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { isDarkMode } = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
+  // Usamos el debounce para evitar búsquedas constantes mientras se escribe
+  const debouncedSearchQuery = useDebounce(searchQuery, 500);
   const [userProfileImage, setUserProfileImage] = useState<string | null>(null);
 
-  // Estados para festividades
+  // Estado para festividades (todas las populares)
   const [latestFestivities, setLatestFestivities] = useState<Festivity[]>([]);
-  // Por ahora, para "Other Festivities" podemos mantener datos hardcodeados o cargarlos dinámicamente si cuentas con un endpoint.
-  const [otherFestivities, setOtherFestivities] = useState<Festivity[]>([
-    {
-      id_festival: 4,
-      name_Festival: "Independencia de Quito",
-      start_date: "2022-12-06",
-      end_date: "2022-12-06",
-      image: "", // Aquí podrías poner una imagen en base64 o dejar un placeholder
-      rating: 4.5,
-      description: "Celebration in Quito",
-    },
-    {
-      id_festival: 5,
-      name_Festival: "Fiestas de Guayaquil",
-      start_date: "2022-11-30",
-      end_date: "2022-11-30",
-      image: "",
-      rating: 4.7,
-      description: "Celebration in Guayaquil",
-    },
-    // Puedes agregar más según convenga
-  ]);
+  // Eliminamos el estado de otherFestivities hardcodeado
 
   // Función para presentar notificaciones locales de inmediato
   const presentLocalNotification = async (title: string, body: string) => {
@@ -72,17 +54,16 @@ const HomeScreen: React.FC = (): JSX.Element => {
         body,
         sound: "default",
       },
-      trigger: null, // Se muestra de inmediato
+      trigger: null,
     });
   };
-  
+
   // Función para obtener y presentar las notificaciones almacenadas en MongoDB
   const fetchAndPresentNotifications = async () => {
     try {
       const response = await axios.get(`${BACKEND_URL}/notifications/list`);
       const notifications = response.data;
       console.log(`Found ${notifications.length} notifications`);
-      
       notifications.forEach((notif: any) => {
         presentLocalNotification("Upcoming Festivity", notif.message);
       });
@@ -93,7 +74,6 @@ const HomeScreen: React.FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    // Llama a la función cuando el HomeScreen se carga
     fetchAndPresentNotifications();
   }, []);
 
@@ -117,7 +97,6 @@ const HomeScreen: React.FC = (): JSX.Element => {
       try {
         const response = await axios.post(`${BACKEND_URL}/notifications/generate`);
         console.log("Notifications generated:", response.data);
-        // Opcional: añadir un Toast o Alert para confirmar éxito
       } catch (error: any) {
         console.error("Error generating notifications:", error);
         console.error("Error details:", error.response?.data || error.message);
@@ -141,31 +120,36 @@ const HomeScreen: React.FC = (): JSX.Element => {
   useEffect(() => {
     fetchLatestFestivities();
   }, []);
-  
+
   // Función para normalizar texto (quitar tildes y pasar a minúsculas)
   const normalizeText = (text: string) =>
     text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
-  // Combina las festividades (popular y otros) para la búsqueda
-  const allFestivities: Festivity[] = [...latestFestivities, ...otherFestivities];
+  // Para búsqueda, combinamos todas las festividades (ahora solo latestFestivities)
+  const allFestivities: Festivity[] = [...latestFestivities];
 
-  const normalizedSearch = normalizeText(searchQuery);
+  const normalizedSearch = normalizeText(debouncedSearchQuery);
   const filteredFestivities = allFestivities.filter((festivity) =>
     normalizeText(festivity.name_Festival).includes(normalizedSearch)
   );
 
+  // Derivamos las secciones:
+  // Sección "Latest Festivities": aquellas con id_festival menor a 5 (puedes ajustar el criterio)
+  const popularFestivities = latestFestivities.filter(
+    (festivity) => festivity.id_festival < 5
+  );
+  // Sección "Other Festivities": aquellas con id_festival 5 en adelante
+  const otherFestivities = latestFestivities.filter(
+    (festivity) => festivity.id_festival >= 5
+  );
+
   // Render para card de Latest Festivities (popular)
   const renderPopularFestivityCard = (festivity: Festivity) => {
-    // Formatear fecha: por ejemplo, "January 6"
     const options: Intl.DateTimeFormatOptions = { month: "long", day: "numeric" };
-    const formattedDate = new Date(festivity.start_date).toLocaleDateString(
-      "en-US",
-      options
-    );
-
+    const formattedDate = new Date(festivity.start_date).toLocaleDateString("en-US", options);
     return (
       <TouchableOpacity
-        key={festivity.id_festival}
+        key={`latest-${festivity.id_festival}`}
         onPress={() =>
           navigation.navigate("FestivityScreen", { festivityId: festivity.id_festival })
         }
@@ -204,13 +188,10 @@ const HomeScreen: React.FC = (): JSX.Element => {
   // Render para card de Other Festivities
   const renderOtherFestivityCard = (festivity: Festivity) => {
     const options: Intl.DateTimeFormatOptions = { month: "long", day: "numeric" };
-    const formattedDate = new Date(festivity.start_date).toLocaleDateString(
-      "en-US",
-      options
-    );
+    const formattedDate = new Date(festivity.start_date).toLocaleDateString("en-US", options);
     return (
       <TouchableOpacity
-        key={festivity.id_festival}
+        key={`other-${festivity.id_festival}`}
         onPress={() =>
           navigation.navigate("FestivityScreen", { festivityId: festivity.id_festival })
         }
@@ -411,7 +392,7 @@ const HomeScreen: React.FC = (): JSX.Element => {
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={MainStyles.horizontalScrollHS}
             >
-              {latestFestivities.map((festivity) =>
+              {popularFestivities.map((festivity) =>
                 renderPopularFestivityCard(festivity)
               )}
             </ScrollView>
