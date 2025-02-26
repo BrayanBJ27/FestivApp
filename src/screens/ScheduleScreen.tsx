@@ -7,64 +7,106 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
+  Image,
+  Alert // <-- Importamos Alert desde react-native
 } from "react-native";
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import BottomNavbar from "../components/BottomNavbar";
 import Icon from "react-native-vector-icons/FontAwesome6";
 import MainStyles from "../styles/MainStyles";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
+import {
+  NavigationProp,
+  useNavigation,
+  useRoute,
+  RouteProp
+} from "@react-navigation/native";
 import { RootStackParamList } from "../types/types";
 import axios from "axios";
-import { WEATHER_API_KEY } from "@env"; // Importamos la API Key del .env
+import { WEATHER_API_KEY } from "@env";
 
 // URL base de tu backend
 const BACKEND_URL = "http://192.168.100.11:3000";
 
+// Función para obtener el ícono del clima a partir de la descripción
 const getWeatherIcon = (condition: string) => {
   const conditionLower = condition.toLowerCase();
-  if (conditionLower.includes("rain") || conditionLower.includes("drizzle") || conditionLower.includes("shower")) {
+  if (
+    conditionLower.includes("rain") ||
+    conditionLower.includes("drizzle") ||
+    conditionLower.includes("shower")
+  ) {
     return "cloud-rain";
   }
-  if (conditionLower.includes("thunder") || conditionLower.includes("storm") || conditionLower.includes("lightning")) {
+  if (
+    conditionLower.includes("thunder") ||
+    conditionLower.includes("storm") ||
+    conditionLower.includes("lightning")
+  ) {
     return "cloud-bolt";
   }
-  if (conditionLower.includes("snow") || conditionLower.includes("blizzard") || conditionLower.includes("sleet")) {
+  if (
+    conditionLower.includes("snow") ||
+    conditionLower.includes("blizzard") ||
+    conditionLower.includes("sleet")
+  ) {
     return "snowflake";
   }
-  if (conditionLower.includes("mist") || conditionLower.includes("fog") || conditionLower.includes("haze")) {
+  if (
+    conditionLower.includes("mist") ||
+    conditionLower.includes("fog") ||
+    conditionLower.includes("haze")
+  ) {
     return "smog";
   }
   if (conditionLower.includes("sunny") || conditionLower.includes("clear")) {
     return "sun";
   }
-  if (conditionLower.includes("partly cloudy") || conditionLower.includes("partly sunny")) {
+  if (
+    conditionLower.includes("partly cloudy") ||
+    conditionLower.includes("partly sunny")
+  ) {
     return "cloud-sun";
   }
   if (conditionLower.includes("cloudy") || conditionLower.includes("overcast")) {
     return "cloud";
   }
-  if (conditionLower.includes("wind") || conditionLower.includes("gale") || conditionLower.includes("breezy")) {
+  if (
+    conditionLower.includes("wind") ||
+    conditionLower.includes("gale") ||
+    conditionLower.includes("breezy")
+  ) {
     return "wind";
   }
   if (conditionLower.includes("hail") || conditionLower.includes("ice pellets")) {
     return "cloud-hail";
   }
-  if (conditionLower.includes("tropical") || conditionLower.includes("hurricane") || conditionLower.includes("cyclone")) {
+  if (
+    conditionLower.includes("tropical") ||
+    conditionLower.includes("hurricane") ||
+    conditionLower.includes("cyclone")
+  ) {
     return "hurricane";
   }
   if (conditionLower.includes("hot") || conditionLower.includes("heat")) {
     return "temperature-high";
   }
-  if (conditionLower.includes("cold") || conditionLower.includes("freeze") || conditionLower.includes("frost")) {
+  if (
+    conditionLower.includes("cold") ||
+    conditionLower.includes("freeze") ||
+    conditionLower.includes("frost")
+  ) {
     return "temperature-low";
   }
-  if (conditionLower.includes("rain") && (conditionLower.includes("sun") || conditionLower.includes("clear"))) {
+  if (
+    conditionLower.includes("rain") &&
+    (conditionLower.includes("sun") || conditionLower.includes("clear"))
+  ) {
     return "cloud-sun-rain";
   }
   return "circle-question";
 };
 
+// Función para obtener los datos del clima usando Weather API
 const fetchWeather = async (location: string) => {
   try {
     const response = await axios.get(
@@ -80,16 +122,22 @@ const fetchWeather = async (location: string) => {
 const ScheduleScreen: React.FC = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<string>("Home");
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const [nickname, setNickname] = useState("Brayan Davila"); // Valor por defecto
-  const [profileImage, setProfileImage] = useState<string | null>(null); // Estado para la imagen del usuario
-  const [userProfileImage, setUserProfileImage] = useState<string | null>(null);
-  const [weatherData, setWeatherData] = useState<{ [key: string]: any }>({});
-  const [loading, setLoading] = useState<{ [key: string]: boolean }>({
-    "Pillaro Central": true,
-    "San Vicente de Quilimbulo": true,
-    "Tunguipamba": true,
-  });
+  const route = useRoute<RouteProp<RootStackParamList, "ScheduleScreen">>();
+  const { festivityId } = route.params;
 
+  // Estados para la información del usuario
+  const [nickname, setNickname] = useState("Brayan Davila");
+  const [userProfileImage, setUserProfileImage] = useState<string | null>(null);
+
+  // Estados para la información de la festividad y sus eventos
+  const [festivity, setFestivity] = useState<any>(null);
+  const [events, setEvents] = useState<any[]>([]);
+
+  // Estados para el clima: usaremos la id del evento como key
+  const [weatherData, setWeatherData] = useState<{ [key: string]: any }>({});
+  const [loading, setLoading] = useState<{ [key: string]: boolean }>({});
+
+  // Cargar imagen de perfil desde AsyncStorage
   useEffect(() => {
     const loadProfileImageFromStorage = async () => {
       try {
@@ -107,7 +155,7 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
     loadProfileImageFromStorage();
   }, []);
 
-// Cargar perfil (incluyendo imagen) desde el backend
+  // Cargar perfil desde el backend
   useEffect(() => {
     const loadUserProfile = async () => {
       try {
@@ -117,12 +165,13 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
           if (response.data.success) {
             const user = response.data.user;
             setNickname(user.name_User);
-            // Si el backend retorna una imagen válida, la usamos para actualizar el estado.
             if (user.image) {
               setUserProfileImage(user.image);
             }
           } else {
-            console.error("No se pudo cargar la información del usuario desde el backend");
+            console.error(
+              "No se pudo cargar la información del usuario desde el backend"
+            );
           }
         } else {
           console.error("UserId not found in AsyncStorage");
@@ -134,7 +183,7 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
     loadUserProfile();
   }, []);
 
-  // Cargar el nickname guardado en AsyncStorage (como respaldo)
+  // Cargar el nickname de AsyncStorage (como respaldo)
   useEffect(() => {
     const loadNickname = async () => {
       try {
@@ -149,33 +198,70 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
     loadNickname();
   }, []);
 
+  // Fetch de la información de la festividad (incluye join con Locations para city/province)
   useEffect(() => {
-    const fetchAllWeather = async () => {
-      const locations = ["Pillaro, Ecuador", "San Vicente de Quilimbulo, Ecuador", "Tunguipamba, Ecuador"];
-      const locationNames = ["Pillaro Central", "San Vicente de Quilimbulo", "Tunguipamba"];
-
-      let weatherResults: { [key: string]: any } = {};
-      let loadingStates: { [key: string]: boolean } = {};
-
-      for (let i = 0; i < locations.length; i++) {
-        loadingStates[locationNames[i]] = true;
-        const weather = await fetchWeather(locations[i]);
-        if (weather) {
-          weatherResults[locationNames[i]] = weather;
-        }
-        loadingStates[locationNames[i]] = false;
+    const fetchFestivity = async () => {
+      try {
+        const response = await axios.get(
+          `${BACKEND_URL}/festivals/detail/${festivityId}`
+        );
+        setFestivity(response.data);
+      } catch (error) {
+        console.error("Error fetching festivity detail:", error);
       }
-
-      setWeatherData(weatherResults);
-      setLoading(loadingStates);
     };
+    fetchFestivity();
+  }, [festivityId]);
 
-    fetchAllWeather();
-  }, []);
+  // Fetch de los eventos asociados a la festividad
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get(
+          `${BACKEND_URL}/events/byFestival?festivityId=${festivityId}`
+        );
+        // Si la respuesta es un arreglo, se asigna directamente; de lo contrario, se verifica la propiedad "events"
+        const eventsData = Array.isArray(response.data)
+          ? response.data
+          : response.data.events;
+        setEvents(eventsData || []);
+      } catch (error) {
+        console.error("Error fetching events for festivity:", error);
+        Alert.alert("Error", "Could not fetch events for festivity");
+      }
+    };
+    fetchEvents();
+  }, [festivityId]);
+
+  // Para cada evento, obtenemos la información del clima usando la localidad del evento
+  useEffect(() => {
+    const fetchWeatherForEvents = async () => {
+      let newWeatherData: { [key: string]: any } = {};
+      let newLoading: { [key: string]: boolean } = {};
+      for (let event of events) {
+        newLoading[event.id_event] = true;
+        // Usamos event.location_name para la consulta del clima
+        const weather = await fetchWeather(`${event.location_name}, Ecuador`);
+        if (weather) {
+          newWeatherData[event.id_event] = weather;
+        }
+        newLoading[event.id_event] = false;
+      }
+      setWeatherData(newWeatherData);
+      setLoading(newLoading);
+    };
+    if (events.length > 0) {
+      fetchWeatherForEvents();
+    }
+  }, [events]);
 
   return (
     <SafeAreaView style={MainStyles.safeAreaSS}>
-      <ScrollView scrollEnabled={true} contentInsetAdjustmentBehavior="automatic" style={MainStyles.scrollViewSS}>
+      <ScrollView
+        scrollEnabled={true}
+        contentInsetAdjustmentBehavior="automatic"
+        style={MainStyles.scrollViewSS}
+      >
         <View style={MainStyles.containerSS}>
           <Text style={MainStyles.greetingTextSS}>Good morning</Text>
           <Text style={MainStyles.mainTitleSS}>Hello, {nickname}</Text>
@@ -188,14 +274,28 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
             }
           />
 
-          <Text style={MainStyles.sectionTitleSS}>Diablada Pillareña</Text>
-          <ImageBackground style={MainStyles.mainImageSS} source={require("../assets/images/diablada.jpg")} resizeMode="cover">
+          {/* Cabecera de la festividad */}
+          <Text style={MainStyles.sectionTitleSS}>
+            {festivity ? festivity.name_Festival : "Loading festivity..."}
+          </Text>
+          <ImageBackground
+            style={MainStyles.mainImageSS}
+            source={
+              festivity && festivity.image
+                ? { uri: `data:image/jpeg;base64,${festivity.image}` }
+                : require("../assets/images/oficial_festiapp.png")
+            }
+            resizeMode="cover"
+          >
             <View style={MainStyles.overlayContainerSS}>
               <Icon name="location-dot" size={20} color="#fff" />
-              <Text style={MainStyles.locationTextSS}>Pillaro/Tungurahua</Text>
-
+              <Text style={MainStyles.locationTextSS}>
+                {festivity
+                  ? `${festivity.city}, ${festivity.province}`
+                  : "Pillaro/Tungurahua"}
+              </Text>
               <View style={MainStyles.buttonContainerSS}>
-                <TouchableOpacity onPress={() => navigation.navigate("Calendar")}>
+                <TouchableOpacity onPress={() => navigation.navigate("Calendar", { festivityId })}>
                   <Icon name="calendar" size={20} color="#ffffff" />
                 </TouchableOpacity>
               </View>
@@ -203,45 +303,68 @@ const ScheduleScreen: React.FC = (): JSX.Element => {
           </ImageBackground>
 
           <View style={MainStyles.dragIndicatorSS} />
+
+          {/* Sección de eventos (Schedule) */}
           <View style={MainStyles.scheduleContainerSS}>
             <View style={MainStyles.scheduleHeaderSS}>
               <Text style={MainStyles.scheduleTitleSS}>Schedule</Text>
             </View>
 
-            {["Pillaro Central", "San Vicente de Quilimbulo", "Tunguipamba"].map((location, index) => (
-              <View key={index} style={MainStyles.scheduleItemSS}>
-                <Text style={MainStyles.timeTextSS}>
-                  {index === 0 ? "10:30" : index === 1 ? "12:00" : "15:00"}
-                </Text>
-                <View style={MainStyles.timelineSS}>
-                  <View style={index === 0 ? MainStyles.timelineActiveSS : MainStyles.timelineInactiveSS} />
-                </View>
-                <Text style={MainStyles.locationNameSS}>{location}</Text>
-                <Text style={MainStyles.dateTextSS}>
-                  {index === 0 ? "Jan 1" : index === 1 ? "Jan 2nd-3rd" : "Jan 4th-5th"}
-                </Text>
+            {events.length > 0 ? (
+              events.map((event, index) => (
+                <View key={event.id_event} style={MainStyles.scheduleItemSS}>
+                  {/* Hora */}
+                  <Text style={MainStyles.timeTextSS}>{event.event_time}</Text>
 
-                {loading[location] ? (
-                  <ActivityIndicator size="small" color="#0373f3" />
-                ) : weatherData[location] ? (
-                  <>
-                    <Icon
-                      name={getWeatherIcon(weatherData[location].condition.text)}
-                      size={20}
-                      color="#00CEC9"
-                      style={MainStyles.weatherIconSS}
+                  {/* Línea de tiempo */}
+                  <View style={MainStyles.timelineSS}>
+                    <View
+                      style={
+                        index === 0
+                          ? MainStyles.timelineActiveSS
+                          : MainStyles.timelineInactiveSS
+                      }
                     />
-                    <Text style={MainStyles.weatherTextSS}>
-                      {weatherData[location].temp_c}°C
-                    </Text>
-                  </>
-                ) : (
-                  <Text style={MainStyles.errorTextSS}>N/A</Text>
-                )}
+                  </View>
 
-                <Icon name="map-location-dot" size={20} color="#0373f3" style={MainStyles.scheduleIconSS} />
-              </View>
-            ))}
+                  {/* Nombre de la localidad (para la UI) */}
+                  <Text style={MainStyles.locationNameSS}>
+                    {event.location_name}
+                  </Text>
+
+                  {/* Fecha */}
+                  <Text style={MainStyles.dateTextSS}>
+                    {new Date(event.event_date).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric"
+                    })}
+                  </Text>
+
+                  {/* Icono del clima y temperatura */}
+                  {loading[event.id_event] ? (
+                    <ActivityIndicator size="small" color="#0373f3" />
+                  ) : weatherData[event.id_event] ? (
+                    <>
+                      <Icon
+                        name={getWeatherIcon(
+                          weatherData[event.id_event].condition.text
+                        )}
+                        size={20}
+                        color="#00CEC9"
+                        style={MainStyles.weatherIconSS}
+                      />
+                      <Text style={MainStyles.weatherTextSS}>
+                        {weatherData[event.id_event].temp_c}°C
+                      </Text>
+                    </>
+                  ) : (
+                    <Text style={MainStyles.errorTextSS}>N/A</Text>
+                  )}
+                </View>
+              ))
+            ) : (
+              <Text style={MainStyles.noEventsTextSS}>No events found.</Text>
+            )}
           </View>
         </View>
       </ScrollView>
