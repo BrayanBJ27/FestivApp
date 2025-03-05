@@ -22,7 +22,7 @@ interface Notification {
   status: string;
 }
 
-const BACKEND_URL = "http://192.168.100.11:3000";
+const BACKEND_URL = "http://192.168.121.213:3000";
 
 const NotificationScreen: React.FC = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState("Notification");
