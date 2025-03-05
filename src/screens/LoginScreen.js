@@ -23,7 +23,7 @@ import { makeRedirectUri } from "expo-auth-session";
 import { EXPO_PUBLIC_GOOGLE_CLIENT_ID, EXPO_PUBLIC_FACEBOOK_APP_ID } from "@env";
 
 // Configurar la URL del backend con tu IP local
-const BACKEND_URL = "http://192.168.100.11:3000";
+const BACKEND_URL = "http://192.168.121.213:3000";
 
 export default function LoginScreen() {
   const { setUser } = useUser();
