@@ -14,7 +14,7 @@ import { RootStackParamList } from "../types/types";
 import MainStyles from "../styles/MainStyles";
 import axios from "axios";
 
-const BACKEND_URL = "http://192.168.100.11:3000";
+const BACKEND_URL = "http://192.168.121.213:3000";
 
 type Props = NativeStackScreenProps<RootStackParamList, "FestivityScreen">;
 
