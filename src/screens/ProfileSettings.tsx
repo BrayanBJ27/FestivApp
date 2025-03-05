@@ -21,7 +21,7 @@ import MainStyles from "../styles/MainStyles";
 import axios from "axios";
 
 // URL base de tu backend
-const BACKEND_URL = "http://192.168.100.11:3000";
+const BACKEND_URL = "http://192.168.121.213:3000";
 
 const ProfileSettings: React.FC = () => {
   const [nickname, setNickname] = useState("");
