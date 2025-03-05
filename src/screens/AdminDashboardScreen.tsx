@@ -31,7 +31,7 @@ interface FestivalWithRating extends Festival {
   rating: number;
 }
 
-const BACKEND_URL = "http://192.168.100.11:3000";
+const BACKEND_URL = "http://192.168.121.213:3000";
 
 const AdmindashboardScreen: React.FC = (): JSX.Element => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
