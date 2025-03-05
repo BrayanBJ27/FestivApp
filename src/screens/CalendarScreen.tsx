@@ -16,7 +16,7 @@ import { RootStackParamList } from "../types/types";
 import axios from "axios";
 
 // URL base de tu backend
-const BACKEND_URL = "http://192.168.100.11:3000";
+const BACKEND_URL = "http://192.168.121.213:3000";
 
 // Función para generar un array de fechas entre dos rangos (YYYY-MM-DD)
 function getDatesInRange(startDate: string, endDate: string): string[] {
