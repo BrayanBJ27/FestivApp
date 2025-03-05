@@ -16,7 +16,7 @@ import axios from 'axios';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/types';
 
-const BACKEND_URL = "http://192.168.100.11:3000";
+const BACKEND_URL = "http://192.168.121.213:3000";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'AddEventFScreen'>;
 
