@@ -80,10 +80,10 @@ const CurrencyScreen: React.FC = () => {
 
           {/* Botón para realizar la conversión */}
           <TouchableOpacity
-            style={[MainStyles.button, isDarkMode ? MainStyles.darkButtonCCS : null]}
+            style={[MainStyles.buttonCCS, isDarkMode ? MainStyles.darkButtonCCS : null]}
             onPress={convertCurrency}
           >
-            <Text style={[MainStyles.buttonText, isDarkMode ? MainStyles.darkButtonTextCCS : null]}>
+            <Text style={[MainStyles.buttonTextCCS, isDarkMode ? MainStyles.darkButtonTextCCS : null]}>
               Convert to All
             </Text>
           </TouchableOpacity>
