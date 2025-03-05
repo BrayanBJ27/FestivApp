@@ -1414,7 +1414,7 @@ const MainStyles = StyleSheet.create({
 
     otherFestivityADS: {
       width: "130%",
-      height: 250,
+      height: 250,       
       borderRadius: 15,
       overflow: "hidden",
       marginRight: 10,
