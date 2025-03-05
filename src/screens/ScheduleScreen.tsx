@@ -25,7 +25,7 @@ import axios from "axios";
 import { WEATHER_API_KEY } from "@env";
 
 // URL base de tu backend
-const BACKEND_URL = "http://192.168.100.11:3000";
+const BACKEND_URL = "http://192.168.121.213:3000";
 
 // Función para obtener el ícono del clima a partir de la descripción
 const getWeatherIcon = (condition: string) => {
