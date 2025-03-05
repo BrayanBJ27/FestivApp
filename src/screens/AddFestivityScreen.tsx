@@ -20,7 +20,7 @@ import NewFestivalTypeModal from '../components/NewFestivalTypeModal';
 import { Picker } from '@react-native-picker/picker';
 
 // Configure backend URL with your local IP
-const BACKEND_URL = "http://192.168.100.11:3000";
+const BACKEND_URL = "http://192.168.121.213:3000";
 
 // Primero, definimos la interfaz para el tipo de festival
 interface FestivalType {
